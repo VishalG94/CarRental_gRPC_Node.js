@@ -1,0 +1,15 @@
+.signinform {
+    display: flex;
+    width: 30vw;
+    flex-direction: column;
+
+
+
+}
+
+.signinform .loginbutton {
+    display: flex;
+    padding: 20px;
+    justify-content: space-around;
+    flex-direction: row;
+}
