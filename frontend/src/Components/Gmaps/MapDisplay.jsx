@@ -7,6 +7,8 @@ import { Map, Marker, GoogleApiWrapper, InfoWindow } from "google-maps-react";
 import MapMarker from "./MapMarker";
 import MapGetLocation from "./MapGetLocation";
 
+import "./MapDisplay-styles.css";
+
 class MapDisplay extends Component {
   state = {
     currentPosition: {
@@ -44,12 +46,17 @@ class MapDisplay extends Component {
     }
   };
   render() {
+    const style = {
+      width: "100%",
+      height: "100%"
+    };
     const getPosition = MapGetLocation();
     console.log(getPosition);
     return (
-      <div>
+      <div className="mapDisplay">
         <Map
           google={this.props.google}
+          style={style}
           initialCenter={{
             lat: getPosition.latitude,
             lng: getPosition.longitude
