@@ -1,0 +1,12 @@
+.bannerCard {
+    height: 200px;
+    width: 200px;
+    border: thin;
+}
+
+.bannerCard .cardImage {
+    height: 120px;
+    width: 120px;
+}
+
+.bannerCard .cardText {}

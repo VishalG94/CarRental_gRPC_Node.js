@@ -1,0 +1,5 @@
+.Banner {
+    display: flex;
+    justify-content: stretch;
+    flex-direction: row;
+}
