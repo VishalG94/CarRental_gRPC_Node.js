@@ -1,0 +1,23 @@
+{
+  "name": "carservice-grpc",
+  "version": "1.0.0",
+  "description": "Car Services grpc microservices",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vishal Gadapa",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/proto-loader": "^0.5.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dateformat": "^3.0.3",
+    "express": "^4.17.0",
+    "grpc": "^1.20.3",
+    "kafka-node": "^3.0.1",
+    "mongoose": "^5.7.9",
+    "proto-loader": "^0.2.0",
+    "uuid": "^3.3.2"
+  }
+}
