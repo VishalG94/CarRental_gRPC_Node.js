@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+service VehicleService {
+    rpc List (Empty) returns (VehicleList) {}
+    rpc Insert (Vehicle) returns (Vehicle) {}
+}
+message Empty {}
+
+message Vehicle {
+   string id = 1;
+   string make = 2;
+   string model = 3;
+   int32 year = 4;
+   string registrationTag = 5;
+   int32 mileage = 6;
+   string lastServiceDate = 7;
+   string vehicleCondition = 8;
+   int32 rentalLocationId = 9; 
+}
+message VehicleList {
+   string books = 1;
+}
