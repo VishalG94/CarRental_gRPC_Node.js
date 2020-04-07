@@ -1,0 +1,9 @@
+.cardstyle{
+    display:flex;
+    width: 50%;
+    height:90%;
+    padding: 10%;
+    margin-left: 5%;
+    border-spacing: 5%;
+    
+}

@@ -1,0 +1,25 @@
+.mainDiv{
+    overflow: hidden;
+    font-size: 30px;
+    font-style: italic;
+    background-color: beige;
+}
+.navDiv{
+    float:left;
+    display: flex;
+    padding-bottom: 50%;
+    position: fixed;
+    z-index:2;
+    top:0;
+}
+.listDiv{
+    width:150%;
+    font-size: 25px;
+    float:right;
+    margin:28px;
+    z-index:-1;
+}
+.pages{
+    justify-content: center;
+}
+
