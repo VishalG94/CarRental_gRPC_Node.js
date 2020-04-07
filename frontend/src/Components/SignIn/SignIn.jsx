@@ -4,22 +4,23 @@ import CustomButton from "../CustomButton/CustomButton";
 import "./SignIn-style.css";
 
 import { signInWithGoogle, auth } from "../FirebaseUtils/FirebaseUtils";
+import { Link } from "react-router-dom";
 
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     //e.preventDefault();
     const { value, name } = e.target;
     this.setState({ [name]: value });
   };
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     var { email, password } = this.state;
     try {
@@ -31,7 +32,7 @@ class SignIn extends React.Component {
         name: "",
         email: "",
         photoUrl: "",
-        signedIn: "false"
+        signedIn: "false",
       };
       console.log(user);
 
@@ -81,10 +82,13 @@ class SignIn extends React.Component {
               <CustomButton type="submit" label="submit" name="submit">
                 SIGN IN
               </CustomButton>
-              <CustomButton onClick={signInWithGoogle}>
+              {/* <CustomButton onClick={signInWithGoogle}>
                 GOOGLE Login
-              </CustomButton>
+              </CustomButton> */}
             </div>
+            <Link style={{ textDecoration: "none" }} to="/users/signup">
+              Dont have an Account? SignUP!
+            </Link>
           </form>
         </div>
       </div>

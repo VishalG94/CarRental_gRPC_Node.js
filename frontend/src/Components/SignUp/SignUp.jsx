@@ -1,31 +1,40 @@
 import React from "react";
 import {
   auth,
-  createUserProfileDocument
+  createUserProfileDocument,
 } from "../FirebaseUtils/FirebaseUtils";
 import CustomInput from "../CustomInput/CustomInput";
 import "./SignUp-style.css";
 import { Component } from "react";
 import CustomButton from "../CustomButton/CustomButton";
+import axios from "axios";
+import Constants from "../../Utils/Constants";
+import { Link } from "react-router-dom";
 
 class SignUp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayName: "",
+      userName: "",
       email: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+      dlNumber: "",
+      dlState: "",
+      street: "",
+      state: "",
+      country: "",
+      pin: "",
     };
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     const { value, name } = e.target;
     this.setState({ [name]: value });
   };
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, displayName, password, confirmPassword } = this.state;
+    const { email, userName, password, confirmPassword } = this.state;
 
     if (password !== confirmPassword) {
       alert("Passwords don't match");
@@ -33,31 +42,46 @@ class SignUp extends Component {
     }
 
     try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      await user.updateProfile({ displayName: displayName }).then(() => {
-        console.log("displayname updated");
-      });
+      // const { user } = await auth.createUserWithEmailAndPassword(
+      //   email,
+      //   password
+      // );
+      // await user.updateProfile({ displayName: displayName }).then(() => {
+      //   console.log("displayname updated");
+      // });
 
       const userdetails = {
-        name: this.state.displayName,
+        userName: this.state.userName,
         email: this.state.email,
-        photoUrl: "",
-        signedIn: "false"
+        password: this.state.password,
+        dlNumber: this.state.dlNumber,
+        dlState: this.state.dlState,
+        street: this.state.street,
+        state: this.state.state,
+        country: this.state.country,
+        pin: this.state.pin,
       };
+
       console.log(userdetails);
-      localStorage.setItem("userdetails", userdetails);
-      localStorage.setItem("name", userdetails.name);
-      localStorage.setItem("email", userdetails.email);
-      localStorage.setItem("signedIn", userdetails.signedIn);
+
+      axios
+        .post(`${Constants.BACKEND_SERVER}/user/newUser`, userdetails)
+        .then((response) => {
+          console.log(response.body);
+          window.alert("SignUp successful! Please Login");
+        });
 
       this.setState({
+        userName: "",
         email: "",
         password: "",
         confirmPassword: "",
-        displayName: ""
+        dlNumber: "",
+        dlState: "",
+        street: "",
+        state: "",
+        country: "",
+        pin: "",
       });
     } catch (err) {
       console.log(err);
@@ -68,14 +92,18 @@ class SignUp extends Component {
       <div>
         <h1>New User?</h1>
         <h2>Create an account with Email and Password</h2>
+        <Link to="/users/login" style={{ textDecoration: "none" }}>
+          Have an account? SignIn!
+        </Link>
+
         <div className="signUpForm">
           <form onSubmit={this.handleSubmit}>
             <div className="inputs">
               <CustomInput
                 type="text"
-                label="Display Name"
-                name="displayName"
-                value={this.state.displayName}
+                label="User Name"
+                name="userName"
+                value={this.state.userName}
                 handleChange={this.handleChange}
                 required
               />
@@ -100,6 +128,54 @@ class SignUp extends Component {
                 label="Confirm Password"
                 name="confirmPassword"
                 value={this.state.confirmPassword}
+                handleChange={this.handleChange}
+                required
+              />
+              <CustomInput
+                type="text"
+                label="Driver's License Number"
+                name="dlNumber"
+                value={this.state.dlNumber}
+                handleChange={this.handleChange}
+                required
+              />
+              <CustomInput
+                type="text"
+                label="State of Issue"
+                name="dlState"
+                value={this.state.dlState}
+                handleChange={this.handleChange}
+                required
+              />
+              <CustomInput
+                type="text"
+                label="Street Address"
+                name="street"
+                value={this.state.street}
+                handleChange={this.handleChange}
+                required
+              />
+              <CustomInput
+                type="text"
+                label="State"
+                name="state"
+                value={this.state.state}
+                handleChange={this.handleChange}
+                required
+              />
+              <CustomInput
+                type="text"
+                label="Country"
+                name="country"
+                value={this.state.country}
+                handleChange={this.handleChange}
+                required
+              />
+              <CustomInput
+                type="text"
+                label="Zip Code"
+                name="pin"
+                value={this.state.pin}
                 handleChange={this.handleChange}
                 required
               />

@@ -2,9 +2,10 @@ import React from "react";
 import "./App.css";
 import LoginPage from "./Components/LoginPage/LoginPage";
 import Header from "./Components/Common/Header/Header.jsx";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import HomePage from "./Components/HomePage/HomePage";
 import Footer from "./Components/Common/Footer/Footer";
+import SignupPage from "./Components/SignUpPage/SignUpPage";
 
 function App() {
   return (
@@ -14,12 +15,31 @@ function App() {
         <Route exact path="/home" component={HomePage} />{" "}
         <Route
           exact
-          path="/login"
-          // render={() =>
-          //   this.props.currentuser ? <Redirect to="/home" /> : <LoginPage />
-          // }
+          path="users/login"
+          render={() =>
+            localStorage.getItem("loggedIn") ? (
+              <Redirect to="/home" />
+            ) : (
+              <LoginPage />
+            )
+          }
           component={LoginPage}
         />{" "}
+        <Route
+          exact
+          path="admin/login"
+          render={() =>
+            localStorage.getItem("loggedIn") ? (
+              <Redirect to="/home" />
+            ) : (
+              <LoginPage />
+            )
+          }
+          component={LoginPage}
+        />{" "}
+        <Route exact path="/users/login" component={LoginPage} />{" "}
+        <Route exact path="/users/signup" component={SignupPage} />{" "}
+        <Route exact path="/admin/login" component={HomePage} />{" "}
       </Switch>{" "}
       <Footer />
     </div>
