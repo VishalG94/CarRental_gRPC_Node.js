@@ -1,9 +1,9 @@
 import "./SignUpPage.styles.css";
-import img from "../../Assets/Images/SignUp.jpg";
+import img from "../../../Assets/Images/SignUp.jpg";
 // import bgvideo from "../../Assets/BgVids/LoginBackground.mp4";
 
 import React, { Component } from "react";
-import SignUp from "../SignUp/SignUp";
+import SignUp from "../../Common/SignUp/SignUp";
 
 class SignupPage extends Component {
   state = {};

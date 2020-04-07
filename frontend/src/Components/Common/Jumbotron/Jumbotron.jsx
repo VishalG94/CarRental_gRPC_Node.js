@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import img from "../../Assets/Images/JumbotronImage.jpg";
+import img from "../../../Assets/Images/JumbotronImage.jpg";
 import "./Jumbotron.styles.css";
 
 class Jumbotron extends Component {

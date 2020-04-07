@@ -1,14 +1,11 @@
 import React from "react";
-import {
-  auth,
-  createUserProfileDocument,
-} from "../FirebaseUtils/FirebaseUtils";
+
 import CustomInput from "../CustomInput/CustomInput";
 import "./SignUp-style.css";
 import { Component } from "react";
 import CustomButton from "../CustomButton/CustomButton";
 import axios from "axios";
-import Constants from "../../Utils/Constants";
+import Constants from "../../../Utils/Constants";
 import { Link } from "react-router-dom";
 
 class SignUp extends Component {
@@ -34,7 +31,7 @@ class SignUp extends Component {
   };
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, userName, password, confirmPassword } = this.state;
+    const { password, confirmPassword } = this.state;
 
     if (password !== confirmPassword) {
       alert("Passwords don't match");
@@ -42,14 +39,6 @@ class SignUp extends Component {
     }
 
     try {
-      // const { user } = await auth.createUserWithEmailAndPassword(
-      //   email,
-      //   password
-      // );
-      // await user.updateProfile({ displayName: displayName }).then(() => {
-      //   console.log("displayname updated");
-      // });
-
       const userdetails = {
         userName: this.state.userName,
         email: this.state.email,
@@ -60,6 +49,7 @@ class SignUp extends Component {
         state: this.state.state,
         country: this.state.country,
         pin: this.state.pin,
+        type: "users",
       };
 
       console.log(userdetails);

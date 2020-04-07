@@ -1,4 +1,4 @@
-import SignIn from "../SignIn/SignIn";
+import SignIn from "../Common/SignIn/SignIn";
 import "./LoginPage-styles.css";
 import img from "../../Assets/Images/Login.jpg";
 

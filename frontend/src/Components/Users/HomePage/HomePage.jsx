@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import MapDisplay from "../Gmaps/MapDisplay";
-import Banner from "../Banner/Banner";
+import MapDisplay from "../../Common/Gmaps/MapDisplay";
+import Banner from "../../Common/Banner/Banner";
 import "./HomePage.styles.css";
-import Jumbotron from "../Jumbotron/Jumbotron";
+import Jumbotron from "../../Common/Jumbotron/Jumbotron";
 
 class HomePage extends Component {
   state = {};

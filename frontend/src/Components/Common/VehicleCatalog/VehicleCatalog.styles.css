@@ -1,0 +1,13 @@
+.vehicleCatalog {
+  display: flex;
+  /* justify-content: stretch; */
+  width: 90%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* padding: 80px; */
+}
+
+.catalogPage {
+  display: flex;
+  justify-content: center;
+}

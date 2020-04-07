@@ -2,9 +2,10 @@ import React from "react";
 import CustomInput from "../CustomInput/CustomInput";
 import CustomButton from "../CustomButton/CustomButton";
 import "./SignIn-style.css";
+import Constants from "../../../Utils/Constants";
 
-import { signInWithGoogle, auth } from "../FirebaseUtils/FirebaseUtils";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -22,39 +23,30 @@ class SignIn extends React.Component {
   };
   handleSubmit = async (e) => {
     e.preventDefault();
-    var { email, password } = this.state;
-    try {
-      auth.signInWithEmailAndPassword(email, password);
-
-      //localStorage.setItem({email:''})
-      var user = auth.currentUser;
-      const userdetails = {
-        name: "",
-        email: "",
-        photoUrl: "",
-        signedIn: "false",
-      };
-      console.log(user);
-
-      if (user != null) {
-        userdetails.name = user.displayName;
-        userdetails.email = user.email;
-        userdetails.photoUrl = user.photoURL;
-        userdetails.signedIn = "true";
-      }
-      localStorage.setItem("userdetails", userdetails);
-      localStorage.setItem("name", user.displayName);
-      localStorage.setItem("email", user.email);
-      localStorage.setItem("photoURL", user.photoURL);
-      localStorage.setItem("signedIn", true);
-      this.setState({ email: "", password: "" });
-
-      this.props.history.push("/home");
-    } catch (err) {
-      console.log(err);
-      window.alert(err);
-    }
+    const userdetails = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+    axios
+      .post(`${Constants.BACKEND_SERVER}/login`, userdetails)
+      .then((response) => {
+        if (response.body.loggedIn === true) {
+          localStorage.setItem("loggedIn", true);
+          localStorage.setItem("userName", response.body.userName);
+          localStorage.setItem("userType", response.body.userType);
+          this.setState({ email: "", password: "" });
+          if (response.body.userType === "admin") {
+            this.props.history.push("/admin/home");
+          } else {
+            this.props.history.push("/users/home");
+          }
+        } else {
+          window.alert("Incorrect Email or Password");
+        }
+      });
+    this.setState({ email: "", password: "" });
   };
+
   render() {
     return (
       <div>
@@ -82,9 +74,6 @@ class SignIn extends React.Component {
               <CustomButton type="submit" label="submit" name="submit">
                 SIGN IN
               </CustomButton>
-              {/* <CustomButton onClick={signInWithGoogle}>
-                GOOGLE Login
-              </CustomButton> */}
             </div>
             <Link style={{ textDecoration: "none" }} to="/users/signup">
               Dont have an Account? SignUP!

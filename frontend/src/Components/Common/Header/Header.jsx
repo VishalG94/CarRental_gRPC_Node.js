@@ -25,7 +25,7 @@ class Header extends Component {
           </Link>
 
           <div className="options">
-            <Link to="list" className="option">
+            <Link to="/vehiclecatalog" className="option">
               Catalog
             </Link>
             <Link to="cart" className="option">
