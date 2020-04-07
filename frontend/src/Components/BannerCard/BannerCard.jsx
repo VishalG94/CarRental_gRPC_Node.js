@@ -1,0 +1,14 @@
+import React from "react";
+import "./BannerCard-styles.css";
+import { Link } from "react-router-dom";
+
+const BannerCard = ({ imageURL, text }) => {
+  return (
+    <div className="bannerCard">
+      <img alt="cardimage" src={imageURL} className="cardImage"></img>
+      <p className="cardText">{text}</p>
+    </div>
+  );
+};
+
+export default BannerCard;
