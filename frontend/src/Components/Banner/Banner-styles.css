@@ -1,5 +1,8 @@
 .Banner {
-    display: flex;
-    justify-content: stretch;
-    flex-direction: row;
+  display: flex;
+  justify-content: stretch;
+  width: 80%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 80px;
 }

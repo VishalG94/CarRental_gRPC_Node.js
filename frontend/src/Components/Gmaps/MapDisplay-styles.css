@@ -1,7 +1,7 @@
 .mapDisplay {
-    height: 800px;
-    width: 50vw;
-    padding: 20px;
-    position: relative;
-    margin-bottom: 50px;
+  height: 800px;
+  width: 50vw;
+  padding: 20px;
+  position: relative;
+  padding-bottom: 50px;
 }

@@ -1,0 +1,20 @@
+.jumbotronText {
+  color: white;
+  position: absolute;
+  top: 60%;
+
+  left: 50%;
+}
+
+.jumbotronImage {
+  width: 100%;
+}
+
+.title {
+  font-size: 70px;
+}
+
+.subtext {
+  font-size: 20px;
+  /* width: 800px; */
+}
