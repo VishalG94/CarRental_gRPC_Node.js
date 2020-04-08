@@ -4,7 +4,7 @@ import React, { Component } from "react";
 class MapMarker extends Component {
   state = {};
   render() {
-    return <Marker position={{ lat: 48.0, lng: -122.0 }} />;
+    return <Marker position={{ lat: 37.330516, lng: -121.885233 }} />;
   }
 }
 

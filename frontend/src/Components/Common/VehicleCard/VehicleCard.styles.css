@@ -4,3 +4,8 @@
 .vehicleCard {
   padding: 20px;
 }
+
+.cardImage {
+  height: 150px;
+  width: 200px;
+}

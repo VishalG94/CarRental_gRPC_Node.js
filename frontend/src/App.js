@@ -10,14 +10,14 @@ import VehicleCatalog from "./Components/Common/VehicleCatalog/VehicleCatalog";
 
 import AdminHomePage from "../src/Components/Admin/HomePage/HomePage";
 
-import CreateVehicle from  "./Components/Admin/createvehicle"
-import CreateRental from "./Components/Admin/createrentallocation"
-import Editvehicledetails from "./Components/Admin/editvehicledetails"
-import Usermanagement from "./Components/Admin/manageusers"
-import Userbillingmanagement from "./Components/Admin/userbillingmanagement"
-import Viewalllocations from "./Components/Admin/viewalllocations"
+import CreateVehicle from "./Components/Admin/createvehicle";
+import CreateRental from "./Components/Admin/createrentallocation";
+import Editvehicledetails from "./Components/Admin/editvehicledetails";
+import Usermanagement from "./Components/Admin/manageusers";
+import Userbillingmanagement from "./Components/Admin/userbillingmanagement";
+import Viewalllocations from "./Components/Admin/viewalllocations";
 
-import Dashboard from "./Components/Admin/admindashboard"
+import Dashboard from "./Components/Admin/admindashboard";
 import Viewallcars from "./Components/Admin/viewallcars";
 
 function App() {
@@ -37,15 +37,22 @@ function App() {
           }
           component={LoginPage}
         />{" "} */}
-<Route exact path="/admin/admindashboard" component={Dashboard} />
-<Route exact path="/admin/addvehicle" component={CreateVehicle} />
+        <Route exact path="/admin/admindashboard" component={Dashboard} />
+        <Route exact path="/admin/addvehicle" component={CreateVehicle} />
         <Route exact path="/admin/addlocation" component={CreateRental} />
         <Route exact path="/admin/editall" component={Editvehicledetails} />
         <Route exact path="/admin/usermanagement" component={Usermanagement} />
-        <Route exact path="/admin/userbillingmanagement" component={Userbillingmanagement} />
+        <Route
+          exact
+          path="/admin/userbillingmanagement"
+          component={Userbillingmanagement}
+        />
         <Route exact path="/admin/viewallcars" component={Viewallcars} />
-        <Route exact path="/admin/viewalllocations" component={Viewalllocations} />
-
+        <Route
+          exact
+          path="/admin/viewalllocations"
+          component={Viewalllocations}
+        />
         <Route exact path="/login" component={LoginPage} />{" "}
         <Route exact path="/users/home" component={UserHomePage} />{" "}
         <Route exact path="/users/signup" component={SignupPage} />{" "}

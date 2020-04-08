@@ -7,19 +7,22 @@ import { Map, Marker, GoogleApiWrapper, InfoWindow } from "google-maps-react";
 import MapMarker from "./MapMarker";
 import MapGetLocation from "./MapGetLocation";
 
+import Locations from "../../../DummyData/Locations";
+
 import "./MapDisplay-styles.css";
+import CustomButton from "../CustomButton/CustomButton";
 
 class MapDisplay extends Component {
   state = {
     currentPosition: {
       latitude: "",
-      longitude: ""
+      longitude: "",
     },
     showingInfoWindow: false,
     activeMarker: {},
     selectedPlace: {
-      name: "someplacename"
-    }
+      name: "someplacename",
+    },
   };
 
   //   componentDidMount() {
@@ -32,47 +35,69 @@ class MapDisplay extends Component {
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
-      showingInfoWindow: true
+      showingInfoWindow: true,
     });
-    console.log(MapGetLocation());
+    localStorage.setItem("locationID", props.locationID);
+    console.log(props);
   };
-
-  onMapClicked = props => {
+  onMapClicked = (props) => {
     if (this.state.showingInfoWindow) {
       this.setState({
         showingInfoWindow: false,
-        activeMarker: null
+        activeMarker: null,
       });
     }
+  };
+
+  onButtonClicked = (e) => {
+    console.log("button clicked handler");
   };
   render() {
     const style = {
       width: "100%",
-      height: "100%"
+      height: "100%",
     };
-    const getPosition = MapGetLocation();
-    console.log(getPosition);
+    const getPosition = {
+      latitude: 37.330516,
+      longitude: -121.885233,
+    };
+    //  = MapGetLocation();
+    // console.log(getPosition);
     return (
       <div className="mapDisplay">
         <Map
           google={this.props.google}
-          style={style}
-          initialCenter={{
-            lat: getPosition.latitude,
-            lng: getPosition.longitude
-          }}
-          zoom={10}
           onClick={this.onMapClicked}
+          initialCenter={{
+            lat: 37.330516,
+            lng: -121.885233,
+          }}
         >
-          <Marker onClick={this.onMarkerClick} name={"Current location"} />
+          {Locations.map((location) => (
+            <Marker
+              // label={"string"}
+              title={location.ADDRESS.STREET}
+              locationID={location._id}
+              name={location.NAME}
+              onClick={this.onMarkerClick}
+              position={{
+                lat: location.ADDRESS.LATITUDE,
+                lng: location.ADDRESS.LONGITUDE,
+              }}
+            />
+          ))}
 
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
           >
-            <div>
-              <h1>{this.state.selectedPlace.name}</h1>
-            </div>
+            <h3>{this.state.selectedPlace.name}</h3>
+            <p>{this.state.selectedPlace.title}</p>
+            <button>
+              <a href="./vehicleCatalog" style={{ textDecoration: "none" }}>
+                Go to the Location
+              </a>
+            </button>
           </InfoWindow>
         </Map>
       </div>
@@ -81,5 +106,5 @@ class MapDisplay extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyDEn8HT69AFasbJ2m_uf3G5pfEtdhdkVfg"
+  apiKey: "AIzaSyDEn8HT69AFasbJ2m_uf3G5pfEtdhdkVfg",
 })(MapDisplay);

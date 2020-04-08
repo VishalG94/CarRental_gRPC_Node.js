@@ -15,22 +15,23 @@ class Header extends Component {
     console.log(this.state.userdetails.name);
   };
   render() {
+    // const userType=localStorage;
     return (
       <div>
         <div className="header">
-          <Link to="/home" className="logo">
+          <Link to="home" className="logo">
             {/* <Logo className="logo" /> */}
             <img src={logo} alt="logo" height="60px"></img>
             <h2>Spartan Cars</h2>
           </Link>
 
           <div className="options">
-            <Link to="/vehiclecatalog" className="option">
-              Catalog
+            <Link to="home" className="option">
+              Home
             </Link>
-            <Link to="cart" className="option">
+            {/* <Link to="cart" className="option">
               Reservations
-            </Link>
+            </Link> */}
             {this.state.userdetails.signedIn ? (
               <div className="option" onClick={() => auth.signOut()}>
                 SignOut
