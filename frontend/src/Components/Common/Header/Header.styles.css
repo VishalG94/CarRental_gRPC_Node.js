@@ -22,7 +22,7 @@
 .header .options {
   display: flex;
 
-  justify-content: space-around;
+  justify-content: flex-end;
   font-size: 26px;
 }
 
@@ -30,4 +30,5 @@
   color: white;
   text-decoration: none;
   padding: 15px 5px 5px 5px;
+  width: 120px;
 }

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import "./VehicleCard.styles.css";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function VehicleCard(props) {
   let history = useHistory();

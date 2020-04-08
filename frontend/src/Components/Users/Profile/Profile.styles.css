@@ -1,0 +1,30 @@
+.userdetails {
+  display: flex;
+  width: 60%;
+  position: relative;
+  left: 20%;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 800px;
+  align-content: center;
+}
+
+.option {
+  width: 600px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+input {
+  width: 200px;
+  margin-left: 10px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  background-color: #fff;
+}
+
+.profile {
+  width: 100%;
+}

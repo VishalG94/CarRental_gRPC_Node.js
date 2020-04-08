@@ -12,6 +12,7 @@ class Footer extends Component {
           <li>Vamsi Krishna</li>
           <li>Vishal</li>
         </ul>
+        <p>Icons from Zipcar website</p>
       </div>
     );
   }

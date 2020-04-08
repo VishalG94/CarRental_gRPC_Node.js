@@ -20,6 +20,9 @@ import Viewalllocations from "./Components/Admin/viewalllocations";
 import Dashboard from "./Components/Admin/admindashboard";
 import Viewallcars from "./Components/Admin/viewallcars";
 
+import LandingPage from "../src/Components/LandingPage/LandingPage";
+import Profile from "./Components/Users/Profile/Profile";
+
 function App() {
   return (
     <div className="App">
@@ -37,6 +40,7 @@ function App() {
           }
           component={LoginPage}
         />{" "} */}
+        <Route exact path="/" component={LandingPage} />
         <Route exact path="/admin/admindashboard" component={Dashboard} />
         <Route exact path="/admin/addvehicle" component={CreateVehicle} />
         <Route exact path="/admin/addlocation" component={CreateRental} />
@@ -56,6 +60,7 @@ function App() {
         <Route exact path="/login" component={LoginPage} />{" "}
         <Route exact path="/users/home" component={UserHomePage} />{" "}
         <Route exact path="/users/signup" component={SignupPage} />{" "}
+        <Route exact path="/users/profile" component={Profile} />{" "}
         <Route exact path="/users/vehiclecatalog" component={VehicleCatalog} />{" "}
         <Route exact path="/admin/home" component={AdminHomePage} />{" "}
         <Route exact path="/admin/vehiclecatalog" component={VehicleCatalog} />{" "}

@@ -4,13 +4,10 @@
 // API KEY : AIzaSyDEn8HT69AFasbJ2m_uf3G5pfEtdhdkVfg
 import React, { Component } from "react";
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from "google-maps-react";
-import MapMarker from "./MapMarker";
-import MapGetLocation from "./MapGetLocation";
 
 import Locations from "../../../DummyData/Locations";
 
 import "./MapDisplay-styles.css";
-import CustomButton from "../CustomButton/CustomButton";
 
 class MapDisplay extends Component {
   state = {

@@ -32,6 +32,7 @@ class SignIn extends React.Component {
       .then((response) => {
         if (response.body.loggedIn === true) {
           localStorage.setItem("loggedIn", true);
+          localStorage.setItem("userId", response.body._id);
           localStorage.setItem("userName", response.body.userName);
           localStorage.setItem("userType", response.body.userType);
           this.setState({ email: "", password: "" });

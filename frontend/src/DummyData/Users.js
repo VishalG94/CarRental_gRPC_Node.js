@@ -1,0 +1,48 @@
+const user = {
+  _id: 1,
+  NAME: "Vamsi",
+  DL_STATE: "California",
+  DL_NUMBER: "12345678",
+  EMAIL: "vamsi.chakravartula@sjsu.edu",
+  PHONE: 123456789,
+  PASSWORD: "password",
+  ADDRESS: {
+    _id: 2,
+    STREET: "899 Morrison Park Dr, San Jose, CA 95126",
+    STATE: "California",
+    COUNTRY: "United States",
+    PIN: 95126,
+    LATITUDE: 37.334278,
+    LONGITUDE: -121.908375,
+  },
+  MEMBERSHIP_START: "Date1",
+  RESERVATION_ID: [
+    {
+      _id: 1,
+      USER: "User1",
+      VEHICLE: "vehicleType",
+      LOCATION: "LocationType",
+      RENTAL_DURATION: "11",
+      PICKUP_TIME: "DateTypePickup",
+      RETURN_TIME: "DateTypeReturn",
+      PRICE: 100,
+      USER_COMMENTS: "comments",
+    },
+    {
+      _id: 2,
+      USER: "User1",
+      VEHICLE: "vehicleType1",
+      LOCATION: "LocationType1",
+      RENTAL_DURATION: "12",
+      PICKUP_TIME: "DateTypePickup",
+      RETURN_TIME: "DateTypeReturn",
+      PRICE: 1100,
+      USER_COMMENTS: "comments",
+    },
+  ],
+  CARD: "CardObject",
+  CREATED: "DateObject",
+  MODIFIED: "Dateobject",
+};
+
+export default user;
