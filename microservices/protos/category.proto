@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+service CategoryService {
+    rpc List (EmptyCategory) returns (CategoryList) {}
+    rpc Insert (Category) returns (Category) {}
+    rpc Get (CategoryId) returns (Category){}
+    rpc Update (Category) returns (Category){}
+    rpc Delete (CategoryId) returns (Category){}
+}
+message EmptyCategory {}
+
+message Category {
+   string _id = 1;
+   string CATEGORY_NAME =2; 
+   int32 LATE_FEE = 3;
+}
+message CategoryList {
+   repeated Category categories = 1;
+}
+
+message CategoryId {
+  string _id = 1;
+}

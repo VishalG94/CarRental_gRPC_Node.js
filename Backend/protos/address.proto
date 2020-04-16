@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+service AddressService {
+    rpc List (EmptyAddress) returns (AddressList) {}
+    rpc Insert (Address) returns (Address) {}
+    rpc Get (AddressId) returns (Address){}
+    rpc Update (Address) returns (Address){}
+    rpc Delete (AddressId) returns (Address){}
+}
+message EmptyAddress {}
+
+message Address {
+   string _id = 1;
+   string STREET =2; 
+   string STATE = 3;
+   string COUNTRY = 4; 
+   int32 PIN = 5;
+   string LATITUDE = 6;
+   string LONGITUDE = 7; 
+}
+message AddressList {
+   repeated Address addresses = 1;
+}
+
+message AddressId {
+  string _id = 1;
+}

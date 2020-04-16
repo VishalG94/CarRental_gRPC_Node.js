@@ -7,10 +7,11 @@ var today = dateforamt(now, 'yyyy-mm-dd HH:MM:ss')
 mongoose.set('useCreateIndex', true);
 const cardSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    CARD_NUMBER: { type: Number, required: true },
+    CARD_NUMBER: { type: Number, required: true, unique: true },
     NAME_ON_CARD: { type: String, required: true },
     CARD_TYPE: { type: String, required: true },
-    EXP: { type: Date, required: true }
+    EXP_MONTH: { type: Number, required: true, min: 1, max: 12 },
+    EXP_YEAR: { type: Number, required: true, min: 1000, max: 9999 }
 })
 
 

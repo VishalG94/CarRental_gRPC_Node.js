@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+import "user.proto";
+import "vehicle.proto";
+import "location.proto";
+
+service ReservationService {
+    rpc List (EmptyReservation) returns (ReservationList) {}
+    rpc Insert (Reservation) returns (Reservation) {}
+    rpc Get (ReservationId) returns (ReservationResponse){}
+    rpc Update (Reservation) returns (Reservation){}
+    rpc Delete (ReservationId) returns (Reservation){}
+}
+message EmptyReservation {}
+
+message Reservation {
+   string _id = 1;
+   string USER = 2;
+   string VEHICLE = 3;
+   string LOCATION = 4;
+   enum Status {
+    ACTIVE = 0;
+    CANCELLED = 1;
+    COMPLETED = 2;
+   }
+   Status STATUS = 5;
+   int32 RENTAL_DURATION = 6;
+   string PICKUP_TIME = 7;
+   string RETURN_TIME = 8;
+   int32 PRICE = 9;
+   string USER_COMMENTS = 10;
+}
+
+message ReservationResponse {
+   string _id = 1;
+   UserBase USER = 2;
+   Vehicle VEHICLE = 3;
+   LocationBase LOCATION = 4;
+   enum Status {
+    ACTIVE = 0;
+    CANCELLED = 1;
+    COMPLETED = 2;
+   }
+   Status STATUS = 5;
+   int32 RENTAL_DURATION = 6;
+   string PICKUP_TIME = 7;
+   string RETURN_TIME = 8;
+   int32 PRICE = 9;
+   string USER_COMMENTS = 10;
+}
+
+message ReservationList {
+   repeated ReservationResponse reservations = 1;
+}
+
+message ReservationId {
+  string _id = 1;
+}

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+service CardService {
+    rpc List (EmptyCard) returns (CardList) {}
+    rpc Insert (Card) returns (Card) {}
+    rpc Get (CardId) returns (Card){}
+    rpc Update (Card) returns (Card){}
+    rpc Delete (CardId) returns (Card){}
+}
+message EmptyCard {}
+
+message Card {
+   string _id = 1;
+   string CARD_NUMBER =2; 
+   string NAME_ON_CARD = 3;
+   string CARD_TYPE = 4; 
+   int32 EXP_MONTH = 5;
+   int32 EXP_YEAR = 6;
+}
+message CardList {
+   repeated Card cards = 1;
+}
+
+message CardId {
+  string _id = 1;
+}

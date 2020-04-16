@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validate = require('mongoose-validator');
 const dateforamt = require('dateformat');
 let ObjectId = mongoose.Schema.Types.ObjectId;
 var now = new Date()
@@ -10,12 +11,15 @@ const vehicleSchema = mongoose.Schema({
     MODEL: { type: String, required: true },
     CATEGORY: { type: ObjectId, ref: "Category", required: true },
     YEAR: { type: Number, required: true },
-    REGISTRATION_TAG: { type: String, required: true, unique: true, dropDups: true },
+    REGISTRATION_TAG: { type: String, required: isMyFieldRequired, unique: true },
     MILEAGE: { type: Number, required: true },
-    LAST_SERVICE_DATE: { type: Date },
+    LAST_SERVICE_DATE: { type: Number },
     VEHICLE_CONDITION: { type: String, required: true },
-    RENTAL_LOCATION_ID: [{ type: ObjectId, ref: "Location", require: true }]
+    // RENTAL_LOCATION_ID: { type: ObjectId, ref: "Location", require: true }
 })
 
+function isMyFieldRequired() {
+    return typeof this.REGISTRATION_TAG === 'string' ? false : true
+}
 
 module.exports = mongoose.model('Vehicle', vehicleSchema);
