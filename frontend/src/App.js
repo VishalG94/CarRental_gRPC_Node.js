@@ -22,11 +22,16 @@ import Viewallcars from "./Components/Admin/viewallcars";
 
 import LandingPage from "../src/Components/LandingPage/LandingPage";
 import Profile from "./Components/Users/Profile/Profile";
+import Sidenavbar from '../src/Components/Admin/sidenavbar'
+
 
 function App() {
   return (
     <div className="App">
       <Header />
+      <Route path="/admin" component={Sidenavbar}/>
+      
+      {/* <Sidenavbar /> */}
       <Switch>
         {/* <Route
           exact
@@ -40,6 +45,19 @@ function App() {
           }
           component={LoginPage}
         />{" "} */}
+        {/* <Route
+          exact
+          path="/login"
+          render={() =>
+            localStorage.getItem("loggedIn") ? (
+              <Redirect to="/home" />
+            ) : (
+              <LoginPage />
+            )
+          }
+          component={LoginPage}
+        />{" "} */}
+        
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/admin/admindashboard" component={Dashboard} />
         <Route exact path="/admin/addvehicle" component={CreateVehicle} />

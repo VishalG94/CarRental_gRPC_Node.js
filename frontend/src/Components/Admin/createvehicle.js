@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import './createvehicle.css';
+import Sidenavbar from './sidenavbar'
 //import axios from 'axios';
 //import Constants from '../../../utils/constants';
 
@@ -14,6 +15,8 @@ class Createvehicleform extends Component {
             hourlyprice: "",
             hourlyrange: "",
             latereturnfee: "",
+            addlocation:"",
+            membershipcost:"",
             imagefile: "",
         }
     }
@@ -43,6 +46,18 @@ class Createvehicleform extends Component {
             latereturnfee: e.target.value
         });
     }
+
+    locationaddhandler= (e) => {
+        this.setState({
+            addlocation: e.target.value
+        });
+    }
+
+    membershipcosthandler= (e) => {
+        this.setState({
+            membershipcost: e.target.value
+        });
+    }
     
     onChangeFileUpload = (e) => {
         this.setState({
@@ -57,7 +72,8 @@ class Createvehicleform extends Component {
                 errMsg: "Required fields are empty",
                 successMsg: ""
             })
-        } else {
+        } else 
+        {
 
             let fd = new FormData();
             fd.append('name', this.state.carname)
@@ -65,22 +81,10 @@ class Createvehicleform extends Component {
             fd.append('hourlyprice', this.state.hourlyprice)
             fd.append('hourlyrange', this.state.hourlyrange)
             fd.append('latereturnfree', this.state.latereturnfee)
+            fd.append('addlocation', this.state.addlocation)
             fd.append('file', this.state.imagefile)
 
-            // const projectData = {
-            //     managerId: localStorage.getItem('281UserId'),
-            //     name: this.state.name,
-            //     shortDescription: this.state.shortDes,
-            //     detailedDescription: this.state.detDesc,
-            //     companyName: this.state.
-            //     compName,
-            //     address: this.state.address,
-            //     city: this.state.city,
-            //     state: this.state.state,
-            //     zip: this.state.zip,
-            //     testCases: this.state.testCases,
-            //     technologies: this.state.tech
-            // }
+            
             
             // axios.defaults.withCredentials = true;//very imp, sets credentials so that backend can load cookies
             const config = {
@@ -89,23 +93,12 @@ class Createvehicleform extends Component {
                         'Accept': 'multipart/form-data'
                 }
             };
-             //axios.post(`${Constants.BACKEND_SERVER.URL}/manager/addProject`, fd, config)
-            // // axios.post(`${Constants.BACKEND_SERVER.URL}/manager/addProject`, projectData)
-            //     .then(() => {
+             //axios.post(`${Constants.BACKEND_SERVER.URL}/admin/addcar`, fd, config)
+            
+            // .then(() => {
             //         this.setState({
             //             name: "",
-            //             shortDes: "",
-            //             detDesc: "",
-            //             compName: "",
-            //             address: "",
-            //             city: "",
-            //             state: "",
-            //             zip: "",
-            //             testCases: "",
-            //             tech: "",
-            //             selectedFile: "",
-            //             errMsg: "",
-            //             successMsg: "Project added!"
+            
             //         })
             //     })
             //     .catch((error) => { 
@@ -123,8 +116,6 @@ class Createvehicleform extends Component {
         return (
             <Form>
                 <h3> Add a vehicle </h3>
-                <br>
-                </br>
                 <Row form >
                     <Col  >
                         <FormGroup>
@@ -143,7 +134,7 @@ class Createvehicleform extends Component {
                 </Row>
                 <FormGroup>
                     <Label for="hourlyprice">Set Hourly Price</Label>
-                    <Input type="textarea" name="hourlyprice" onChange={this.detailedDesChangeHandler} id="detaildesc" placeholder="Set Hourly pricing"  value={ this.state.hourlyprice } />
+                    <Input type="textarea" name="hourlyprice" onChange={this.hourlypriceChangeHandler} id="detaildesc" placeholder="Set Hourly pricing"  value={ this.state.hourlyprice } />
                 </FormGroup>
                 <br></br>
                 <FormGroup>
@@ -154,6 +145,14 @@ class Createvehicleform extends Component {
                 <FormGroup>
                     <Label for="exampleAddress2">Late refurn fees</Label>
                     <Input type="textarea" name="text" onChange={this.laternreturnfeeChangeHandler} id="exampleText" placeholder="Enter amount for late return fee?"  value={ this.state.latereturnfee } />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="exampleAddress2">Assign the location to add</Label>
+                    <Input type="textarea" name="text" onChange={this.locationaddhandler} id="exampleText" placeholder="Link to what location"  value={ this.state.addlocation } />
+                </FormGroup>
+                <FormGroup>
+                    <Label for="exampleAddress2">Assign the 6 month membership cost</Label>
+                    <Input type="textarea" name="text" onChange={this.membershipcosthandler} id="exampleText" placeholder="Link to what location"  value={ this.state.membershipcost } />
                 </FormGroup>
                 <FormGroup row>
                 <br></br>

@@ -14,6 +14,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import logo1 from './locationsrentalcars.jpg';
+import Sidenavbar from './sidenavbar'
+
 
 
 
@@ -70,6 +72,7 @@ export default function ViewAll() {
 
   return (
     <React.Fragment>
+      <Sidenavbar/>
     <CssBaseline />
     <AppBar position="relative">
       <Toolbar>
@@ -91,7 +94,7 @@ export default function ViewAll() {
           <div className={classes.heroButtons}>
             <Grid container spacing={2} justify="center">
               <Grid item>
-                <Button variant="outlined" color="primary" href="/viewallcars">
+                <Button variant="outlined" color="primary" href="/admin/viewallcars">
                   View All Cars
                 </Button>
               </Grid>

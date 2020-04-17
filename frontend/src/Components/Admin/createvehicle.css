@@ -13,11 +13,11 @@
     top:0;
 }
 .listDiv{
-    width:150%;
+    width:100%;
     font-size: 25px;
     float:right;
     margin:28px;
-    z-index:-1;
+
 }
 .pages{
     justify-content: center;

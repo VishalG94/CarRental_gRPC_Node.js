@@ -1,7 +1,6 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -19,6 +18,9 @@ import logo3 from './users.jpg';
 import logo4 from './billing.jpg';
 import logo5 from './viewall.jpg';
 import logo6 from './googlemaps.jpg'
+import './admindashboard.css'
+import Sidenavbar from './sidenavbar'
+
 
 
 function Copyright() {
@@ -77,16 +79,10 @@ export default function Dashboard() {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Dashboard
-          </Typography>
-          
-        </Toolbar>
-      </AppBar>
+    
+    <React.Fragment> 
+        
+       <CssBaseline />
       <main>
         {/* Hero unit */}
         <div className={classes.heroContent}>

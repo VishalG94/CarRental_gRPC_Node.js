@@ -14,6 +14,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import logo1 from './car.jpg';
+import Sidenavbar from './sidenavbar'
+import './viewallcars.css'
+
 
 
 
@@ -70,6 +73,22 @@ export default function Viewallcars() {
 
   return (
     <React.Fragment>
+      <div className="sidebar">
+      <div className="togglebtn">
+       <span></span>
+       <span></span>
+       <span></span>
+       <ul>
+       <Button style={{ color:'white' }} href="/admin/admindashboard">Dashboard</Button>
+       <Button style={{ color:'white' }}href="/admin/addvehicle">Add Vehicle</Button>
+       <Button style={{ color:'white' }}href="/admin/editall">Edit Vehicle</Button>
+       <Button style={{ color:'white' }} href="/admin/usermanagement">USer Management</Button>
+       <Button style={{ color:'white' }}href="/admin/userbillingmanagement">User Billing</Button>
+       <Button style={{ color:'white' }}href="/admin/viewallcars">View All</Button>
+       <Button style={{ color:'white' }}href="/admin/addLocation">Add Location</Button>
+       </ul>
+       </div>
+    </div>  
     <CssBaseline />
     <AppBar position="relative">
       <Toolbar>
@@ -95,7 +114,7 @@ export default function Viewallcars() {
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined" color="primary" href="/viewalllocations">
+                <Button variant="outlined" color="primary" href="/admin/viewalllocations">
                   View All Locations
                 </Button>
               </Grid>

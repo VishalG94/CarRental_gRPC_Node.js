@@ -1,35 +1,114 @@
 import React, { Component } from "react";
-import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Col, Row, Button, FormGroup, Label, Input} from 'reactstrap';
 import './manageusers.css';
-import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownButton from 'react-bootstrap/DropdownButton'
-import SplitButton from 'react-bootstrap/SplitButton'
 
-
-import AppBar from '@material-ui/core/AppBar';
-
-import CameraIcon from '@material-ui/icons/PhotoCamera';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
+
 import logo1 from './carrepair.jpg'
+import './editvehicledetails.css'
 
 
 
 
 class Editvehicledetails extends Component {
-  state = {};
+
+    constructor() {
+        super();
+        this.state = {
+            carname: "",
+            cartype: "",
+            hourlyprice: "",
+
+        }
+    }
+    carnameChangeHandler = (e) => {
+        this.setState({
+            carname: e.target.value
+        });
+    }
+
+    changecarnameChangeHandler = (e) => {
+        this.setState({
+            changecarname: e.target.value
+        });
+    }
+    cartypeChangeHandler = (e) => {
+        this.setState({
+            cartype: e.target.value
+        });
+    }
+    hourlypriceChangeHandler = (e) => {
+        this.setState({
+            hourlyprice: e.target.value
+        });
+    }
+
+    getvehiclehandler = () =>{
+        if (this.state.carname === "")
+        {
+            this.setState({
+                errMsg: "Required fields are empty",
+                successMsg: ""
+            })
+        }
+        else 
+        {
+            let fd = new FormData();
+            fd.append('name', this.state.carname)
+            //axios.get(`${Constants.BACKEND_SERVER.URL}/admin/editcar`, fd)
+            // .then(() => {
+            //             this.setState({
+            //                 name: "",
+            //                 type: "",
+            //                 price: "",
+            //             })
+            //         })
+            //         .catch((error) => { 
+            //             console.log(error)
+            //             this.setState({
+            //                 errMsg: "Error occured",
+            //                 successMsg: ""
+            //             })
+            //         })
+            }
+        
+    }
+
+    editvehicledetailshandler =() => {
+        if (this.state.carname === "" || this.state.cartype === "" || this.state.hourlyprice === "")
+        {
+            this.setState({
+                errMsg: "Required fields are empty",
+                successMsg: ""
+            })
+        } else 
+        {
+            let fd = new FormData();
+            fd.append('name', this.state.changecarname)
+            fd.append('cartype', this.state.cartype)
+            fd.append('hourlyprice', this.state.hourlyprice)
+
+            //axios.post(`${Constants.BACKEND_SERVER.URL}/admin/editcar`, fd)
+            
+            // .then(() => {
+            //         this.setState({
+            //             name: "",
+            
+            //         })
+            //     })
+            //     .catch((error) => { 
+            //         console.log(error)
+            //         this.setState({
+            //             errMsg: "Error occured",
+            //             successMsg: ""
+            //         })
+            //     })
+        }   
+
+    }
   render() {
     return (
-      <div>
+      
       
       <div className="manageusers">
       <h1>Edit Page</h1>
@@ -38,53 +117,38 @@ class Editvehicledetails extends Component {
                           <Label for="carname" >Enter Car Name to get Details</Label>
                           <Input type="text" font-size="50px" name="carname" onChange={this.carnameChangeHandler} id="carname" placeholder="Enter car Name" value={ this.state.carname } style={{ width: "350px" }}/>
                       </FormGroup>
-                      <Button>Get Details</Button>
+                      <Button onClick={this.getvehiclehandler}>Get Details</Button>
                       <img src={logo1} flex="1"/>
                   </Col>
-      <Card style={{ width: '18rem', height:"20rem",  margin:"20" }}>
-                <CardMedia 
-                  title="Image title"
-                  image={logo1}
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Details of the Car
-                  </Typography>
-                  <Typography>
+                   <h3> Details of the Car
                     After pressing get details, these will be shown here
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button href="/editall" size="small" color="primary">
-                    Delete Car
-                  </Button>
-                </CardActions>
-              </Card>
-      
+                    </h3>
+                   
+                      
       <Grid>
       <Row form >
                   <Col  >
                       <FormGroup>
                           <Label for="carname" >Change Car Name</Label>
-                          <Input type="text" font-size="50px" name="carname" onChange={this.carnameChangeHandler} id="carname" placeholder="Enter car Name" value={ this.state.carname } style={{ width: "350px" }}/>
+                          <Input type="text" font-size="50px" name="carname" onChange={this.changecarnameChangeHandler} id="carname" placeholder="Enter car Name" value={ this.state.changecarname } style={{ width: "350px" }}/>
                       </FormGroup>
-                      <Button>Apply changes</Button>
+                      
                       
                   </Col>
                   <Col  >
                       <FormGroup>
                           <Label for="carname" >Change Car Type</Label>
-                          <Input type="text" font-size="50px" name="carname" onChange={this.carnameChangeHandler} id="carname" placeholder="Enter car Name" value={ this.state.carname } style={{ width: "350px" }}/>
+                          <Input type="text" font-size="50px" name="carname" onChange={this.cartypeChangeHandler} id="carname" placeholder="Enter car Name" value={ this.state.cartype } style={{ width: "350px" }}/>
                       </FormGroup>
-                      <Button>Apply changes</Button>
+                      
                       
                   </Col>
                   <Col  >
                       <FormGroup>
                           <Label for="carname" >Change Car Price</Label>
-                          <Input type="text" font-size="50px" name="carname" onChange={this.carnameChangeHandler} id="carname" placeholder="Enter car Name" value={ this.state.carname } style={{ width: "350px" }}/>
+                          <Input type="text" font-size="50px" name="carname" onChange={this.hourlypriceChangeHandler} id="carname" placeholder="Enter car Name" value={ this.state.hourlyprice} style={{ width: "350px" }}/>
                       </FormGroup>
-                      <Button>Apply changes</Button>
+                      <Button onClick={this.editvehicledetailshandler}>Apply changes</Button>
                       
                   </Col>
                   
@@ -96,7 +160,7 @@ class Editvehicledetails extends Component {
               </Row>
               </Grid>
     </div>
-    </div>
+    
     );
   }
 }
