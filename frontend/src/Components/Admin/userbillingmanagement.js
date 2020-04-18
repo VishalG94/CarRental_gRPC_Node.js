@@ -18,50 +18,92 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import logo1 from "./billing.jpg"
+import Sidenavbar from "./sidenavbar";
 
 class Usersbillingmanagement extends Component {
-  state = {};
+  constructor() {
+    super();
+    this.state = {
+        username: ""
+    }
+
+}
+
+usernameChangeHandler = (e) => {
+  this.setState({
+      username: e.target.value
+  });
+}
+
+getuserhandler = () => {
+  if (this.state.username === "")
+        {
+            this.setState({
+                errMsg: "Required fields are empty",
+                successMsg: ""
+            })
+        }
+        else 
+        {
+            let fd = new FormData();
+            fd.append('name', this.state.username)
+            //axios.get(`${Constants.BACKEND_SERVER.URL}/admin/edituser`, fd)
+            // .then(() => {
+            //             this.setState({
+            //                 name: "",
+            //                 type: "",
+            //                 price: "",
+            //             })
+            //         })
+            //         .catch((error) => { 
+            //             console.log(error)
+            //             this.setState({
+            //                 errMsg: "Error occured",
+            //                 successMsg: ""
+            //             })
+            //         })
+        }
+
+}
+
+correctbillinghandler =() => {
+  //axios.post(`${Constants.BACKEND_SERVER.URL}/admin/edituser`, username)
+  //.then(() => {
+    //             this.setState({
+    //                 name: "",
+    //                 type: "",
+    //                 price: "",
+    //             })
+    //         })
+    //         .catch((error) => { 
+    //             console.log(error)
+    //             this.setState({
+    //                 errMsg: "Error occured",
+    //                 successMsg: ""
+    //             })
+    //         })
+
+}
   render() {
     return (
       <div className="manageusers">
         <h1>Billing management</h1>
+        
         <Grid>
         <Row form >
                     <Col  >
                         <FormGroup>
                             <Label for="carname" >Enter User Name</Label>
-                            <Input type="text" font-size="50px" name="carname" onChange={this.namechangehandler} id="carname" placeholder="Enter user Name" value={ this.state.carname } style={{ width: "350px" }}/>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.namechangehandler} id="carname" placeholder="Enter user Name" value={ this.state.username } style={{ width: "350px" }}/>
                         </FormGroup>
-                        <Button> Get Details</Button>
+                        <Button onClick={this.getuserhandler}> Get Details</Button>
                         <img src={logo1} flex="1"/>
                     </Col>
     
-                    <Grid item key={1} grid-gap= "5px"s={100} sm={25} md={2} >
-                <Card >
-                  <CardMedia
-                    className={1}
-                    image= {logo1}
-                    title="Image title"
-                  />
-                  <CardContent className={1}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      Details of the user
-                    </Typography>
-                    <Typography>
-                      After pressing get details, these will be shown here
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button href="/usermanagement" size="small" color="primary">
-                      Delete User
-                    </Button>
-                    <Button size="small" color="primary">
-                      
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
                     
+                <h1>User Details</h1>
+                <h3>terminate Membership</h3>
+                <Button onClick={this.correctbillinghandler}> Terminate</Button>
                 </Row>
                 </Grid>
       </div>

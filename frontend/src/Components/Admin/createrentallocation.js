@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import './createvehicle.css';
+import Sidenavbar from './sidenavbar'
 //import axios from 'axios';
 //import Constants from '../../../utils/constants';
 
@@ -33,7 +34,7 @@ class Createrentalform extends Component {
     }
     noofvehiclesperlocationChangeHandler = (e) => {
         this.setState({
-            hourlyrange: e.target.value
+            count: e.target.value
         });
     }
     addLocationHandler = () => {
@@ -74,23 +75,12 @@ class Createrentalform extends Component {
                         'Accept': 'multipart/form-data'
                 }
             };
-             //axios.post(`${Constants.BACKEND_SERVER.URL}/manager/addProject`, fd, config)
-            // // axios.post(`${Constants.BACKEND_SERVER.URL}/manager/addProject`, projectData)
+             //axios.post(`${Constants.BACKEND_SERVER.URL}/manager/addlocation`, fd, config)
+            // // axios.post(`${Constants.BACKEND_SERVER.URL}/manager/addlocation`, projectData)
             //     .then(() => {
             //         this.setState({
             //             name: "",
-            //             shortDes: "",
-            //             detDesc: "",
-            //             compName: "",
-            //             address: "",
-            //             city: "",
-            //             state: "",
-            //             zip: "",
-            //             testCases: "",
-            //             tech: "",
-            //             selectedFile: "",
-            //             errMsg: "",
-            //             successMsg: "Project added!"
+            //             
             //         })
             //     })
             //     .catch((error) => { 
@@ -108,32 +98,34 @@ class Createrentalform extends Component {
         return (
             <Form>
                 <h3> Add a New Location </h3>
+               
+    
                 <br>
                 </br>
                 <Row form >
                     <Col  >
                         <FormGroup>
                             <Label for="carname" >Enter Location Name</Label>
-                            <Input type="text" font-size="50px" name="carname" onChange={this.nameChangeHandler} id="carname" placeholder="Enter Location Name" value={ this.state.carname } style={{ width: "350px" }}/>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.nameChangeHandler} id="carname" placeholder="Enter Location Name" value={ this.state.name } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <br></br>
                     <Col md={8}>
                         <FormGroup>
                             <Label for="cartype">Enter the complete address Type</Label>
-                            <Input type="text" name="cartype" onChange={this.addresstypeChangeHandler} id="cartype" placeholder="Enter address type"  value={ this.state.cartype } style={{ width: "350px" }}/>
+                            <Input type="text" name="cartype" onChange={this.addresstypeChangeHandler} id="cartype" placeholder="Enter address type"  value={ this.state.address } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <br></br>
                 </Row>
                 <FormGroup>
                     <Label for="hourlyprice">Enter Vehicle capacity</Label>
-                    <Input type="textarea" name="hourlyprice" onChange={this.capacityChangeHandler} id="detaildesc" placeholder="Set Hourly pricing"  value={ this.state.hourlyprice } />
+                    <Input type="textarea" name="hourlyprice" onChange={this.capacityChangeHandler} id="detaildesc" placeholder="Set Vehicle Capacity"  value={ this.state.capacity } />
                 </FormGroup>
                 <br></br>
                 <FormGroup>
                     <Label for="company">Enter number of vehicles per location limit</Label>
-                    <Input type="text" name="company" onChange={this.noofvehiclesperlocationChangeHandler} id="company" placeholder="Set Hourly range"  value={ this.state.hourlyrange } />
+                    <Input type="text" name="company" onChange={this.noofvehiclesperlocationChangeHandler} id="company" placeholder="Set vehicle count limit"  value={ this.state.count } />
                 </FormGroup>
                 
                 <br></br><br></br>
