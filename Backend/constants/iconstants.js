@@ -1,5 +1,5 @@
 module.exports = {
-    FRONTEND_URL: "http://localhost:3000",
+    FRONTEND_URL: "http://localhost:3001",
 
     /** Vehicle routes */
     GET_VEHICLES_ROUTE: "/vehicles",
@@ -46,7 +46,7 @@ module.exports = {
 
     /** User routes */
     GET_USERS_ROUTE: "/users",
-    GET_USERBYID_ROUTE: "/user",
+    POST_USERBYID_ROUTE: "/userID",
     POST_USER_ROUTE: "/user",
     UPDATE_USER_ROUTE: "/user",
     DELETE_USER_ROUTE: "/user",
@@ -58,7 +58,7 @@ module.exports = {
     RETURN_BUFFER: "return_buffers",
 
     /* Server Ports*/
-    SERVER_PORT: 3000,
+    SERVER_PORT: 3001,
     REDIS_PORT: 6379,
 
     CACHE_TIMEOUT: 5,

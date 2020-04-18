@@ -18,6 +18,7 @@
     "kafka-node": "^3.0.1",
     "mongoose": "^5.7.9",
     "mongoose-validator": "^2.1.0",
+    "prebuild-install": "^5.3.3",
     "proto-loader": "^0.2.0",
     "uuid": "^3.3.2"
   }

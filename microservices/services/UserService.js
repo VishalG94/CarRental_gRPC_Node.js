@@ -42,75 +42,89 @@ let UserService = {
             else {
                 console.log("Address created: \n" + res)
                 addressId = res._id;
-                Card.create({
-                    _id: cardId,
-                    CARD_NUMBER: userReq.CARDS.CARD_NUMBER,
-                    NAME_ON_CARD: userReq.CARDS.NAME_ON_CARD,
-                    CARD_TYPE: userReq.CARDS.CARD_TYPE,
-                    EXP_MONTH: userReq.CARDS.EXP_MONTH,
-                    EXP_YEAR: userReq.CARDS.EXP_YEAR
-                }, (error, response) => {
-                    if (error) {
-                        console.log("error is", error)
-                        callback(error, null)
+                // Card.create({
+                //     _id: cardId,
+                //     CARD_NUMBER: userReq.CARDS.CARD_NUMBER,
+                //     NAME_ON_CARD: userReq.CARDS.NAME_ON_CARD,
+                //     CARD_TYPE: userReq.CARDS.CARD_TYPE,
+                //     EXP_MONTH: userReq.CARDS.EXP_MONTH,
+                //     EXP_YEAR: userReq.CARDS.EXP_YEAR
+                // }, (error, response) => {
+                // if (error) {
+                //     console.log("error is", error)
+                //     callback(error, null)
+                // }
+                // else {
+                // console.log("Card created: \n" + response)
+                /*  Returning the location with populating the address. 
+                    can also directly return response if only address objectId needs to be returned. */
+
+                User.create({
+                    _id: id,
+                    NAME: userReq.NAME,
+                    DL_STATE: userReq.DL_STATE,
+                    DL_NUMBER: userReq.DL_NUMBER,
+                    EMAIL: userReq.EMAIL,
+                    PHONE: userReq.PHONE,
+                    PASSWORD: userReq.PASSWORD,
+                    ADDRESS: addressId,
+                    MEMBERSHIP_START: userReq.MEMBERSHIP_START,
+                    RESERVATIONS: userReq.RESERVATION_ID,
+                    CREATED: userReq.CREATED,
+                    MODIFIED: userReq.MODIFIED,
+                    USER_TYPE: userReq.USER_TYPE
+                }, (err, resp) => {
+                    if (err) {
+                        console.log(userReq);
+                        console.log("error is", err)
+                        callback(err, null)
                     }
                     else {
-                        console.log("Card created: \n" + response)
-                        /*  Returning the location with populating the address. 
-                            can also directly return response if only address objectId needs to be returned. */
-
-                        User.create({
-                            _id: id,
-                            NAME: userReq.NAME,
-                            DL_STATE: userReq.DL_STATE,
-                            DL_NUMBER: userReq.DL_NUMBER,
-                            EMAIL: userReq.EMAIL,
-                            PHONE: userReq.PHONE,
-                            PASSWORD: userReq.PASSWORD,
-                            ADDRESS: addressId,
-                            MEMBERSHIP_START: userReq.MEMBERSHIP_START,
-                            RESERVATIONS: userReq.RESERVATION_ID,
-                            CARDS: [cardId],
-                            CREATED: userReq.CREATED,
-                            MODIFIED: userReq.MODIFIED,
-                        }, (err, resp) => {
-                            if (err) {
-                                console.log("error is", err)
-                                callback(err, null)
-                            }
-                            else {
-                                console.log("User created: \n" + resp)
-                                callback(null, resp)
-                            }
-                        })
-                        // Location.findById(response._id, (erro, resp) => {
-                        //     if (erro) {
-                        //         callback(erro, null);
-                        //         console.log("error record not created", err);
-                        //     }
-                        //     else {
-                        //         callback(null, resp);
-                        //         console.log(resp);
-                        //     }
-                        // }).populate("ADDRESS")
+                        console.log("User created: \n" + resp)
+                        callback(null, resp)
                     }
                 })
+                // Location.findById(response._id, (erro, resp) => {
+                //     if (erro) {
+                //         callback(erro, null);
+                //         console.log("error record not created", err);
+                //     }
+                //     else {
+                //         callback(null, resp);
+                //         console.log(resp);
+                //     }
+                // }).populate("ADDRESS")
+                // }
+                // })
             }
         })
 
 
     },
     get: (call, callback) => {
-        let id = call.request._id
+        let id = call.request.email
         console.log("id value: " + id);
-        User.findById(id, (err, res) => {
+        User.find({ EMAIL: id }, (err, res) => {
             if (err) {
                 callback(err, null);
                 console.log("error is", err);
             }
             else {
-                callback(null, res);
-                console.log(res);
+                if (res.length > 0) {
+                    console.log(res[0]);
+                    if (res[0].PASSWORD === call.request.password) {
+                        callback(null, res[0]);
+                        console.log("Password Verified");
+                    }
+                    else {
+                        callback(err, null);
+                        console.log("Password Incorrect");
+                    }
+                }
+                else {
+                    callback(err, null);
+                    console.log("Email not found");
+                }
             }
         }).populate("CARDS")
             .populate("ADDRESS")

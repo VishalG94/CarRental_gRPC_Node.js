@@ -25,18 +25,38 @@ module.exports.getUsers = (req, res) => {
     })
 };
 
+// module.exports.getUserById = (req, res) => {
+//     console.log("Query params: " + JSON.stringify(req.query));
+//     userClient.get(req.query, (error, user) => {
+//         if (!error) {
+//             console.log("inside get User by id router: " + JSON.stringify(user));
+//             res.setHeader(CONTENT_TYPE, APP_JSON);
+//             res.status(RES_SUCCESS).end(JSON.stringify(user));
+//         } else {
+//             if (error.code === 13) {
+//                 console.log("User with id " + req.query._id + " not found");
+//                 res.setHeader(CONTENT_TYPE, TEXT_PLAIN);
+//                 res.status(RES_NOT_FOUND).end("User with id '" + req.query._id + "' not found");
+//             } else {
+//                 res.setHeader(CONTENT_TYPE, TEXT_PLAIN);
+//                 res.status(RES_BAD_REQUEST).end("Error occured while fetching data from DB, " + error.message);
+//             }
+//         }
+//     })
+// };
+
 module.exports.getUserById = (req, res) => {
-    console.log("Query params: " + JSON.stringify(req.query));
-    userClient.get(req.query, (error, user) => {
+    console.log("Query params: " + JSON.stringify(req.body));
+    userClient.get(req.body, (error, user) => {
         if (!error) {
             console.log("inside get User by id router: " + JSON.stringify(user));
             res.setHeader(CONTENT_TYPE, APP_JSON);
             res.status(RES_SUCCESS).end(JSON.stringify(user));
         } else {
             if (error.code === 13) {
-                console.log("User with id " + req.query._id + " not found");
+                console.log("User with id " + req.body._id + " not found");
                 res.setHeader(CONTENT_TYPE, TEXT_PLAIN);
-                res.status(RES_NOT_FOUND).end("User with id '" + req.query._id + "' not found");
+                res.status(RES_NOT_FOUND).end("Email or Password Incorrect ");
             } else {
                 res.setHeader(CONTENT_TYPE, TEXT_PLAIN);
                 res.status(RES_BAD_REQUEST).end("Error occured while fetching data from DB, " + error.message);
@@ -44,7 +64,6 @@ module.exports.getUserById = (req, res) => {
         }
     })
 };
-
 module.exports.postUser = (req, res) => {
     console.log("inside post User router: " + JSON.stringify(req.body));
     userClient.insert(req.body, (error, user) => {

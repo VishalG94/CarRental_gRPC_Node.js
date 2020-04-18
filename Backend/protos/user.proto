@@ -24,9 +24,9 @@ message User {
    Address ADDRESS = 8;
    string MEMBERSHIP_START = 9;
    string RESERVATIONS = 10;
-   Card CARDS = 11;
-   string CREATED = 12;
-   string MODIFIED = 13;
+   string CREATED = 11;
+   string MODIFIED = 12;
+   string USER_TYPE=13;
 }
 
 message UserGet {
@@ -43,6 +43,8 @@ message UserGet {
    repeated Card CARDS = 11;
    string CREATED = 12;
    string MODIFIED = 13;
+   string USER_TYPE = 14;
+
 }
 
 message UserBase {
@@ -66,5 +68,6 @@ message UserList {
 }
 
 message UserId {
-  string _id = 1;
+  string email = 1;
+  string password=2;
 }

@@ -17,7 +17,8 @@ const userSchema = mongoose.Schema({
     RESERVATIONS: [{ type: ObjectId, ref: "Reservation" }],
     CARDS: [{ type: ObjectId, ref: 'Card' }],
     CREATED: { type: Date, default: today },
-    MODIFIED: { type: Date, default: today }
+    MODIFIED: { type: Date, default: today },
+    USER_TYPE: { type: String, required: true },
 })
 
 

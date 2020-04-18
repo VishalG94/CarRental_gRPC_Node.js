@@ -22,21 +22,26 @@ class SignIn extends React.Component {
     this.setState({ [name]: value });
   };
   handleSubmit = async (e) => {
+
     e.preventDefault();
     const userdetails = {
       email: this.state.email,
       password: this.state.password,
     };
+    console.log(userdetails);
+
     axios
-      .post(`${Constants.BACKEND_SERVER}/login`, userdetails)
+      .post(`${Constants.BACKEND_SERVER.URL}/userID`, userdetails)
       .then((response) => {
-        if (response.body.loggedIn === true) {
+        console.log(response)
+        if (response.status === 200) {
           localStorage.setItem("loggedIn", true);
-          localStorage.setItem("userId", response.body._id);
-          localStorage.setItem("userName", response.body.userName);
-          localStorage.setItem("userType", response.body.userType);
+          localStorage.setItem("userId", response.data._id);
+          localStorage.setItem("userName", response.data.NAME);
+          localStorage.setItem("userType", response.data.USER_TYPE);
           this.setState({ email: "", password: "" });
-          if (response.body.userType === "admin") {
+          this.props.onSignIn();
+          if (response.data.USER_TYPE === "admin") {
             this.props.history.push("/admin/home");
           } else {
             this.props.history.push("/users/home");
@@ -45,7 +50,7 @@ class SignIn extends React.Component {
           window.alert("Incorrect Email or Password");
         }
       });
-    this.setState({ email: "", password: "" });
+    // this.setState({ email: "", password: "" });
   };
 
   render() {

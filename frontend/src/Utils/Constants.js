@@ -1,6 +1,6 @@
 module.exports = {
   BACKEND_SERVER: {
-    URL: "http://localhost:9000", // Should have http://
+    URL: "http://localhost:3001", // Should have http://
   },
   USER_INFORMATION: {
     USER_ID: localStorage.getItem("userId"),

@@ -6,8 +6,11 @@
   /* justify-content: space-around; */
 }
 .loginPage .loginImage {
-  width: 50%;
+  /* width: 50%; */
+  /* height: max-content; */
   left: 0%;
+  object-fit: cover;
+
 }
 
 .loginPage .loginImage .image {

@@ -18,7 +18,7 @@ class LoginPage extends Component {
           <img src={img} alt="LoginImage" className="image"></img>
         </div>
         <div className="logincomponents">
-          <SignIn />
+          <SignIn {...this.props} />
         </div>
       </div>
     );

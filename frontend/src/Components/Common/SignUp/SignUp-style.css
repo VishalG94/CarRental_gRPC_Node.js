@@ -4,3 +4,27 @@
     flex-direction: column;
     justify-content: space-between;
 }
+select{
+    border:none;
+    width: 100%;
+    /* height:40px; */
+    color: grey;
+    font-size: 18px;
+    font-weight: 100;
+    border-bottom: 1px solid grey;
+    
+
+}
+
+select:focus{
+    outline: none;
+}
+option{
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.signUp{
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
