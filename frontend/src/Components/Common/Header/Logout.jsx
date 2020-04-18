@@ -5,7 +5,8 @@ class Logout extends Component {
 
 	render() {
 		localStorage.clear();
-		this.props.history.push('/')
+		this.props.history.push('/');
+		//console.log("from logout.js")
 		//this.props.onSignOUt();
 		let RedirectVar = <Redirect to="/" />;
 		return (

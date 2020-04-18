@@ -33,14 +33,14 @@ class App extends Component {
     this.setState({ loggedIn: true });
   }
   onSignout = (e) => {
-
-    localStorage.clear("loggedIn");
-    localStorage.clear("userName");
-    localStorage.clear("userType");
-    localStorage.clear("vehicleId");
-    localStorage.clear("locationId");
+    // console.log("clear local from app.js")
+    // localStorage.clear("loggedIn");
+    // localStorage.clear("userName");
+    // localStorage.clear("userType");
+    // localStorage.clear("vehicleId");
+    // localStorage.clear("locationId");
     this.setState({ loggedIn: !this.state.loggedIn });
-    return <Redirect to='/' />
+    // return <Redirect to='/' />
   };
 
   render() {
@@ -63,7 +63,7 @@ class App extends Component {
           <Route exact path="/" component={LandingPage} />
 
 
-          <Route exact path="/login"
+          <Route exact path="/logout"
             render={props =>
               (<Logout {...props} onSignout={this.onSignout} />)} />
 
