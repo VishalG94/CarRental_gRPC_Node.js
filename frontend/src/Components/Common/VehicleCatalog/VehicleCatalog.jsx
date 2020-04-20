@@ -12,9 +12,9 @@ class VehicleCatalog extends Component {
     catalog: [],
   };
   componentWillMount() {
-    // axios.get(`${Constants.BACKEND_SERVER}/vehicles`).then((response) => {
-    //   this.catalog = response.body.catalog;
-    // });
+    axios.get(`${Constants.BACKEND_SERVER}/vehicles`).then((response) => {
+      this.catalog = response.body.catalog;
+    });
   }
   render() {
     const vehicleDetails = Vehicles;

@@ -17,6 +17,7 @@ let AddressService = {
     insert: (call, callback) => {
         console.log("inside microservice insert");
         let addressReq = call.request
+        console.log(addressReq);
         let id = mongoose.Types.ObjectId()
         console.log(JSON.stringify(addressReq) + " id: " + id);
         Address.create({

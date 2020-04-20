@@ -5,9 +5,11 @@
 import React, { Component } from "react";
 import { Map, Marker, GoogleApiWrapper, InfoWindow } from "google-maps-react";
 
-import Locations from "../../../DummyData/Locations";
+// import Locations from "../../../DummyData/Locations";
 
 import "./MapDisplay-styles.css";
+import axios from "axios";
+import Constants from "../../../Utils/Constants";
 
 class MapDisplay extends Component {
   state = {
@@ -20,14 +22,38 @@ class MapDisplay extends Component {
     selectedPlace: {
       name: "someplacename",
     },
+    locations: []
   };
 
-  //   componentDidMount() {
-  //     const getPosition = MapGetLocation();
-  //     this.setState({ currentPosition: { latitude: getPosition.latitude } });
-  //     console.log(getPosition);
-  //     console.log(this.state.currentPosition);
-  //   }
+  async componentWillMount() {
+    // const getPosition = MapGetLocation();
+    // this.setState({ currentPosition: { latitude: getPosition.latitude } });
+    // console.log(getPosition);
+    // console.log(this.state.currentPosition);
+    // let d = new Date();
+    // console.log(" before axios call " + d.getMilliseconds());
+    let locationdata;
+    // console.log("getting locations");
+    await axios.get(`${Constants.BACKEND_SERVER.URL}/locations`).then((res) => {
+      //console.log(res);
+
+      if (res.status === 200) {
+        // console.log(res.data)
+        locationdata = res.data.locations;
+        // console.log(locationdata)
+
+      }
+    }
+    )
+
+    await this.setState({ locations: locationdata }, () => {
+      //  console.log(this.state.locations);
+      // this.state.locations.map((location) => {
+      //   console.log(location.ADDRESS.STREET);
+      // })
+      // console.log("after set state" + d.getMilliseconds());
+    })
+  }
   onMarkerClick = (props, marker, e) => {
     this.setState({
       selectedPlace: props,
@@ -60,6 +86,9 @@ class MapDisplay extends Component {
     };
     //  = MapGetLocation();
     // console.log(getPosition);
+    // let d = new Date();
+    // console.log("In render" + d.getMilliseconds());
+
     return (
       <div className="mapDisplay">
         <Map
@@ -70,9 +99,10 @@ class MapDisplay extends Component {
             lng: -121.885233,
           }}
         >
-          {Locations.map((location) => (
+          {this.state.locations.map((location) => (
             <Marker
               // label={"string"}
+              key={location._id}
               title={location.ADDRESS.STREET}
               locationID={location._id}
               name={location.NAME}

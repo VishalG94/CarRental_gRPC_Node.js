@@ -1,5 +1,5 @@
 module.exports = {
-    FRONTEND_URL: "http://localhost:3001",
+    FRONTEND_URL: "http://localhost:3000",
 
     /** Vehicle routes */
     GET_VEHICLES_ROUTE: "/vehicles",
@@ -34,6 +34,7 @@ module.exports = {
     GET_LOCATIONS_ROUTE: "/locations",
     GET_LOCATIONBYID_ROUTE: "/location",
     POST_LOCATION_ROUTE: "/location",
+    POST_ADDVEHICLETOLOCATION_ROUTE: "/vehiclelocation",
     UPDATE_LOCATION_ROUTE: "/location",
     DELETE_LOCATION_ROUTE: "/location",
 
