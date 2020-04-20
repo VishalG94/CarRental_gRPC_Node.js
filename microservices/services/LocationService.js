@@ -1,5 +1,7 @@
 let Location = require('../models/location');
 let Address = require('../models/address');
+let Vehicle = require('../models/vehicles');
+
 const mongoose = require('mongoose');
 
 let LocationService = {
@@ -80,9 +82,10 @@ let LocationService = {
                 callback(null, res);
                 console.log(res);
             }
-        })
+        }).populate('VEHICLE')
     },
     delete: (call, callback) => {
+        console.log(call.request)
         let id = call.request._id
         Location.findOneAndRemove({ _id: id }, (err, res) => {
             console.log("res: " + res);
@@ -110,6 +113,25 @@ let LocationService = {
             }
         }, { new: true }).then((location) => {
             console.log("Location created: \n" + JSON.stringify(location))
+            callback(null, location)
+        }).catch(err => {
+            console.log("error is", err)
+            callback(err, null)
+        })
+    },
+    addVehicle: (call, callback) => {
+        console.log("inside microservice add vehicle" + JSON.stringify(call.request));
+        let vehicleId
+        Vehicle.findOne({ _id: call.request.VEHICLE })
+        console.log("found vehicle " + JSON.stringify(vehicleId));
+        let id = call.request._id
+        console.log(Location + " id: " + id);
+        Location.findOneAndUpdate({ _id: id }, {
+            $push: {
+                VEHICLES: vehicleId._id
+            }
+        }, { new: true }).then((location) => {
+            console.log("Vehicle Added to Location: \n" + JSON.stringify(location))
             callback(null, location)
         }).catch(err => {
             console.log("error is", err)

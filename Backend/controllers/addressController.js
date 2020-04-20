@@ -46,7 +46,8 @@ module.exports.getAddressById = (req, res) => {
 };
 
 module.exports.postAddress = (req, res) => {
-    console.log("inside post address router: " + JSON.stringify(req.body));
+    console.log("inside post address router: ");
+    console.log(JSON.stringify(req.body));
     addressClient.insert(req.body, (error, address) => {
         console.log("Callback functions");
         if (!error) {

@@ -6,9 +6,10 @@ import "vehicle.proto";
 service LocationService {
     rpc List (EmptyLocation) returns (LocationList) {}
     rpc Insert (Location) returns (Location) {}
-    rpc Get (LocationId) returns (Location){}
+    rpc Get (LocationId) returns (LocationBase){}
     rpc Update (Location) returns (Location){}
     rpc Delete (LocationId) returns (Location){}
+    rpc AddVehicle(AddVehicle) returns (LocationId){}
 }
 message EmptyLocation {}
 
@@ -18,7 +19,8 @@ message Location {
    Address ADDRESS = 3;
    int32 CURRENT_CAPACITY = 4;
    int32 VEHICLE_CAPACITY = 5;
-   repeated VehicleGet VEHICLES = 6;
+   //repeated Vehicle VEHICLES=6 ;
+
 }
 
 message LocationBase {
@@ -27,7 +29,7 @@ message LocationBase {
    string ADDRESS = 3;
    int32 CURRENT_CAPACITY = 4;
    int32 VEHICLE_CAPACITY = 5;
-   //repeated string VEHICLES = 6;
+   repeated string VEHICLES = 6;
 }
 
 message LocationList {
@@ -36,4 +38,9 @@ message LocationList {
 
 message LocationId {
   string _id = 1;
+}
+
+message AddVehicle{
+   string _id=1;
+  string VEHICLE=2;
 }
