@@ -1,5 +1,5 @@
 module.exports = {
-    FRONTEND_URL: "http://localhost:3001",
+    FRONTEND_URL: "http://localhost:3000",
 
     /** Vehicle routes */
     GET_VEHICLES_ROUTE: "/vehicles",

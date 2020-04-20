@@ -10,6 +10,11 @@ class Createvehicleform extends Component {
     constructor() {
         super();
         this.state = {
+            make:"",
+            model:"",
+            year:"",
+            rtag:"",
+            
             carname: "",
             cartype: "",
             hourlyprice: "",
@@ -117,6 +122,69 @@ class Createvehicleform extends Component {
             <Form>
                 <h3> Add a vehicle </h3>
                 <Row form >
+                <Col  >
+                        <FormGroup>
+                            <Label for="carname" >Enter Car Make</Label>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.makechangehandler} id="carname" placeholder="Enter car Name" value={ this.state.make } style={{ width: "350px" }}/>
+                        </FormGroup>
+                    </Col>
+                    <br></br>
+                    <Col  >
+                        <FormGroup>
+                            <Label for="carname" >Enter Car Model</Label>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.modelchangehandler} id="carname" placeholder="Enter car Name" value={ this.state.model } style={{ width: "350px" }}/>
+                        </FormGroup>
+                    </Col>
+                    <br></br> 
+                    <Col  >
+                        <FormGroup>
+                            <Label for="carname" >Enter Car Year of manufacturing</Label>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.yearchangehandler} id="carname" placeholder="Enter car Name" value={ this.state.year } style={{ width: "350px" }}/>
+                        </FormGroup>
+                    </Col>
+                    <br></br>  
+                    <Col  >
+                        <FormGroup>
+                            <Label for="carname" >Enter vehicle Registration Tag </Label>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.rtaghandler} id="carname" placeholder="Enter car Name" value={ this.state.rtag } style={{ width: "350px" }}/>
+                        </FormGroup>
+                    </Col>
+                    <br></br>
+                    <Col  >
+                        <FormGroup>
+                            <Label for="carname" >Enter Vehicle Category</Label>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.categoryhandler} id="carname" placeholder="Enter car Name" value={ this.state.category } style={{ width: "350px" }}/>
+                        </FormGroup>
+                    </Col>
+                    <br></br>
+                    <Col  >
+                        <FormGroup>
+                            <Label for="carname" >Enter vehicle Mileage</Label>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.mileagechangehandler} id="carname" placeholder="Enter car Name" value={ this.state.mileage } style={{ width: "350px" }}/>
+                        </FormGroup>
+                    </Col>
+                    <br></br> 
+                    <Col  >
+                        <FormGroup>
+                            <Label for="carname" >Enter vehicle Last Service date</Label>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.lastservicedatehandler} id="carname" placeholder="Enter car Name" value={ this.state.lastservicedate } style={{ width: "350px" }}/>
+                        </FormGroup>
+                    </Col>
+                    <br></br>   
+                    <Col  >
+                        <FormGroup>
+                            <Label for="carname" >Enter Vehicle Condition</Label>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.conditionchangehandler} id="carname" placeholder="Enter car Name" value={ this.state.condition } style={{ width: "350px" }}/>
+                        </FormGroup>
+                    </Col>
+                    <br></br>   
+                    <Button color="danger" onClick={this.addvehiclerdetailshandler} className="w-100"> Add Car </Button>
+
+
+
+
+
+
                     <Col  >
                         <FormGroup>
                             <Label for="carname" >Enter Car Name</Label>
@@ -167,7 +235,7 @@ class Createvehicleform extends Component {
                 <br></br><br></br>
                 <p className="text-danger text-center">{ this.state.errMsg }</p>
                 <p className="text-success text-center">{ this.state.successMsg }</p>
-                <Button color="danger" onClick={this.addVehicleHandler} className="w-100"> Add Car </Button>
+                <Button color="danger" onClick={this.addVehicleHandler} className="w-100"> Set Price</Button>
             </Form>
 
         );
