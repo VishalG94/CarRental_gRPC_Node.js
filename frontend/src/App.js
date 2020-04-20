@@ -20,6 +20,7 @@ import Viewalllocations from "./Components/Admin/viewalllocations";
 
 import Dashboard from "./Components/Admin/admindashboard";
 import Viewallcars from "./Components/Admin/viewallcars";
+import Sidenavbar from "./Components/Admin/sidenavbar";
 
 import LandingPage from "../src/Components/LandingPage/LandingPage";
 import Profile from "./Components/Users/Profile/Profile";
@@ -47,6 +48,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header {...this.props} onSignout={this.onSignout} />
+        <Route path="/admin" component={Sidenavbar}/>
         <Switch>
           {/* <Route
           exact

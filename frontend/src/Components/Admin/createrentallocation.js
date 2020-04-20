@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import './createvehicle.css';
-import Sidenavbar from './sidenavbar'
-//import axios from 'axios';
-//import Constants from '../../../utils/constants';
+import axios from 'axios';
+import Constants from '../../Utils/Constants'
 
 class Createrentalform extends Component {
 
@@ -11,9 +10,12 @@ class Createrentalform extends Component {
         super();
         this.state = {
             name: "",
-            address:"",
+            STREET:"",
+            STATE:"",
+            COUNTRY:"",
+            PIN:"",
             capacity: "",
-            noofvehiclesperlocation: "",
+            count: "",
         }
     }
 
@@ -22,9 +24,25 @@ class Createrentalform extends Component {
             name: e.target.value
         });
     }
-    addresstypeChangeHandler = (e) => {
+    streettypeChangeHandler = (e) => {
         this.setState({
-            address: e.target.value
+            STREET: e.target.value
+        });
+    }
+    statetypeChangeHandler = (e) => {
+        this.setState({
+            STATE: e.target.value
+       
+        });
+    }
+    countrytypeChangeHandler = (e) => {
+        this.setState({
+            COUNTRY: e.target.value
+        });
+    }
+    pintypeChangeHandler = (e) => {
+        this.setState({
+            PIN: e.target.value
         });
     }
    capacityChangeHandler = (e) => {
@@ -38,58 +56,42 @@ class Createrentalform extends Component {
         });
     }
     addLocationHandler = () => {
-        if (this.state.name === "" || this.state.address === "" || this.state.capacity === "" 
-        || this.state.noofvehiclesperlocation === "") 
+        if (this.state.name === ""  || this.state.capacity === "" 
+        || this.state.count === "") 
         {
             this.setState({
                 errMsg: "Required fields are empty",
                 successMsg: ""
             })
         } else {
+           const data={
+            NAME:this.state.name,
+            ADDRESS:{
+               STREET:this.state.STREET,
+               STATE: this.state.STATE,
+               COUNTRY: this.state.COUNTRY,
+               PIN:this.state.PIN
+             },
+             CURRENT_CAPACITY: this.state.capacity,
+             VEHICLE_CAPACITY:this.state.count
 
-            let fd = new FormData();
-            fd.append('name', this.state.name)
-            fd.append('address', this.state.address)
-            fd.append('capacity', this.state.capacity)
-            fd.append('noofvehiclesperlocation', this.state.noofvehiclesperlocation)
-
-            // const projectData = {
-            //     managerId: localStorage.getItem('281UserId'),
-            //     name: this.state.name,
-            //     shortDescription: this.state.shortDes,
-            //     detailedDescription: this.state.detDesc,
-            //     companyName: this.state.
-            //     compName,
-            //     address: this.state.address,
-            //     city: this.state.city,
-            //     state: this.state.state,
-            //     zip: this.state.zip,
-            //     testCases: this.state.testCases,
-            //     technologies: this.state.tech
-            // }
-            
-            // axios.defaults.withCredentials = true;//very imp, sets credentials so that backend can load cookies
-            const config = {
-                headers: {
-                        'Content-Type': 'multipart/form-data',
-                        'Accept': 'multipart/form-data'
-                }
-            };
-             //axios.post(`${Constants.BACKEND_SERVER.URL}/manager/addlocation`, fd, config)
-            // // axios.post(`${Constants.BACKEND_SERVER.URL}/manager/addlocation`, projectData)
-            //     .then(() => {
-            //         this.setState({
-            //             name: "",
-            //             
-            //         })
-            //     })
-            //     .catch((error) => { 
-            //         console.log(error)
-            //         this.setState({
-            //             errMsg: "Error occured",
-            //             successMsg: ""
-            //         })
-            //     })
+           }
+             console.log("Data is ",data)
+            axios.post(`${Constants.BACKEND_SERVER.URL}/location`, data)
+                .then(() => {
+                    this.setState({
+                        
+                        successMsg: "Sucesssfully added"
+                    })
+                    console.log("Successful",Response)
+                })
+                .catch((error) => { 
+                    console.log(error)
+                    this.setState({
+                        errMsg: "Error occured",
+                        successMsg: ""
+                    })
+                })
         }
 
     }
@@ -105,15 +107,36 @@ class Createrentalform extends Component {
                 <Row form >
                     <Col  >
                         <FormGroup>
-                            <Label for="carname" >Enter Location Name</Label>
+                            <Label for="carname" >Set Location Name</Label>
                             <Input type="text" font-size="50px" name="carname" onChange={this.nameChangeHandler} id="carname" placeholder="Enter Location Name" value={ this.state.name } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <br></br>
                     <Col md={8}>
                         <FormGroup>
-                            <Label for="cartype">Enter the complete address Type</Label>
-                            <Input type="text" name="cartype" onChange={this.addresstypeChangeHandler} id="cartype" placeholder="Enter address type"  value={ this.state.address } style={{ width: "350px" }}/>
+                            <Label for="cartype">Enter the Street Name Type</Label>
+                            <Input type="text" name="cartype" onChange={this.streettypeChangeHandler} id="cartype" placeholder="Enter address type"  value={ this.state.STREET } style={{ width: "350px" }}/>
+                        </FormGroup>
+                    </Col>
+                    <br></br>
+                    <Col md={8}>
+                        <FormGroup>
+                            <Label for="cartype">Enter the State Name Type</Label>
+                            <Input type="text" name="cartype" onChange={this.statetypeChangeHandler} id="cartype" placeholder="Enter address type"  value={ this.state.STATE } style={{ width: "350px" }}/>
+                        </FormGroup>
+                    </Col>
+                    <br></br>
+                    <Col md={8}>
+                        <FormGroup>
+                            <Label for="cartype">Enter the Country Name Type</Label>
+                            <Input type="text" name="cartype" onChange={this.countrytypeChangeHandler} id="cartype" placeholder="Enter address type"  value={ this.state.COUNTRY } style={{ width: "350px" }}/>
+                        </FormGroup>
+                    </Col>
+                    <br></br>
+                    <Col md={8}>
+                        <FormGroup>
+                            <Label for="cartype">Enter the Pin Type</Label>
+                            <Input type="text" name="cartype" onChange={this.pintypeChangeHandler} id="cartype" placeholder="Enter address type"  value={ this.state.PIN } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <br></br>
