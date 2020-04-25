@@ -2,7 +2,6 @@
     overflow: hidden;
     font-size: 30px;
     font-style: italic;
-    background-color: beige;
 }
 .navDiv{
     float:left;
@@ -12,11 +11,12 @@
     z-index:2;
     top:0;
 }
-.listDiv{
+.mainDiv .listDiv{
     width:100%;
     font-size: 25px;
     float:right;
     margin:28px;
+    
 
 }
 .pages{

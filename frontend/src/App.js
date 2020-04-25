@@ -18,8 +18,10 @@ import Usermanagement from "./Components/Admin/manageusers";
 import Userbillingmanagement from "./Components/Admin/userbillingmanagement";
 import Viewalllocations from "./Components/Admin/viewalllocations";
 
+
 import Dashboard from "./Components/Admin/admindashboard";
 import Viewallcars from "./Components/Admin/viewallcars";
+import Viewindividualcar from "./Components/Admin/viewindividualcar"
 import Sidenavbar from "./Components/Admin/sidenavbar";
 
 import LandingPage from "../src/Components/LandingPage/LandingPage";
@@ -81,6 +83,7 @@ class App extends Component {
           <Route exact path="/login"
             render={props =>
               (<LoginPage {...props} onSignIn={this.onSignIn} />)} />
+          <Route exact path="/admin/viewallcars/view/:projectId" component={Viewindividualcar} />   
 
           <Route exact path="/users/home" component={UserHomePage} />{" "}
           <Route exact path="/users/signup" component={SignupPage} />{" "}

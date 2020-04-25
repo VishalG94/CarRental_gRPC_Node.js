@@ -25,6 +25,7 @@ module.exports.getVehicles = (req, res) => {
 };
 
 module.exports.getVehicleById = (req, res) => {
+    console.log(req.query)
     console.log("Query params: " + JSON.stringify(req.query));
     client.get(req.query, (error, vehicles) => {
         if (!error) {

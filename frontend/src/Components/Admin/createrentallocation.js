@@ -14,6 +14,8 @@ class Createrentalform extends Component {
             STATE:"",
             COUNTRY:"",
             PIN:"",
+            LATI:"",
+            LONGI:"",
             capacity: "",
             count: "",
         }
@@ -45,6 +47,16 @@ class Createrentalform extends Component {
             PIN: e.target.value
         });
     }
+    latitypeChangeHandler = (e) => {
+        this.setState({
+            LATI: e.target.value
+        });
+    }
+    longitypeChangeHandler = (e) => {
+        this.setState({
+            LONGI: e.target.value
+        });
+    }
    capacityChangeHandler = (e) => {
         this.setState({
             capacity: e.target.value
@@ -70,8 +82,11 @@ class Createrentalform extends Component {
                STREET:this.state.STREET,
                STATE: this.state.STATE,
                COUNTRY: this.state.COUNTRY,
-               PIN:this.state.PIN
+               PIN:this.state.PIN,
+               LATITUDE:this.state.LATI,
+               LONGITUDE:this.state.LONGI
              },
+
              CURRENT_CAPACITY: this.state.capacity,
              VEHICLE_CAPACITY:this.state.count
 
@@ -114,29 +129,43 @@ class Createrentalform extends Component {
                     <br></br>
                     <Col md={8}>
                         <FormGroup>
-                            <Label for="cartype">Enter the Street Name Type</Label>
+                            <Label for="cartype">Enter the Street Name </Label>
                             <Input type="text" name="cartype" onChange={this.streettypeChangeHandler} id="cartype" placeholder="Enter address type"  value={ this.state.STREET } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <br></br>
                     <Col md={8}>
                         <FormGroup>
-                            <Label for="cartype">Enter the State Name Type</Label>
+                            <Label for="cartype">Enter the State Name </Label>
                             <Input type="text" name="cartype" onChange={this.statetypeChangeHandler} id="cartype" placeholder="Enter address type"  value={ this.state.STATE } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <br></br>
                     <Col md={8}>
                         <FormGroup>
-                            <Label for="cartype">Enter the Country Name Type</Label>
+                            <Label for="cartype">Enter the Country Name </Label>
                             <Input type="text" name="cartype" onChange={this.countrytypeChangeHandler} id="cartype" placeholder="Enter address type"  value={ this.state.COUNTRY } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <br></br>
                     <Col md={8}>
                         <FormGroup>
-                            <Label for="cartype">Enter the Pin Type</Label>
+                            <Label for="cartype">Enter the Pin </Label>
                             <Input type="text" name="cartype" onChange={this.pintypeChangeHandler} id="cartype" placeholder="Enter address type"  value={ this.state.PIN } style={{ width: "350px" }}/>
+                        </FormGroup>
+                    </Col>
+                    <br></br>
+                    <Col md={8}>
+                        <FormGroup>
+                            <Label for="cartype">Enter the Latitude </Label>
+                            <Input type="text" name="cartype" onChange={this.latitypeChangeHandler} id="cartype" placeholder="Enter address type"  value={ this.state.LATI } style={{ width: "350px" }}/>
+                        </FormGroup>
+                    </Col>
+                    <br></br>
+                    <Col md={8}>
+                        <FormGroup>
+                            <Label for="cartype">Enter the Longitude </Label>
+                            <Input type="text" name="cartype" onChange={this.longitypeChangeHandler} id="cartype" placeholder="Enter address type"  value={ this.state.LONGI } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <br></br>

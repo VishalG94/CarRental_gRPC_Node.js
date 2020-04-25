@@ -13,6 +13,7 @@ message Category {
    string _id = 1;
    string CATEGORY_NAME =2; 
    int32 LATE_FEE = 3;
+   int32 HOURLY_FEE=4;
 }
 message CategoryList {
    repeated Category categories = 1;
