@@ -117,28 +117,28 @@ class Createvehicleform extends Component {
                 <Col  >
                         <FormGroup>
                             <Label for="carname" >Enter Car Make</Label>
-                            <Input type="text" font-size="50px" name="carname" onChange={this.makeChangeHandler} id="carname" placeholder="Enter car Name" value={ this.state.make } style={{ width: "350px" }}/>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.makeChangeHandler} id="carname" placeholder="Ex: Tesla" value={ this.state.make } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <br></br>
                     <Col  >
                         <FormGroup>
                             <Label for="carname" >Enter Car Model</Label>
-                            <Input type="text" font-size="50px" name="carname" onChange={this.modelChangeHandler} id="carname" placeholder="Enter car Name" value={ this.state.model } style={{ width: "350px" }}/>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.modelChangeHandler} id="carname" placeholder="Ex: Model S" value={ this.state.model } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <br></br> 
                     <Col  >
                         <FormGroup>
                             <Label for="carname" >Enter Car Year of manufacturing</Label>
-                            <Input type="text" font-size="50px" name="carname" onChange={this.yearChangeHandler} id="carname" placeholder="Enter car Name" value={ this.state.year } style={{ width: "350px" }}/>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.yearChangeHandler} id="carname" placeholder="Ex:2019" value={ this.state.year } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <br></br>  
                     <Col  >
                         <FormGroup>
                             <Label for="carname" >Enter vehicle Registration Tag </Label>
-                            <Input type="text" font-size="50px" name="carname" onChange={this.rtagChangeHandler} id="carname" placeholder="Enter car Name" value={ this.state.rtag } style={{ width: "350px" }}/>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.rtagChangeHandler} id="carname" placeholder="Enter Registartion Tag" value={ this.state.rtag } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <br></br>
@@ -158,14 +158,14 @@ class Createvehicleform extends Component {
                     <Col  >
                         <FormGroup>
                             <Label for="carname" >Enter vehicle Mileage</Label>
-                            <Input type="text" font-size="50px" name="carname" onChange={this.mileageChangehandler} id="carname" placeholder="Enter car Name" value={ this.state.mileage } style={{ width: "350px" }}/>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.mileageChangehandler} id="carname" placeholder="Ex: 25" value={ this.state.mileage } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <br></br> 
                     <Col  >
                         <FormGroup>
-                            <Label for="carname" >Enter vehicle Last Service date</Label>
-                            <Input type="text" font-size="50px" name="carname" onChange={this.servicechangehandler} id="carname" placeholder="Enter car Name" value={ this.state.lastservicedate } style={{ width: "350px" }}/>
+                            <Label for="carname" >Enter number of days since Last Service date</Label>
+                            <Input type="text" font-size="50px" name="carname" onChange={this.servicechangehandler} id="carname" placeholder="EnEx: 30" value={ this.state.lastservicedate } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <br></br>   
@@ -207,14 +207,17 @@ class CreateVehicle extends Component {
 
     render() {
         return (
-            <div className="mainDiv">
+            // <div className="mainDiv">
                 
-                <div className="listDiv">
+                // <div className="listDiv">
+                    <div> 
+                    <Createvehicleform /> 
+                        <div/>
                    
-                            <Createvehicleform />
+                            
                         
-                </div>
-            </div>
+                {/* </div> */}
+            // </div>
         );
     }
 }

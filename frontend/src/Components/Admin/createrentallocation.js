@@ -206,18 +206,18 @@ class CreateRental extends Component {
 
     render() {
         return (
-            <div className="mainDiv">
-                <div className="navDiv">
-                </div>
-                <div className="listDiv">
-                    <div>
+            // <div className="mainDiv">
+            //     <div className="navDiv">
+            //     </div>
+            //     <div className="listDiv">
+            //         <div>
                         <div>
                             <Createrentalform />
                         </div>
 
-                    </div>
-                </div>
-            </div>
+            //         </div>
+            //     </div>
+            // </div>
         );
     }
 }

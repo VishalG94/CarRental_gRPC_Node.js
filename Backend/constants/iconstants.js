@@ -47,6 +47,7 @@ module.exports = {
 
     /** User routes */
     GET_USERS_ROUTE: "/users",
+    GET_USERBYID_ROUTE: "/userID",
     POST_USERBYID_ROUTE: "/userID",
     POST_USER_ROUTE: "/user",
     UPDATE_USER_ROUTE: "/user",

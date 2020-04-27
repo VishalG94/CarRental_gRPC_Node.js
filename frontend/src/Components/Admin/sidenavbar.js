@@ -11,12 +11,12 @@ class Sidenavbar extends Component {
       <div className="togglebtn">
        <ul>
        <Button style={{ color:'white' }} href="/admin/admindashboard">Dashboard</Button>
+       <Button style={{ color:'white' }}href="/admin/addLocation">Add Location</Button>
        <Button style={{ color:'white' }}href="/admin/addvehicle">Add Vehicle</Button>
-       <Button style={{ color:'white' }}href="/admin/editall">Edit Vehicle</Button>
+       <Button style={{ color:'white' }}href="/admin/viewallcars">View All Cars</Button>
+       <Button style={{ color:'white' }}href="/admin/viewalllocations">View All Locations</Button>
        <Button style={{ color:'white' }} href="/admin/usermanagement">USer Management</Button>
        <Button style={{ color:'white' }}href="/admin/userbillingmanagement">User Billing</Button>
-       <Button style={{ color:'white' }}href="/admin/viewallcars">View All</Button>
-       <Button style={{ color:'white' }}href="/admin/addLocation">Add Location</Button>
        </ul>
        </div>
     </div>  
