@@ -31,14 +31,17 @@ class Usermanagement extends Component {
             //for (var index in obj.vehicles) {
                Object.keys(obj.users).map((index) =>
                  {
+                  
               item=obj.users[index]
               
-
+              localStorage.setItem(item['_id'], item['EMAIL']) ;
+              localStorage.setItem(item['EMAIL'], item['PASSWORD']) ;
               
               projectCards.push(
                 
-                <a href={`/admin/manageusers/view/${item['_id']}`} className="text-decoration-none text-dark">
-                    
+                <a href={`/admin/usermanagement/view/${item['_id']}`} className="text-decoration-none text-dark">
+                   {/* localStorage.setItem('{item['_id']}', '{item['PASSWORD']}') */}
+                   
                   <Card className="card">
                  <CardImg top width="100%" src={logo1} alt="Card image cap" />
                     <CardHeader><b>Name: </b>{item['NAME']}</CardHeader>

@@ -26,15 +26,15 @@ module.exports.getLocations = (req, res) => {
 };
 
 module.exports.getLocationById = (req, res) => {
-    console.log("Query params: " + JSON.stringify(req.body));
-    locationClient.get(req.body, (error, location) => {
+    console.log("Query params: " + JSON.stringify(req.query));
+    locationClient.get(req.query, (error, location) => {
         if (!error) {
-            console.log("inside get Location by id router: " + JSON.stringify(location));
+            console.log("inside get Location by id router: " + location.ADDRESS);
             res.setHeader(CONTENT_TYPE, APP_JSON);
             res.status(RES_SUCCESS).end(JSON.stringify(location));
         } else {
             if (error.code === 13) {
-                console.log("Location with id " + req.query._id + " not found");
+                console.log("Location with id " + req.body._id + " not found");
                 res.setHeader(CONTENT_TYPE, TEXT_PLAIN);
                 res.status(RES_NOT_FOUND).end("Location with id '" + req.query._id + "' not found");
             } else {
@@ -69,15 +69,15 @@ module.exports.postLocation = (req, res) => {
 
 
 module.exports.deleteLocation = (req, res) => {
-    // console.log(req.body);
-    locationClient.delete(req.body, (error, location) => {
+    console.log(req.query);
+    locationClient.delete(req.query, (error, location) => {
         if (!error && location) {
             console.log("inside delete Location router" + JSON.stringify(location));
             res.setHeader(CONTENT_TYPE, APP_JSON);
             res.status(RES_SUCCESS).end(JSON.stringify(location));
         } else {
             if (error.code === 13) {
-                console.log("Location with id " + req.query._id + " not found");
+                console.log("Location with id " + req.body._id + " not found");
                 res.setHeader(CONTENT_TYPE, TEXT_PLAIN);
                 res.status(RES_NOT_FOUND).end("Location with id '" + req.query._id + "' not found");
             } else {

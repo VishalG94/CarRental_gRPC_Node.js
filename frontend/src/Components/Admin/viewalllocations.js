@@ -20,29 +20,29 @@ class Viewallcars extends Component {
  
   componentDidMount() {
       
-        axios.get(`${Constants.BACKEND_SERVER.URL}/addresses`).then((response) => {
+        axios.get(`${Constants.BACKEND_SERVER.URL}/locations`).then((response) => {
         
           if (response.data != null) {
            var obj=(response.data)
-            console.log(obj.addresses)
+            console.log(obj.locations)
             var projectCards = [],
               item
             //for (var index in obj.vehicles) {
-               Object.keys(obj.addresses).map((index) =>
+               Object.keys(obj.locations).map((index) =>
                  {
-              item=obj.addresses[index]
+              item=obj.locations[index]
               
-              
+              console.log(item['ADDRESS'].STREET)
               projectCards.push(
                 
                     
                   <Card className="card">
                  <CardImg top width="100%" src={logo} alt="Card image cap" />
-                    <CardHeader><b>Street Name: </b>{item['STREET']}</CardHeader>
+                    <CardHeader><b>Street Name: </b>{item['NAME']}</CardHeader>
                     <CardBody>
-                      <CardTitle><b>State:</b> {item['STATE']}</CardTitle>
-                      <CardText><b>COuntry:</b> {item['COUNTRY']}</CardText>
-                      <CardText><b>Pin:</b> {item['PIN']}</CardText>
+                      <CardTitle><b>State:</b> {item['ADDRESS'].STREET}</CardTitle>
+                      <CardText><b>Country:</b> {item['ADDRESS'].COUNTRY}</CardText>
+                      <CardText><b>Pin:</b> {item['ADDRESS'].PIN}</CardText>
                       
                     </CardBody>
                     <Button href={`/admin/viewalllocations/view/${item['_id']}`}>View </Button>

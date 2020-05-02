@@ -10,7 +10,7 @@ const locationSchema = mongoose.Schema({
     ADDRESS: { type: ObjectId, ref: "Address", required: true },
     CURRENT_CAPACITY: { type: Number, required: true },
     VEHICLE_CAPACITY: { type: Number, required: true },
-    VEHICLES: [{ type: ObjectId, ref: 'Vehicles' }]
+    VEHICLES: [{ type: ObjectId, ref: 'Vehicle' }]
 })
 
 

@@ -93,12 +93,13 @@ class Createrentalform extends Component {
            }
              console.log("Data is ",data)
             axios.post(`${Constants.BACKEND_SERVER.URL}/location`, data)
-                .then(() => {
+                .then((response) => {
+                    console.log("Successful",response.data)
                     this.setState({
                         
                         successMsg: "Sucesssfully added"
                     })
-                    console.log("Successful",Response)
+                    
                 })
                 .catch((error) => { 
                     console.log(error)

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Col, Row, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import './createvehicle.css';
+import { Card, CardBody, CardHeader, CardText, CardTitle, Container,CardImg } from 'reactstrap';
+import logo from './googlemaps.jpg'
 
 import axios from 'axios';
 import Constants from '../../Utils/Constants'
@@ -10,6 +12,8 @@ class Createvehicleform extends Component {
     constructor() {
         super();
         this.state = {
+            allProjCards: [],
+            alllocations: [],
             make:"",
             model:"",
             category:"",
@@ -18,6 +22,8 @@ class Createvehicleform extends Component {
             mileage:"",
             lastservicedate:"",
             vehiclecondition:"",
+            vehicletolocation:"",
+            
         }
     }
 
@@ -64,6 +70,62 @@ class Createvehicleform extends Component {
             vehiclecondition: e.target.value
         });
     }
+
+    addvehicletolocationchangehandler= (e) => {
+        this.setState({
+            vehicletolocation: e.target.value
+        });
+    }
+
+    componentDidMount() {
+      
+        axios.get(`${Constants.BACKEND_SERVER.URL}/locations`).then((response) => {
+            
+           
+            
+          if (response.data != null) {
+            console.log(response.data)
+           var obj=(response.data)
+            console.log(obj.locations)
+            var projectCards = [],
+            
+              item
+            //for (var index in obj.vehicles) {
+               Object.keys(obj.locations).map((index) =>
+                 {
+              item=obj.locations[index]
+              
+              console.log(item['ADDRESS'].STREET)
+              projectCards.push( 
+                  <Card className="card">
+                    <CardHeader><b> Name: </b>{item['NAME']}</CardHeader>
+                  </Card>   
+              )
+              
+            })
+  
+            this.setState({
+              allProjCards: projectCards
+            })
+
+            this.setState({
+                alllocations:response.data.locations
+              })
+          }
+        })
+                  
+            
+              .catch((error) => { 
+                  console.log(error)
+                  this.setState({
+                      errMsg: "Error occured",
+                      successMsg: ""
+                  })
+             })
+      }
+
+
+
     addVehicleHandler = () => {
         if (this.state.make === "" || this.state.model === "" || this.state.category === "" 
         || this.state.year === ""|| this.state.rtag === "" || this.state.mileage === "" || 
@@ -91,12 +153,26 @@ class Createvehicleform extends Component {
             
              axios.post(`${Constants.BACKEND_SERVER.URL}/vehicle`, data)
             
-            .then(() => {
+            .then((response) => {
+                console.log(response.data._id)
+                
                     this.setState({
                         errMsg: "",
+                        vehilceid:response.data._id,
                         successMsg: "Successfully Added"
             
                     })
+                    const data ={
+                        _id:this.state.vehicletolocation,
+                        VEHICLE:this.state.vehilceid
+                    }
+                    axios.post(`${Constants.BACKEND_SERVER.URL}/vehiclelocation`, data)
+                    .then((response) => {
+                        console.log(response);
+                        console.log("Successfully added vehicle to loaction");
+                        
+                    })
+
                 })
                 .catch((error) => { 
                     console.log(error)
@@ -145,8 +221,11 @@ class Createvehicleform extends Component {
                     <Col  >
                         <FormGroup>
                             <Label for="category" >Select Vehicle Category</Label>
+                               
+                            
                             <select id="category" onChange={this.categoryChangeHandler} style={{ width: "350px" }}> 
                             <option >--</option>
+                            
                             <option value="5e9e6adf78c6dc4174e673ff">Luxury</option>
                             <option value="5e9a51113b644d21cc6349a1">Sedan</option>
                             <option value="5e9a50f23b644d21cc6349a0">SUV</option>
@@ -181,9 +260,26 @@ class Createvehicleform extends Component {
                         </FormGroup>
                     </Col>
                     <br></br>   
+                    <FormGroup>
+                        <label for="addvehicletolocation">Add Vehicle to this location:</label>
+                        <select id="addvehicletolocation" onChange={this.addvehicletolocationchangehandler} style={{ width: "350px" }}>      
+        {this.state.alllocations.map(option => (
+            
+          <option  value={option._id}>
+            {option.NAME} 
+          </option>
+        ))}
+      </select>
+                        </FormGroup>
+                        <br></br>
+                        <br></br>
                     <Button color="danger" onClick={this.addVehicleHandler} className="w-100"> Add Car </Button> 
                     <p className="text-danger text-center">{ this.state.errMsg }</p>
                     <p className="text-success text-center">{ this.state.successMsg }</p> 
+                    <h4>Available Locations</h4>
+                    <Container>
+								{ this.state.allProjCards }
+							</Container>
                 </Row>            
             </Form>
 
@@ -212,12 +308,22 @@ class CreateVehicle extends Component {
                 // <div className="listDiv">
                     <div> 
                     <Createvehicleform /> 
+                    <br></br>
+                    <Col  >
+                    
+                    </Col>
+
+                    <br></br>
+                    <br></br>
+                    <br></br>
+
+                    
                         <div/>
                    
                             
                         
                 {/* </div> */}
-            // </div>
+             </div>
         );
     }
 }

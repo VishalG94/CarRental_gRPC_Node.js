@@ -35,11 +35,11 @@ class Viewallcars extends Component {
                  {
               item=obj.vehicles[index]
               if(item['CATEGORY']['CATEGORY_NAME']=="SUV"){
-                logo=logo3;
+                logo=logo1;
               }
               else if(item['CATEGORY']['CATEGORY_NAME']=="Luxury"){
                
-                logo=logo1;
+                logo=logo3;
               }
               else if(item['CATEGORY']['CATEGORY_NAME']=="Hatchback"){
                

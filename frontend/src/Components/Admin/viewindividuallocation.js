@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import './viewallcars.css'
 import { Card, CardBody, CardHeader, CardText, CardTitle, Container,CardImg } from 'reactstrap';
 import { Col, Row,  FormGroup, Label, Input} from 'reactstrap';
-
+import logo2 from './hatchback.jpg'
 import logo from "./googlemaps.jpg"
 import axios from 'axios';
 import Constants from '../../Utils/Constants'
@@ -14,6 +14,7 @@ class Viewindividuallocation extends Component {
       super(props);
       this.state = {
         allProjCards: [],
+        allProjCards1:[],
         _id:"",
         objectout:[]
       }
@@ -43,7 +44,7 @@ changelastservicedatehandler = (e) => {
 
 
 deletelocationhandler =() =>{
-  axios.delete(`${Constants.BACKEND_SERVER.URL}/address/?_id=${this.props.match.params.projectId}`).then((response) => {
+  axios.delete(`${Constants.BACKEND_SERVER.URL}/location/?_id=${this.props.match.params.projectId}`).then((response) => {
     console.log(response) 
 
     window.alert("Location Deleted")
@@ -56,16 +57,44 @@ deletelocationhandler =() =>{
 
  
   componentDidMount() {
-      
-        axios.get(`${Constants.BACKEND_SERVER.URL}/address/?_id=${this.props.match.params.projectId}`).then((response) => {
+  
+        axios.get(`${Constants.BACKEND_SERVER.URL}/location/?_id=${this.props.match.params.projectId}`).then((response) => {  
           if (response.data != null) {
+            var item1,cards1=[]
            var item=(response.data)
+           var obj=response.data
               console.log(item)
+              console.log(obj.VEHICLES)
+              Object.keys(obj.VEHICLES).map((index) =>
+                 {
+                  item1=obj.VEHICLES[index]
+                  cards1.push(
+                
+                        
+                      <Card className="card">
+                      <CardImg top width="100%" src={logo2} alt="Card image cap" />                       
+                       <CardHeader><b>RTag: </b>{item1['REGISTRATION_TAG']}</CardHeader>
+                        <CardBody>
+                        
+                          <CardTitle><b>MAKE:</b> {item1['MAKE']}</CardTitle>
+                          <CardText><b>Model:</b> {item1['MODEL']}</CardText>
+                          {/* <CardText><b>Late Fee</b> {item['LATE_FEE']}</CardText>
+                          <CardText><b>Hourly Feee</b> {item['HOURLY_FEE']}</CardText> */}
+                          <CardText><b>Year: </b> {item1['YEAR']}</CardText> 
+                        </CardBody>
+                        
+                      </Card>
+                      
+                    
+ )})
+
+                 
               this.setState({
                 objectout: item
               })
               
               var cards=[]
+              
               
 
               
@@ -74,21 +103,30 @@ deletelocationhandler =() =>{
                     
                 <Card className="card">
                 <CardImg top width="100%" src={logo} alt="Card image cap" />
-                   <CardHeader><b>Street Name: </b>{item['STREET']}</CardHeader>
+                <CardHeader><b>Location Name: </b>{item['NAME']}</CardHeader>
+                   <CardHeader><b>Street Name: </b>{item['ADDRESS'].STREET}</CardHeader>
                    <CardBody>
-                     <CardTitle><b>State:</b> {item['STATE']}</CardTitle>
-                     <CardText><b>COuntry:</b> {item['COUNTRY']}</CardText>
-                     <CardText><b>Pin:</b> {item['PIN']}</CardText>
-                     <CardText><b>Pin:</b> {item['"LATITUDE']}</CardText>
-                     <CardText><b>Pin:</b> {item['LONGITUDE']}</CardText>
+                     <CardTitle><b>State:</b> {item['ADDRESS'].STATE}</CardTitle>
+                     <CardText><b>Country:</b> {item['ADDRESS'].COUNTRY}</CardText>
+                     <CardText><b>Pin:</b> {item['ADDRESS'].PIN}</CardText>
+                     <CardText><b>Pin:</b> {item['ADDRESS'].LATITUDE}</CardText>
+                     <CardText><b>Pin:</b> {item['ADDRESS'].LONGITUDE}</CardText>
+
+                     <CardText><b>Vehicles Available Now:</b> {item['CURRENT_CAPACITY']}</CardText>
+                     <CardText><b>Total Vehicle limit:</b> {item['VEHICLE_CAPACITY']}</CardText>
+
+
                    </CardBody>
                    <Button onClick={this.deletelocationhandler} >Delete Location </Button>
                  </Card> 
               )
+
+              
             
   
             this.setState({
-              allProjCards: cards
+              allProjCards: cards,
+              allProjCards1:cards1
             })
           }
         })
@@ -115,6 +153,10 @@ deletelocationhandler =() =>{
 						<div class="card-arrange" >
 							<Container>
 								{ this.state.allProjCards }
+							</Container>
+              <Container>
+                <h4>Vehicles in this Location</h4>
+								{ this.state.allProjCards1 }
 							</Container>
                             
 						</div>
