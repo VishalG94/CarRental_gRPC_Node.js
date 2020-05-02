@@ -70,6 +70,26 @@ let LocationService = {
         })
 
     },
+    // get: (call, callback) => {
+    //     let id = call.request._id
+    //     console.log("id value: " + id);
+    //     // Location.findById(id);
+
+
+
+    //     Location.findById(id, (err, res) => {
+    //         if (err) {
+    //             callback(err, null);
+    //             console.log("error is", err);
+    //         }
+    //         else {
+
+    //             callback(null, res);
+    //             console.log(res);
+    //         }
+    //     }).populate('ADDRESS').populate("VEHICLES");
+    // },
+
     get: (call, callback) => {
         let id = call.request._id
         console.log("id value: " + id);
@@ -82,7 +102,8 @@ let LocationService = {
                 callback(null, res);
                 console.log(res);
             }
-        }).populate('VEHICLE')
+        }).populate("ADDRESS")
+            .populate("VEHICLES")
     },
     delete: (call, callback) => {
         console.log(call.request)
@@ -122,20 +143,24 @@ let LocationService = {
     addVehicle: (call, callback) => {
         console.log("inside microservice add vehicle" + JSON.stringify(call.request));
         let vehicleId
-        Vehicle.findOne({ _id: call.request.VEHICLE })
-        console.log("found vehicle " + JSON.stringify(vehicleId));
-        let id = call.request._id
-        console.log(Location + " id: " + id);
-        Location.findOneAndUpdate({ _id: id }, {
-            $push: {
-                VEHICLES: vehicleId._id
-            }
-        }, { new: true }).then((location) => {
-            console.log("Vehicle Added to Location: \n" + JSON.stringify(location))
-            callback(null, location)
-        }).catch(err => {
-            console.log("error is", err)
-            callback(err, null)
+        Vehicle.findOne({ _id: call.request.VEHICLE }).then((foundVehicle) => {
+            vehicleId = foundVehicle;
+            console.log(JSON.stringify(foundVehicle));
+        }).then(() => {
+            // console.log("found vehicle " + JSON.stringify(vehicleId));
+            let id = call.request._id
+            console.log(Location + " id: " + id);
+            Location.findOneAndUpdate({ _id: id }, {
+                $push: {
+                    VEHICLES: vehicleId
+                }
+            }, { new: true }).then((location) => {
+                console.log("Vehicle Added to Location: \n" + JSON.stringify(location))
+                callback(null, location)
+            }).catch(err => {
+                console.log("error is", err)
+                callback(err, null)
+            })
         })
     }
 }

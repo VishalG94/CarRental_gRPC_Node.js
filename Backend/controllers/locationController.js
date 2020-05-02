@@ -29,7 +29,7 @@ module.exports.getLocationById = (req, res) => {
     console.log("Query params: " + JSON.stringify(req.body));
     locationClient.get(req.body, (error, location) => {
         if (!error) {
-            console.log("inside get Location by id router: " + JSON.stringify(location));
+            console.log("inside get Location by id router: " + location.ADDRESS);
             res.setHeader(CONTENT_TYPE, APP_JSON);
             res.status(RES_SUCCESS).end(JSON.stringify(location));
         } else {
