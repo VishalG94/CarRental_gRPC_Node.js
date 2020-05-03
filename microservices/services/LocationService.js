@@ -132,8 +132,13 @@ let LocationService = {
             console.log(Location + " id: " + id);
             Location.findOneAndUpdate({ _id: id }, {
                 $push: {
-                    VEHICLES: vehicleId
-                }
+                    VEHICLES: vehicleId,
+                   
+                },
+                $inc: {
+                    CURRENT_CAPACITY: 1,
+                  }
+
             }, { new: true }).then((location) => {
                 console.log("Vehicle Added to Location: \n" + JSON.stringify(location))
                 callback(null, location)

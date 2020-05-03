@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import Button from '@material-ui/core/Button';
 import './viewallcars.css'
 import VehicleCard from "../Common/VehicleCard/VehicleCard"
-import { Card, CardBody, CardHeader, CardText, CardTitle, Container,CardImg } from 'reactstrap';
-import logo1 from './Suve.jpg'
+import { Card, CardBody, CardHeader, CardText, CardTitle, Container,CardImg,Col, Row, } from 'reactstrap';
+import logo1 from './suvimg.jpg'
 import logo2 from './hatchback.jpg'
 import logo3 from './luxury.png'
 import logo4 from './sedan.jpg'
@@ -33,7 +33,9 @@ class Viewallcars extends Component {
             //for (var index in obj.vehicles) {
                Object.keys(obj.vehicles).map((index) =>
                  {
+                   
               item=obj.vehicles[index]
+              console.log(item['CATEGORY'])
               if(item['CATEGORY']['CATEGORY_NAME']=="SUV"){
                 logo=logo1;
               }
@@ -104,6 +106,7 @@ class Viewallcars extends Component {
 				<div style={{ marginTop: "1%" }}>
 					<div>
 						<div class="card-arrange">
+              <Col><br></br></Col>
 							<Container>
 								{ this.state.allProjCards }
 							</Container>

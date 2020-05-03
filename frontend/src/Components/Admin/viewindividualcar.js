@@ -9,6 +9,8 @@ import logo1 from './Suve.jpg'
 import logo2 from './hatchback.jpg'
 import logo3 from './luxury.png'
 import logo4 from './sedan.jpg'
+import logo5 from './cartoy.jpg'
+
 import axios from 'axios';
 import Constants from '../../Utils/Constants'
 import { Grid } from '@material-ui/core';
@@ -28,6 +30,8 @@ class Viewindividualcar extends Component {
         condition: "",
         lastservicedate:"",
         mileage: "",
+        alllocations:[],
+        
         objectout:[]
       }
   }
@@ -52,6 +56,120 @@ changelastservicedatehandler = (e) => {
       lastservicedate: e.target.value
   });
 }
+
+
+componentDidMount() {
+      
+  axios.get(`${Constants.BACKEND_SERVER.URL}/locations`).then((response) => {
+      
+     
+      
+    if (response.data != null) {
+      console.log(response.data)
+     var obj=(response.data)
+      console.log(obj.locations)
+      var projectCards = [],
+      
+        item
+      //for (var index in obj.vehicles) {
+         Object.keys(obj.locations).map((index) =>
+           {
+        item=obj.locations[index]
+        
+        console.log(item['ADDRESS'].STREET)
+        projectCards.push( 
+            <Card className="card">
+              <CardHeader><b> Name: </b>{item['NAME']}</CardHeader>
+            </Card>   
+        )
+        
+      })
+
+      
+
+      this.setState({
+          alllocations:response.data.locations
+        })
+    }
+  })
+            
+      
+        .catch((error) => { 
+            console.log(error)
+            this.setState({
+                errMsg: "Error occured",
+                successMsg: ""
+            })
+       })
+
+       axios.get(`${Constants.BACKEND_SERVER.URL}/vehicle/?_id=${this.props.match.params.projectId}`).then((response) => {
+        if (response.data != null) {
+         var item=(response.data)
+            console.log(item)
+            this.setState({
+              objectout: item
+            })
+            
+            var cards=[],logo
+            if(item['CATEGORY']['CATEGORY_NAME']=="SUV"){
+              logo=logo3;
+            }
+            else if(item['CATEGORY']['CATEGORY_NAME']=="Luxury"){
+             
+              logo=logo1;
+            }
+            else if(item['CATEGORY']['CATEGORY_NAME']=="Hatchback"){
+             
+              logo=logo2;
+            }
+            else if(item['CATEGORY']['CATEGORY_NAME']=="Sedan"){
+              logo=logo4;
+            }
+            else {
+              logo=logo5;
+            }
+
+            
+            cards.push(
+              
+                  
+                <Card className="card">
+               <CardImg top width="100%" src={logo} alt="Card image cap" />
+                  <CardHeader><b>RTag: </b>{item['REGISTRATION_TAG']}</CardHeader>
+                  <CardBody >
+                  
+                    <CardTitle><b>MAKE:</b> {item['MAKE']}</CardTitle>
+                    <CardText><b>Model:</b> {item['MODEL']}</CardText>
+                     <CardText><b>Category</b> {item['CATEGORY']['CATEGORY_NAME']}</CardText> 
+                    <CardText><b>Hourly Feee</b> {item['CATEGORY']['HOURLY_FEE']}</CardText>
+                    <CardText><b>Year: </b> {item['YEAR']}</CardText> 
+                    <CardText><b>Condition: </b> {item['VEHICLE_CONDITION']}</CardText> 
+                    <CardText><b>Mileage: </b> {item['MILEAGE']}</CardText> 
+                  </CardBody>
+                  
+                </Card>    
+            )
+          
+
+          this.setState({
+            allProjCards: cards
+          })
+        }
+      })
+                
+          
+            .catch((error) => { 
+                console.log(error)
+                this.setState({
+                    errMsg: "Error occured",
+                    successMsg: ""
+                })
+           })
+      }
+
+
+
+
 
 editvehicledetailshandler =() => {
     
@@ -116,69 +234,10 @@ deletecarhandler =() =>{
 
 
  
-  componentDidMount() {
-      
-        axios.get(`${Constants.BACKEND_SERVER.URL}/vehicle/?_id=${this.props.match.params.projectId}`).then((response) => {
-          if (response.data != null) {
-           var item=(response.data)
-              console.log(item)
-              this.setState({
-                objectout: item
-              })
-              
-              var cards=[],logo
-              if(item['CATEGORY']['CATEGORY_NAME']=="SUV"){
-                logo=logo3;
-              }
-              else if(item['CATEGORY']['CATEGORY_NAME']=="Luxury"){
-               
-                logo=logo1;
-              }
-              else if(item['CATEGORY']['CATEGORY_NAME']=="Hatchback"){
-               
-                logo=logo2;
-              }
-              else if(item['CATEGORY']['CATEGORY_NAME']=="Sedan"){
-                logo=logo4;
-              }
 
-              
-              cards.push(
-                
-                    
-                  <Card className="card">
-                 <CardImg top width="100%" src={logo} alt="Card image cap" />
-                    <CardHeader><b>RTag: </b>{item['REGISTRATION_TAG']}</CardHeader>
-                    <CardBody >
-                    
-                      <CardTitle><b>MAKE:</b> {item['MAKE']}</CardTitle>
-                      <CardText><b>Model:</b> {item['MODEL']}</CardText>
-                       <CardText><b>Category</b> {item['CATEGORY']['CATEGORY_NAME']}</CardText> 
-                      <CardText><b>Hourly Feee</b> {item['CATEGORY']['HOURLY_FEE']}</CardText>
-                      <CardText><b>Year: </b> {item['YEAR']}</CardText> 
-                      <CardText><b>Condition: </b> {item['VEHICLE_CONDITION']}</CardText> 
-                      <CardText><b>Mileage: </b> {item['MILEAGE']}</CardText> 
-                    </CardBody>
-                    
-                  </Card>    
-              )
-            
-  
-            this.setState({
-              allProjCards: cards
-            })
-          }
-        })
-                  
-            
-              .catch((error) => { 
-                  console.log(error)
-                  this.setState({
-                      errMsg: "Error occured",
-                      successMsg: ""
-                  })
-             })
-      }
+      
+        
+      
 
   
   render () {
@@ -227,6 +286,19 @@ deletecarhandler =() =>{
                       <Button onClick={this.editvehicledetailshandler}>Edit </Button> 
                       <Button onClick={this.deletecarhandler}>Delete </Button> 
                       <p>{this.state.successMsg}</p>
+                      <h4>Assign a different location</h4>
+                      <FormGroup>
+                        <label for="addvehicletolocation">Add Vehicle to this location:</label>
+                        <select id="addvehicletolocation" onChange={this.addvehicletolocationchangehandler} style={{ width: "350px" }}>      
+        {this.state.alllocations.map(location => (
+            
+          <option  value={location._id}>
+            {location.NAME} 
+          </option>
+          
+        ))}
+      </select>
+                        </FormGroup>
 							</Container>
 						</div>
 					</div>

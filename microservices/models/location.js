@@ -8,7 +8,7 @@ const locationSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     NAME: { type: String, required: true, index: { unique: true, dropDups: true } },
     ADDRESS: { type: ObjectId, ref: "Address", required: true },
-    CURRENT_CAPACITY: { type: Number, required: true },
+    CURRENT_CAPACITY: { type: Number, required: true, default: 0 },
     VEHICLE_CAPACITY: { type: Number, required: true },
     VEHICLES: [{ type: ObjectId, ref: 'Vehicle' }]
 })

@@ -38,9 +38,10 @@ class Viewallcars extends Component {
                     
                   <Card className="card">
                  <CardImg top width="100%" src={logo} alt="Card image cap" />
-                    <CardHeader><b>Street Name: </b>{item['NAME']}</CardHeader>
+                    <CardHeader><b>Loc Name: </b>{item['NAME']}</CardHeader>
                     <CardBody>
-                      <CardTitle><b>State:</b> {item['ADDRESS'].STREET}</CardTitle>
+                    <CardTitle><b>State:</b> {item['ADDRESS'].STATE}</CardTitle>
+                      <CardTitle><b>Street:</b> {item['ADDRESS'].STREET}</CardTitle>
                       <CardText><b>Country:</b> {item['ADDRESS'].COUNTRY}</CardText>
                       <CardText><b>Pin:</b> {item['ADDRESS'].PIN}</CardText>
                       

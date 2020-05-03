@@ -14,6 +14,7 @@ class Createvehicleform extends Component {
         this.state = {
             allProjCards: [],
             alllocations: [],
+            allcategory:[],
             make:"",
             model:"",
             category:"",
@@ -68,12 +69,16 @@ class Createvehicleform extends Component {
     conditionchangehandler= (e) => {
         this.setState({
             vehiclecondition: e.target.value
+        },()=>{
+            console.log(this.state)
         });
     }
 
     addvehicletolocationchangehandler= (e) => {
         this.setState({
             vehicletolocation: e.target.value
+        },()=>{
+            console.log(this.state)
         });
     }
 
@@ -122,14 +127,37 @@ class Createvehicleform extends Component {
                       successMsg: ""
                   })
              })
+
+             axios.get(`${Constants.BACKEND_SERVER.URL}/categories`).then((response) => {
+  
+                if (response.data != null) {
+                 var obj=(response.data)
+                  console.log(obj.categories)
+                 
+            
+                  this.setState({
+                    allcategory: response.data.categories
+                  })
+                }
+              })
+                        
+                  
+                    .catch((error) => { 
+                        console.log(error)
+                        this.setState({
+                            errMsg: "Error occured",
+                            successMsg: ""
+                        })
+                   })
       }
+      
 
 
 
     addVehicleHandler = () => {
         if (this.state.make === "" || this.state.model === "" || this.state.category === "" 
         || this.state.year === ""|| this.state.rtag === "" || this.state.mileage === "" || 
-        this.state.lastservicedate === "" || this.state.vehiclecondition === "") 
+        this.state.lastservicedate === "" || this.state.vehiclecondition === "" || this.state.vehicletolocation === "") 
         {
             this.setState({
                 errMsg: "Required fields are empty",
@@ -162,6 +190,8 @@ class Createvehicleform extends Component {
                         successMsg: "Successfully Added"
             
                     })
+
+                    console.log(this.state)
                     const data ={
                         _id:this.state.vehicletolocation,
                         VEHICLE:this.state.vehilceid
@@ -218,22 +248,7 @@ class Createvehicleform extends Component {
                         </FormGroup>
                     </Col>
                     <br></br>
-                    <Col  >
-                        <FormGroup>
-                            <Label for="category" >Select Vehicle Category</Label>
-                               
-                            
-                            <select id="category" onChange={this.categoryChangeHandler} style={{ width: "350px" }}> 
-                            <option >--</option>
-                            
-                            <option value="5e9e6adf78c6dc4174e673ff">Luxury</option>
-                            <option value="5e9a51113b644d21cc6349a1">Sedan</option>
-                            <option value="5e9a50f23b644d21cc6349a0">SUV</option>
-                            <option value="5e9a512e3b644d21cc6349a2">Hatchback</option>
-                        </select>
-                        </FormGroup>
-                    </Col>
-                    <br></br>
+                    
                     <Col  >
                         <FormGroup>
                             <Label for="carname" >Enter vehicle Mileage</Label>
@@ -247,7 +262,20 @@ class Createvehicleform extends Component {
                             <Input type="text" font-size="50px" name="carname" onChange={this.servicechangehandler} id="carname" placeholder="EnEx: 30" value={ this.state.lastservicedate } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
-                    <br></br>   
+                    <br></br>  
+                    <FormGroup>
+                        <label for="addcategory">Select Category:</label>
+                        <select id="addvehicletolocation" onChange={this.categoryChangeHandler} style={{ width: "350px" }}>      
+                        <option value={""}>--</option>
+        {this.state.allcategory.map(option => (
+            
+          <option  value={option._id}>
+            {option.CATEGORY_NAME} 
+          </option>
+        ))}
+      </select>
+                        </FormGroup>
+                    <br></br>  
                     <Col  >
                         <FormGroup>
                         <label for="condition">Select Vehicle Condition:</label>
@@ -263,11 +291,13 @@ class Createvehicleform extends Component {
                     <FormGroup>
                         <label for="addvehicletolocation">Add Vehicle to this location:</label>
                         <select id="addvehicletolocation" onChange={this.addvehicletolocationchangehandler} style={{ width: "350px" }}>      
-        {this.state.alllocations.map(option => (
+        <option value={""}>--</option>
+        {this.state.alllocations.map(location => (
             
-          <option  value={option._id}>
-            {option.NAME} 
+          <option  value={location._id}>
+            {location.NAME} 
           </option>
+          
         ))}
       </select>
                         </FormGroup>
@@ -280,6 +310,9 @@ class Createvehicleform extends Component {
                     <Container>
 								{ this.state.allProjCards }
 							</Container>
+                            {/* <Container>
+								{ this.state.allcategory }
+							</Container> */}
                 </Row>            
             </Form>
 

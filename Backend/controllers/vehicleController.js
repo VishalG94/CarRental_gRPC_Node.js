@@ -89,6 +89,27 @@ module.exports.deleteVehicle = (req, res) => {
     });
 };
 
+module.exports.deleteVehicleFromLoaction = (req, res) => {
+    console.log("inside delete vehicle from location router: " + JSON.stringify(req.query));
+    client.DeletesVL(req.query, (error, vehicle) => {
+        if (!error && vehicle) {
+            console.log("inside delete vehicle from location router" + JSON.stringify(vehicle));
+            res.setHeader(CONTENT_TYPE, APP_JSON);
+            res.status(RES_SUCCESS).end(JSON.stringify(vehicle));
+        } else {
+            if (error.code === 13) {
+                console.log("Vehicle with id " + req.query._id + " not found");
+                res.setHeader(CONTENT_TYPE, TEXT_PLAIN);
+                res.status(RES_NOT_FOUND).end("Vehicle with id '" + req.query._id + "' not found");
+            } else {
+                res.setHeader(CONTENT_TYPE, TEXT_PLAIN);
+                res.status(RES_BAD_REQUEST).end("Error occured while inserting data into DB, " + error.message);
+            }
+
+        }
+    });
+};
+
 
 module.exports.updateVehicle = (req, res) => {
     console.log("inside update vehicle router: " + JSON.stringify(req.body));

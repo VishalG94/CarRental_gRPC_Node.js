@@ -187,14 +187,14 @@ export default function Dashboard() {
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      User Billing Management
+                      Set Up Vehicle Pricing 
                     </Typography>
                     <Typography>
-                      Manage the users and their billing
+                      Manage the Pricing of the Vehicles
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button href="/admin/userbillingmanagement" size="small" color="primary">
+                    <Button href="/admin/vehiclepricemanagement" size="small" color="primary">
                       Go
                     </Button>
                     <Button size="small" color="primary">

@@ -16,7 +16,7 @@ class Createrentalform extends Component {
             PIN:"",
             LATI:"",
             LONGI:"",
-            capacity: "",
+            
             count: "",
         }
     }
@@ -57,11 +57,7 @@ class Createrentalform extends Component {
             LONGI: e.target.value
         });
     }
-   capacityChangeHandler = (e) => {
-        this.setState({
-            capacity: e.target.value
-        });
-    }
+   
     noofvehiclesperlocationChangeHandler = (e) => {
         this.setState({
             count: e.target.value
@@ -87,7 +83,7 @@ class Createrentalform extends Component {
                LONGITUDE:this.state.LONGI
              },
 
-             CURRENT_CAPACITY: this.state.capacity,
+             CURRENT_CAPACITY: 0,
              VEHICLE_CAPACITY:this.state.count
 
            }
@@ -171,11 +167,7 @@ class Createrentalform extends Component {
                     </Col>
                     <br></br>
                 </Row>
-                <FormGroup>
-                    <Label for="hourlyprice">Enter Vehicle capacity</Label>
-                    <Input type="textarea" name="hourlyprice" onChange={this.capacityChangeHandler} id="detaildesc" placeholder="Set Vehicle Capacity"  value={ this.state.capacity } />
-                </FormGroup>
-                <br></br>
+                
                 <FormGroup>
                     <Label for="company">Enter number of vehicles per location limit</Label>
                     <Input type="text" name="company" onChange={this.noofvehiclesperlocationChangeHandler} id="company" placeholder="Set vehicle count limit"  value={ this.state.count } />

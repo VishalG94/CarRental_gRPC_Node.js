@@ -16,6 +16,7 @@ class Viewindividuallocation extends Component {
         allProjCards: [],
         allProjCards1:[],
         _id:"",
+        car_id:"",
         objectout:[]
       }
   }
@@ -41,15 +42,32 @@ changelastservicedatehandler = (e) => {
   });
 }
 
+deletevehiclefromloactionhandler =() =>{
+  var car_id=this.state.car_id;
+  console.log(this.state.car_id)
+  
+  console.log(this.props.match.params.projectId) 
+
+  axios.delete(`${Constants.BACKEND_SERVER.URL}/vehicle/location?_id=${car_id}&location_id=${this.props.match.params.projectId}`).then((response) => {
+    console.log(response) ;
+
+    window.alert("Vehilce Removed From This Location ");
+
+    
+  })
+
+
+}
 
 
 deletelocationhandler =() =>{
   axios.delete(`${Constants.BACKEND_SERVER.URL}/location/?_id=${this.props.match.params.projectId}`).then((response) => {
-    console.log(response) 
+    
 
     window.alert("Location Deleted")
     
   })
+  
 
 }
 
@@ -61,15 +79,19 @@ deletelocationhandler =() =>{
         axios.get(`${Constants.BACKEND_SERVER.URL}/location/?_id=${this.props.match.params.projectId}`).then((response) => {  
           if (response.data != null) {
             var item1,cards1=[]
+            var car_id
            var item=(response.data)
+           var count=0
            var obj=response.data
               console.log(item)
               console.log(obj.VEHICLES)
               Object.keys(obj.VEHICLES).map((index) =>
                  {
+                   //count=count+1;
                   item1=obj.VEHICLES[index]
+                  car_id=item1['_id']
                   cards1.push(
-                
+                     
                         
                       <Card className="card">
                       <CardImg top width="100%" src={logo2} alt="Card image cap" />                       
@@ -81,6 +103,8 @@ deletelocationhandler =() =>{
                           {/* <CardText><b>Late Fee</b> {item['LATE_FEE']}</CardText>
                           <CardText><b>Hourly Feee</b> {item['HOURLY_FEE']}</CardText> */}
                           <CardText><b>Year: </b> {item1['YEAR']}</CardText> 
+                          <Button onClick={this.deletevehiclefromloactionhandler} >Delete Vehicle From Location</Button>
+
                         </CardBody>
                         
                       </Card>
@@ -90,7 +114,8 @@ deletelocationhandler =() =>{
 
                  
               this.setState({
-                objectout: item
+                objectout: item,
+                car_id:car_id
               })
               
               var cards=[]

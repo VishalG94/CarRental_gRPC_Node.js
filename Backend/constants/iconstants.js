@@ -8,6 +8,7 @@ module.exports = {
     //DELETE_VEHICLE_ROUTE: "/vehicle/:id",
     UPDATE_VEHICLE_ROUTE: "/vehicle",
     DELETE_VEHICLE_ROUTE: "/vehicle",
+    DELETE_VEHICLE_FROM_LOCATION_ROUTE: "/vehicle/location",
 
     /** Address routes */
     GET_ADDRESSESS_ROUTE: "/addresses",
