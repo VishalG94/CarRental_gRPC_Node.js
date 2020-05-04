@@ -25,6 +25,7 @@ import Sidenavbar from "./Components/Admin/sidenavbar";
 import LandingPage from "../src/Components/LandingPage/LandingPage";
 import Profile from "./Components/Users/Profile/Profile";
 import Logout from "./Components/Common/Header/Logout";
+import Reservations from "./Components/Users/Reservations/Reservations";
 
 class App extends Component {
   state = {
@@ -48,7 +49,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header {...this.props} onSignout={this.onSignout} />
-        <Route path="/admin" component={Sidenavbar}/>
+        <Route path="/admin" component={Sidenavbar} />
         <Switch>
           {/* <Route
           exact
@@ -85,6 +86,7 @@ class App extends Component {
           <Route exact path="/users/home" component={UserHomePage} />{" "}
           <Route exact path="/users/signup" component={SignupPage} />{" "}
           <Route exact path="/users/profile" component={Profile} />{" "}
+          <Route exact path="/users/reservations" component={Reservations} />{" "}
           <Route exact path="/users/vehiclecatalog" component={VehicleCatalog} />{" "}
           <Route exact path="/admin/home" component={AdminHomePage} />{" "}
           <Route exact path="/admin/vehiclecatalog" component={VehicleCatalog} />{" "}

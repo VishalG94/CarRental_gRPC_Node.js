@@ -35,7 +35,7 @@ class MapDisplay extends Component {
     let locationdata;
     // console.log("getting locations");
     await axios.get(`${Constants.BACKEND_SERVER.URL}/locations`).then((res) => {
-      //console.log(res);
+      console.log(res);
 
       if (res.status === 200) {
         // console.log(res.data)
@@ -60,7 +60,8 @@ class MapDisplay extends Component {
       activeMarker: marker,
       showingInfoWindow: true,
     });
-    localStorage.setItem("locationID", props.locationID);
+    localStorage.setItem("locationId", props.locationID);
+    localStorage.setItem("locationName", props.name)
     console.log(props);
   };
   onMapClicked = (props) => {

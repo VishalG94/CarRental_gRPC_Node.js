@@ -1,0 +1,12 @@
+.reservations{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.reservations .reservationOptions{
+    display: flex;
+    height: 500px;
+    align-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
