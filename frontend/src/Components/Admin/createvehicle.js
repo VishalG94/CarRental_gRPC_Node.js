@@ -24,6 +24,8 @@ class Createvehicleform extends Component {
             lastservicedate:"",
             vehiclecondition:"",
             vehicletolocation:"",
+            localstoragevehicleid:"",
+            localstoragelocationidforvehicle:"",
             
         }
     }
@@ -182,12 +184,14 @@ class Createvehicleform extends Component {
              axios.post(`${Constants.BACKEND_SERVER.URL}/vehicle`, data)
             
             .then((response) => {
-                console.log(response.data._id)
+                console.log("id for vehicle"+response.data._id)
+
                 
                     this.setState({
                         errMsg: "",
                         vehilceid:response.data._id,
-                        successMsg: "Successfully Added"
+                        successMsg: "Successfully Added",
+                        localstoragevehicleid:response.data._id
             
                     })
 
@@ -198,7 +202,18 @@ class Createvehicleform extends Component {
                     }
                     axios.post(`${Constants.BACKEND_SERVER.URL}/vehiclelocation`, data)
                     .then((response) => {
-                        console.log(response);
+                        console.log(response.data);
+                        console.log("id for location of this vehicle"+response.data._id)
+                        this.setState({
+                            errMsg: "",
+                            vehilceid:response.data._id,
+                            successMsg: "Successfully Added",
+                            localstoragelocationidforvehicle:response.data._id,
+                            localstoragelocationnameforvehicle:response.data
+                
+                        })
+                        localStorage.setItem(this.state.localstoragevehicleid, this.state.localstoragelocationidforvehicle);
+
                         console.log("Successfully added vehicle to loaction");
                         
                     })

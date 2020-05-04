@@ -31,7 +31,8 @@ class Viewindividualcar extends Component {
         lastservicedate:"",
         mileage: "",
         alllocations:[],
-        
+        vehicletolocation:"",
+        vehiclepresentlocationname:"",
         objectout:[]
       }
   }
@@ -57,8 +58,25 @@ changelastservicedatehandler = (e) => {
   });
 }
 
+vehicletolocationchangehandler = (e) => {
+  this.setState({
+      vehicletolocation: e.target.value
+  }, ()=>{
+    console.log(this.state.vehicletolocation)
+});
+}
+
 
 componentDidMount() {
+
+  axios.get(`${Constants.BACKEND_SERVER.URL}/location/?_id=${localStorage.getItem(this.props.match.params.projectId)}`).then((response) => {
+   console.log("Location name of which this is assigned to:", response.data.NAME)
+   this.setState({
+    vehiclepresentlocationname: response.data.NAME
+});
+   
+   
+  })
       
   axios.get(`${Constants.BACKEND_SERVER.URL}/locations`).then((response) => {
       
@@ -109,7 +127,6 @@ componentDidMount() {
             this.setState({
               objectout: item
             })
-            
             var cards=[],logo
             if(item['CATEGORY']['CATEGORY_NAME']=="SUV"){
               logo=logo3;
@@ -145,6 +162,8 @@ componentDidMount() {
                     <CardText><b>Year: </b> {item['YEAR']}</CardText> 
                     <CardText><b>Condition: </b> {item['VEHICLE_CONDITION']}</CardText> 
                     <CardText><b>Mileage: </b> {item['MILEAGE']}</CardText> 
+                    <CardText><b>Assigned Location</b>{this.state.vehiclepresentlocationname} </CardText>
+                   
                   </CardBody>
                   
                 </Card>    
@@ -169,7 +188,37 @@ componentDidMount() {
 
 
 
+addvehicletolocationchangehandler =() => {
+  console.log("This vehicle id is "+ this.props.match.params.projectId)
+  console.log("Location Attached to this is :"+ localStorage.getItem(this.props.match.params.projectId))
+  console.log("New Location to attach is:"+ this.state.vehicletolocation)
 
+  const data1={
+    _id:this.props.match.params.projectId,
+    current_location:localStorage.getItem(this.props.match.params.projectId),
+    new_location:this.state.vehicletolocation,
+  }
+
+  axios.put(`${Constants.BACKEND_SERVER.URL}/reassignvehicle`,data1)
+        .then((response) => {
+          window.location.reload()
+               console.log("Successfully changed",response)
+                  this.setState({
+                      name: "",
+                      successMsg1: "Successfully changed"
+          
+                  })
+              })
+              .catch((error) => { 
+                  console.log(error)
+                  this.setState({
+                      errMsg: "Error occured",
+                      successMsg: ""
+                  })
+              })
+
+
+}
 
 editvehicledetailshandler =() => {
     
@@ -289,7 +338,7 @@ deletecarhandler =() =>{
                       <h4>Assign a different location</h4>
                       <FormGroup>
                         <label for="addvehicletolocation">Add Vehicle to this location:</label>
-                        <select id="addvehicletolocation" onChange={this.addvehicletolocationchangehandler} style={{ width: "350px" }}>      
+                        <select id="addvehicletolocation" onChange={this.vehicletolocationchangehandler} style={{ width: "350px" }}>      
         {this.state.alllocations.map(location => (
             
           <option  value={location._id}>
@@ -299,6 +348,10 @@ deletecarhandler =() =>{
         ))}
       </select>
                         </FormGroup>
+                        <Button onClick={this.addvehicletolocationchangehandler}>Reassign Location </Button> 
+                        <p>{this.state.successMsg1}</p>
+                        
+                        
 							</Container>
 						</div>
 					</div>

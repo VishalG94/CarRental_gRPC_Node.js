@@ -138,3 +138,28 @@ module.exports.addVehicleToLocation = (req, res) => {
         }
     });
 };
+
+
+module.exports.reassignVehicleToLocation = (req, res) => {
+    console.log("inside reassign vehicle to Location router: " + JSON.stringify(req.body));
+    locationClient.reassignVehicle(req.body, (error, location) => {
+        if (!error && location) {
+            if (location.n === 0) {
+                console.log("No records updated" + JSON.stringify(location.n));
+            }
+            console.log("inside reassign vehicle Location router" + JSON.stringify(location));
+            res.setHeader(CONTENT_TYPE, APP_JSON);
+            res.status(RES_SUCCESS).end(JSON.stringify(location));
+        } else {
+            if (error.code === 13) {
+                console.log("Location with id " + req.body._id + " not found");
+                res.setHeader(CONTENT_TYPE, TEXT_PLAIN);
+                res.status(RES_NOT_FOUND).end("Location with id '" + req.body._id + "' not found");
+            } else {
+                res.setHeader(CONTENT_TYPE, TEXT_PLAIN);
+                res.status(RES_BAD_REQUEST).end("Error occured while inserting data into DB, " + error.message);
+            }
+
+        }
+    });
+};

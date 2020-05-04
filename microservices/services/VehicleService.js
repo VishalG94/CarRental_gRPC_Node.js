@@ -95,22 +95,22 @@ let VehicleService = {
 
         }, { new: true }).then((location) => {
             console.log("Vehicle Deleted from Location: \n" + JSON.stringify(location))
-            callback(null, res);
+            // callback(null, location);
 
-            // Vehicle.findOneAndRemove({ _id: id }, (err, res) => {
-            //     console.log("res: " + res);
-            //     if (err) {
-            //         callback(err, null);
-            //         console.log("Error occured while removing the record");
-            //     }
-            //     else {
+            Vehicle.findOneAndRemove({ _id: id }, (err, res) => {
+                console.log("res: " + res);
+                if (err) {
+                    callback(err, null);
+                    console.log("Error occured while removing the record");
+                }
+                else {
     
                     
     
-            //         callback(null, res);
-            //         console.log(res);
-            //     }
-            // })
+                    callback(null, res);
+                    console.log(res);
+                }
+            })
 
 
 

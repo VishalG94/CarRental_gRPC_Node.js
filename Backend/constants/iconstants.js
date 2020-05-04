@@ -38,6 +38,8 @@ module.exports = {
     POST_ADDVEHICLETOLOCATION_ROUTE: "/vehiclelocation",
     UPDATE_LOCATION_ROUTE: "/location",
     DELETE_LOCATION_ROUTE: "/location",
+    PUT_REASSIGNVEHICLETOLOCATION_ROUTE: "/reassignvehicle",
+
 
     /** Reservation routes */
     GET_RESERVATIONS_ROUTE: "/reservations",
