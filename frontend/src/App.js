@@ -9,6 +9,8 @@ import Footer from "./Components/Common/Footer/Footer";
 import SignupPage from "./Components/Users/SignUpPage/SignUpPage";
 import VehicleCatalog from "./Components/Common/VehicleCatalog/VehicleCatalog";
 
+import membership from "./Components/Users/Membership/membership";
+
 import AdminHomePage from "../src/Components/Admin/HomePage/HomePage";
 
 import CreateVehicle from "./Components/Admin/createvehicle";
@@ -86,6 +88,9 @@ class App extends Component {
           <Route exact path="/users/signup" component={SignupPage} />{" "}
           <Route exact path="/users/profile" component={Profile} />{" "}
           <Route exact path="/users/vehiclecatalog" component={VehicleCatalog} />{" "}
+          
+          <Route exact path="/users/membership" component={membership} />{" "}
+
           <Route exact path="/admin/home" component={AdminHomePage} />{" "}
           <Route exact path="/admin/vehiclecatalog" component={VehicleCatalog} />{" "}
         </Switch>{" "}
