@@ -17,9 +17,9 @@ The car rental company has a few hundred cars and has an advantage of providing 
 -	Returning rental cars
 Other system features such as billing, authentication, authorization and notifications are also included. <br/>
 # Technology stack
--	Front end development is done in React
--	Backend is in MySQL to accommodate structured data
--	APIs are built using Java and Spring Boot Framework
+-	Front end development is done using ReactJs
+-	Backend is in MongoDB to accommodate evolving data
+-	APIs are built using NodeJs and gRPC.
 -	The application is deployed to AWS in an auto scalable EC2 cluster with Load Balancer.
 
 # Contributors
