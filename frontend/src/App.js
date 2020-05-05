@@ -26,6 +26,7 @@ import LandingPage from "../src/Components/LandingPage/LandingPage";
 import Profile from "./Components/Users/Profile/Profile";
 import Logout from "./Components/Common/Header/Logout";
 import Reservations from "./Components/Users/Reservations/Reservations";
+import ReservationList from "./Components/Users/ReservationList/ReservationList";
 
 class App extends Component {
   state = {
@@ -87,7 +88,10 @@ class App extends Component {
           <Route exact path="/users/signup" component={SignupPage} />{" "}
           <Route exact path="/users/profile" component={Profile} />{" "}
           <Route exact path="/users/reservations" component={Reservations} />{" "}
+          <Route exact path="/users/reservationList" component={ReservationList} />{" "}
+
           <Route exact path="/users/vehiclecatalog" component={VehicleCatalog} />{" "}
+
           <Route exact path="/admin/home" component={AdminHomePage} />{" "}
           <Route exact path="/admin/vehiclecatalog" component={VehicleCatalog} />{" "}
         </Switch>{" "}
