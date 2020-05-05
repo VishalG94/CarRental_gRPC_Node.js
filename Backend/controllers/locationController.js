@@ -26,8 +26,8 @@ module.exports.getLocations = (req, res) => {
 };
 
 module.exports.getLocationById = (req, res) => {
-    console.log("Query params: " + JSON.stringify(req.body));
-    locationClient.get(req.body, (error, location) => {
+    console.log("Query params: " + JSON.stringify(req.query));
+    locationClient.get(req.query, (error, location) => {
         if (!error) {
             console.log("inside get Location by id router: " + location.ADDRESS);
             res.setHeader(CONTENT_TYPE, APP_JSON);
