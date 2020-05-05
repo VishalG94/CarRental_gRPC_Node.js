@@ -10,6 +10,9 @@ service LocationService {
     rpc Update (Location) returns (Location){}
     rpc Delete (LocationId) returns (Location){}
     rpc AddVehicle(AddVehicle) returns (LocationId){}
+
+    rpc ReassignVehicle(VehicleReassign) returns (LocationId){}
+
 }
 message EmptyLocation {}
 
@@ -42,5 +45,14 @@ message LocationId {
 
 message AddVehicle{
    string _id=1;
+
   string VEHICLE=2;
+
+}
+
+message VehicleReassign{
+   string _id=1;
+   string current_location=2;
+   string new_location=3;
+
 }

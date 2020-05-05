@@ -15,11 +15,19 @@ import CreateVehicle from "./Components/Admin/createvehicle";
 import CreateRental from "./Components/Admin/createrentallocation";
 import Editvehicledetails from "./Components/Admin/editvehicledetails";
 import Usermanagement from "./Components/Admin/manageusers";
-import Userbillingmanagement from "./Components/Admin/userbillingmanagement";
+import Vehiclepricemanagement from "./Components/Admin/Vehiclepricemanagement";
+import Viewindividualcategory from "./Components/Admin/Viewindividualcategory";
+
 import Viewalllocations from "./Components/Admin/viewalllocations";
+
 
 import Dashboard from "./Components/Admin/admindashboard";
 import Viewallcars from "./Components/Admin/viewallcars";
+import Viewindividualcar from "./Components/Admin/viewindividualcar"
+import Viewindividuallocation from "./Components/Admin/viewindividuallocation"
+import Viewindividualuser from "./Components/Admin/viewindividualuser"
+import Container from '@material-ui/core/Container';
+
 import Sidenavbar from "./Components/Admin/sidenavbar";
 
 import LandingPage from "../src/Components/LandingPage/LandingPage";
@@ -48,9 +56,14 @@ class App extends Component {
 
   render() {
     return (
+      <div>
+     
+        <Route path="/admin" component={Sidenavbar}/>
+        
       <div className="App">
+         
         <Header {...this.props} onSignout={this.onSignout} />
-        <Route path="/admin" component={Sidenavbar} />
+
         <Switch>
           {/* <Route
           exact
@@ -75,15 +88,18 @@ class App extends Component {
           <Route exact path="/admin/admindashboard" component={Dashboard} />
           <Route exact path="/admin/addvehicle" component={CreateVehicle} />
           <Route exact path="/admin/addlocation" component={CreateRental} />
-          <Route exact path="/admin/editall" component={Editvehicledetails} />
+          {/* <Route exact path="/admin/editall" component={Editvehicledetails} /> */}
           <Route exact path="/admin/usermanagement" component={Usermanagement} />
-          <Route exact path="/admin/userbillingmanagement" component={Userbillingmanagement} />
+          <Route exact path="/admin/vehiclepricemanagement" component={Vehiclepricemanagement} />
           <Route exact path="/admin/viewallcars" component={Viewallcars} />
           <Route exact path="/admin/viewalllocations" component={Viewalllocations} />
           <Route exact path="/login"
             render={props =>
               (<LoginPage {...props} onSignIn={this.onSignIn} />)} />
-
+          <Route exact path="/admin/viewallcars/view/:projectId" component={Viewindividualcar} />   
+          <Route exact path="/admin/viewalllocations/view/:projectId" component={Viewindividuallocation} /> 
+          <Route exact path="/admin/usermanagement/view/:projectId" component={Viewindividualuser} /> 
+          <Route exact path="/admin/vehiclepricemanagement/view/:projectId" component={Viewindividualcategory} /> 
           <Route exact path="/users/home" component={UserHomePage} />{" "}
           <Route exact path="/users/signup" component={SignupPage} />{" "}
           <Route exact path="/users/profile" component={Profile} />{" "}
@@ -96,6 +112,7 @@ class App extends Component {
           <Route exact path="/admin/vehiclecatalog" component={VehicleCatalog} />{" "}
         </Switch>{" "}
         <Footer />
+      </div>
       </div>
     );
   }
