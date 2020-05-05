@@ -55,7 +55,7 @@ let VehicleService = {
                 callback(null, res);
                 console.log(res);
             }
-        }).populate("CATEGORY")
+        }).populate("CATEGORY").populate("RESERVATIONS")
     },
     delete: (call, callback) => {
         let id = call.request._id

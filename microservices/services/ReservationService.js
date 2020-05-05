@@ -1,4 +1,7 @@
 let Reservation = require('../models/reservation');
+let Vehicle = require('../models/vehicles');
+let User = require('../models/user')
+
 const mongoose = require('mongoose');
 
 let ReservationService = {
@@ -39,7 +42,30 @@ let ReservationService = {
             }
             else {
                 console.log("Reservation created: \n" + res)
-                callback(null, res)
+                Vehicle.findOneAndUpdate({ _id: reservationReq.VEHICLE }, {
+                    $push: {
+                        RESERVATIONS: res
+                    }
+                }, { new: true }).then((vehicle) => {
+                    console.log("Reservation Added to vehicle: \n" + JSON.stringify(vehicle))
+                    callback(null, vehicle)
+                }).catch(err => {
+                    console.log("error is", err)
+                    callback(err, null)
+                })
+
+                User.findOneAndUpdate({ _id: reservationReq.USER }, {
+                    $push: {
+                        RESERVATIONS: res
+                    }
+                }, { new: true }).then((vehicle) => {
+                    console.log("Reservation Added to user: \n" + JSON.stringify(vehicle))
+                    callback(null, vehicle)
+                }).catch(err => {
+                    console.log("error is", err)
+                    callback(err, null)
+                })
+
             }
         })
     },
@@ -96,7 +122,23 @@ let ReservationService = {
             console.log("error is", err)
             callback(err, null)
         })
-    }
+    },
+    // getByUserId: (call, callback) => {
+    //     let id = call.request._id
+    //     console.log("id value: " + id);
+    //     Reservation.find({ USER: { _id: id } }, (err, res) => {
+    //         if (err) {
+    //             callback(err, null);
+    //             console.log("error is", err);
+    //         }
+    //         else {
+    //             callback(null, res);
+    //             console.log(res);
+    //         }
+    //     }).populate("USER")
+    //         .populate("VEHICLE")
+    //         .populate("LOCATION")
+    // }
 }
 
 

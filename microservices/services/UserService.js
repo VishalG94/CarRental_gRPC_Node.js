@@ -199,6 +199,25 @@ let UserService = {
             console.log("error is", err)
             callback(err, null)
         })
+    },
+    getRes: (call, callback) => {
+        let id = call.request._id
+        console.log("id value: " + JSON.stringify(call.request));
+        User.findById(id, (err, res) => {
+            if (err) {
+                callback(err, null);
+                console.log("error is", err);
+            }
+            else {
+
+                callback(null, res);
+                console.log("Reservations found");
+
+            }
+        }).populate("CARDS")
+            .populate("ADDRESS")
+            .populate({ path: "RESERVATIONS", populate: { path: 'VEHICLE' } })
+            .populate({ path: "RESERVATIONS", populate: { path: 'LOCATION', populate: { path: 'ADDRESS' } } })
     }
 }
 

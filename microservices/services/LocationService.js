@@ -70,6 +70,26 @@ let LocationService = {
         })
 
     },
+    // get: (call, callback) => {
+    //     let id = call.request._id
+    //     console.log("id value: " + id);
+    //     // Location.findById(id);
+
+
+
+    //     Location.findById(id, (err, res) => {
+    //         if (err) {
+    //             callback(err, null);
+    //             console.log("error is", err);
+    //         }
+    //         else {
+
+    //             callback(null, res);
+    //             console.log(res);
+    //         }
+    //     }).populate('ADDRESS').populate("VEHICLES");
+    // },
+
     get: (call, callback) => {
         let id = call.request._id
         console.log("id value: " + id);
@@ -83,7 +103,8 @@ let LocationService = {
                 console.log(res);
             }
         }).populate("ADDRESS")
-        .populate("VEHICLES")
+            .populate("VEHICLES")
+
     },
     delete: (call, callback) => {
         console.log(call.request)
@@ -132,6 +153,7 @@ let LocationService = {
             console.log(Location + " id: " + id);
             Location.findOneAndUpdate({ _id: id }, {
                 $push: {
+
                     VEHICLES: vehicleId,
                    
                 },
@@ -146,6 +168,7 @@ let LocationService = {
                 console.log("error is", err)
                 callback(err, null)
             })
+
         })
     },
 

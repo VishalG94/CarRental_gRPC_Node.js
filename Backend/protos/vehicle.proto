@@ -1,5 +1,7 @@
 syntax = "proto3";
 import "category.proto";
+import "reservation.proto";
+
 
 service VehicleService {
     
@@ -24,6 +26,7 @@ message Vehicle {
    string VEHICLE_CONDITION = 9;
 }
 
+
 message VehicleGet {
    string _id = 1;
    string MAKE = 2;
@@ -34,6 +37,8 @@ message VehicleGet {
    int32 MILEAGE = 7;
    string LAST_SERVICE_DATE = 8;
    string VEHICLE_CONDITION = 9;
+   repeated Reservation RESERVATIONS=10;
+
 }
 
 message VehicleList {

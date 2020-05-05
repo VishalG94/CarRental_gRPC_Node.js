@@ -44,13 +44,17 @@ module.exports = {
     /** Reservation routes */
     GET_RESERVATIONS_ROUTE: "/reservations",
     GET_RESERVATIONBYID_ROUTE: "/reservation",
+    GET_RESERVATIONBYUSERID_ROUTE: "/reservationbyId",
     POST_RESERVATION_ROUTE: "/reservation",
     UPDATE_RESERVATION_ROUTE: "/reservation",
     DELETE_RESERVATION_ROUTE: "/reservation",
 
     /** User routes */
     GET_USERS_ROUTE: "/users",
-    GET_USERBYID_ROUTE: "/userID",
+
+    GET_USERRES_ROUTE: "/userRes",
+    // GET_USERBYID_ROUTE: "/user",
+
     POST_USERBYID_ROUTE: "/userID",
     POST_USER_ROUTE: "/user",
     UPDATE_USER_ROUTE: "/user",

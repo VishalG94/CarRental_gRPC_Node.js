@@ -10,6 +10,7 @@ service ReservationService {
     rpc Get (ReservationId) returns (ReservationResponse){}
     rpc Update (Reservation) returns (Reservation){}
     rpc Delete (ReservationId) returns (Reservation){}
+
 }
 message EmptyReservation {}
 
@@ -56,3 +57,4 @@ message ReservationList {
 message ReservationId {
   string _id = 1;
 }
+
