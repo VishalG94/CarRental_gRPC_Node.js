@@ -8,6 +8,7 @@ service VehicleService {
     rpc Get (VehicleId) returns (VehicleGet){}
     rpc Update (Vehicle) returns (Vehicle){}
     rpc Delete (VehicleId) returns (Vehicle){}
+    rpc DeletesVL (VehicleIdWithLocation) returns (Vehicle){}
 }
 message EmptyVehicle {}
 
@@ -41,4 +42,9 @@ message VehicleList {
 
 message VehicleId {
   string _id = 1;
+}
+
+message VehicleIdWithLocation {
+  string _id = 1;
+  string location_id=2;
 }

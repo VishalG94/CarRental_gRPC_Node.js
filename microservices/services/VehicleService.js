@@ -1,4 +1,6 @@
 let Vehicle = require('../models/vehicles');
+let Location = require('../models/location');
+
 const mongoose = require('mongoose');
 
 let VehicleService = {
@@ -69,6 +71,62 @@ let VehicleService = {
             }
         })
     },
+
+    DeletesVL: (call, callback) => {
+        let id = call.request._id
+        let loc_id = call.request.locationId
+        console.log("id is :",id);
+        console.log("loc_id is :",loc_id);
+       
+
+        console.log("Inside service vehicle delete location: ",JSON.stringify(call.request))
+
+        Location.findOneAndUpdate({ _id: loc_id }, {
+            
+            $pull: {
+                VEHICLES: id,
+               
+            },
+            $inc: {
+                CURRENT_CAPACITY: -1,
+              }
+              
+
+
+        }, { new: true }).then((location) => {
+            console.log("Vehicle Deleted from Location: \n" + JSON.stringify(location))
+            // callback(null, location);
+
+            Vehicle.findOneAndRemove({ _id: id }, (err, res) => {
+                console.log("res: " + res);
+                if (err) {
+                    callback(err, null);
+                    console.log("Error occured while removing the record");
+                }
+                else {
+    
+                    
+    
+                    callback(null, res);
+                    console.log(res);
+                }
+            })
+
+
+
+        }).catch(err => {
+            console.log("error is", err)
+            callback(err, null)
+        })
+
+
+
+        
+    },
+
+
+
+
     update: (call, callback) => {
         console.log("inside microservice insert");
         let vehicleReq = call.request

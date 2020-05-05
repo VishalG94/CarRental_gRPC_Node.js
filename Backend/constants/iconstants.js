@@ -8,6 +8,7 @@ module.exports = {
     //DELETE_VEHICLE_ROUTE: "/vehicle/:id",
     UPDATE_VEHICLE_ROUTE: "/vehicle",
     DELETE_VEHICLE_ROUTE: "/vehicle",
+    DELETE_VEHICLE_FROM_LOCATION_ROUTE: "/vehicle/location",
 
     /** Address routes */
     GET_ADDRESSESS_ROUTE: "/addresses",
@@ -37,6 +38,8 @@ module.exports = {
     POST_ADDVEHICLETOLOCATION_ROUTE: "/vehiclelocation",
     UPDATE_LOCATION_ROUTE: "/location",
     DELETE_LOCATION_ROUTE: "/location",
+    PUT_REASSIGNVEHICLETOLOCATION_ROUTE: "/reassignvehicle",
+
 
     /** Reservation routes */
     GET_RESERVATIONS_ROUTE: "/reservations",
@@ -47,6 +50,7 @@ module.exports = {
 
     /** User routes */
     GET_USERS_ROUTE: "/users",
+    GET_USERBYID_ROUTE: "/userID",
     POST_USERBYID_ROUTE: "/userID",
     POST_USER_ROUTE: "/user",
     UPDATE_USER_ROUTE: "/user",

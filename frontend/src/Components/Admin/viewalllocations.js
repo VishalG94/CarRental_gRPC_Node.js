@@ -1,150 +1,105 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
+import React, {Component} from 'react';
 import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
-import logo1 from './locationsrentalcars.jpg';
-import Sidenavbar from './sidenavbar'
+import './viewallcars.css'
+import VehicleCard from "../Common/VehicleCard/VehicleCard"
+import { Card, CardBody, CardHeader, CardText, CardTitle, Container,CardImg } from 'reactstrap';
+import logo from './googlemaps.jpg'
+import axios from 'axios';
+import Constants from '../../Utils/Constants'
+import { Grid } from '@material-ui/core';
 
+class Viewallcars extends Component {
 
+  constructor(props) {
+      super(props);
+      this.state = {
+        allProjCards: []
+      }
+  }
 
+ 
+  componentDidMount() {
+      
+        axios.get(`${Constants.BACKEND_SERVER.URL}/locations`).then((response) => {
+        
+          if (response.data != null) {
+           var obj=(response.data)
+            console.log(obj.locations)
+            var projectCards = [],
+              item
+            //for (var index in obj.vehicles) {
+               Object.keys(obj.locations).map((index) =>
+                 {
+              item=obj.locations[index]
+              
+              console.log(item['ADDRESS'].STREET)
+              projectCards.push(
+                
+                    
+                  <Card className="card">
+                 <CardImg top width="100%" src={logo} alt="Card image cap" />
+                    <CardHeader><b>Loc Name: </b>{item['NAME']}</CardHeader>
+                    <CardBody>
+                    <CardTitle><b>State:</b> {item['ADDRESS'].STATE}</CardTitle>
+                      <CardTitle><b>Street:</b> {item['ADDRESS'].STREET}</CardTitle>
+                      <CardText><b>Country:</b> {item['ADDRESS'].COUNTRY}</CardText>
+                      <CardText><b>Pin:</b> {item['ADDRESS'].PIN}</CardText>
+                      
+                    </CardBody>
+                    <Button href={`/admin/viewalllocations/view/${item['_id']}`}>View </Button>
+                  </Card>
+                  
+                  
+                  
+              )
+            })
+  
+            this.setState({
+              allProjCards: projectCards
+            })
+          }
+        })
+                  
+            
+              .catch((error) => { 
+                  console.log(error)
+                  this.setState({
+                      errMsg: "Error occured",
+                      successMsg: ""
+                  })
+             })
+      }
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" >
-        Rental Car- Material UI
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
+  
+  render () {
+
+      return (
+          <div>
+            <Button color="danger" href="/admin/viewallcars" className="w-100"> Get all Vehicles</Button> 
+            <Button color="danger" href="/admin/viewalllocations"className="w-100"> Get all Locations</Button>             <div className="mainDiv">
+				<div className="navDiv">
+				</div>
+				<div style={{ marginTop: "1%" }}>
+					<div>
+						<div class="card-arrange">
+							<Container>
+								{ this.state.allProjCards }
+							</Container>
+						</div>
+					</div>
+				</div>
+			</div>
+           
+            </div>
+
+      );
+  }
 }
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-}));
-
-const cards = [1,2,3,4,5,6];
+export default Viewallcars;
 
 
-export default function ViewAll() {
-  const classes = useStyles();
 
-  return (
-    <React.Fragment>
-      <Sidenavbar/>
-    <CssBaseline />
-    <AppBar position="relative">
-      <Toolbar>
-        
-        <Typography variant="h4" color="grey" noWrap>
-        <Button color="#ff5c4c" href="/Admindashboard" > Dashboard Home</Button>
-        </Typography>
-        
-      </Toolbar>
-    </AppBar>
-    <main>
-      {/* Hero unit */}
-      <div className={classes.heroContent}>
-        <Container maxWidth="sm">
-          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-            Locations Serving
-          </Typography>
-         
-          <div className={classes.heroButtons}>
-            <Grid container spacing={2} justify="center">
-              <Grid item>
-                <Button variant="outlined" color="primary" href="/admin/viewallcars">
-                  View All Cars
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button variant="contained" color="primary">
-                  View All Locations
-                </Button>
-              </Grid>
-            </Grid>
-          </div>
-        </Container>
-      </div>
-      <Container className={classes.cardGrid} maxWidth="md">
-        {/* End hero unit */}
-        <Grid container spacing={4}>
-          {cards.map((card) => (
-            <Grid item key={card} xs={12} sm={6} md={4}>
-              <Card className={classes.card}>
-                <CardMedia
-                  className={classes.cardMedia}
-                  image={logo1}
-                  title="Image title"
-                />
-                <CardContent className={classes.cardContent}>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Location Data From Backend
-                  </Typography>
-                  <Typography>
-                    Location Details from Backend
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-    </main>
-    {/* Footer */}
-    <footer className={classes.footer}>
-      <Typography variant="h6" align="center" gutterBottom>
-        Footer
-      </Typography>
-      <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-        Something here to give the footer a purpose!
-      </Typography>
-      <Copyright />
-    </footer>
-    {/* End footer */}
-  </React.Fragment>
-  );
-}
+
+
+
