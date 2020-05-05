@@ -2,6 +2,7 @@
     overflow: hidden;
     font-size: 30px;
     font-style: italic;
+    
 }
 .navDiv{
     float:left;
@@ -22,4 +23,11 @@
 .pages{
     justify-content: center;
 }
-
+.form {
+    padding-left: 10%;
+    width: 100%;
+  background-color: beige;
+  font-size: large;
+  border: 3px solid #555;
+  box-sizing: border-box;
+}

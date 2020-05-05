@@ -204,8 +204,12 @@ class CreateRental extends Component {
             //     </div>
             //     <div className="listDiv">
             //         <div>
-                        <div>
+                        <div className="form">
                             <Createrentalform />
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
                         </div>
 
             //         </div>
