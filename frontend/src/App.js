@@ -26,6 +26,7 @@ import Viewallcars from "./Components/Admin/viewallcars";
 import Viewindividualcar from "./Components/Admin/viewindividualcar"
 import Viewindividuallocation from "./Components/Admin/viewindividuallocation"
 import Viewindividualuser from "./Components/Admin/viewindividualuser"
+import Membershipfee from './Components/Admin/membershipfee'
 import Container from '@material-ui/core/Container';
 
 import Sidenavbar from "./Components/Admin/sidenavbar";
@@ -110,6 +111,7 @@ class App extends Component {
 
           <Route exact path="/admin/home" component={AdminHomePage} />{" "}
           <Route exact path="/admin/vehiclecatalog" component={VehicleCatalog} />{" "}
+          <Route exact path="/admin/membershippricing" component={Membershipfee} />{" "}
         </Switch>{" "}
         <Footer />
       </div>

@@ -21,11 +21,12 @@ class Usermanagement extends Component {
 
 
 
-  blockuserhandler= (e) => {
-    this.setState({
-        _id: e.target.value
-    });
-    axios.delete(`${Constants.BACKEND_SERVER.URL}/user?_id=${this.state._id}`).then((response) => {
+  blockuserhandler= async (e) => {
+    
+     const _id=e.currentTarget.value
+    console.log("User Delete")
+    console.log(_id)
+    await axios.delete(`${Constants.BACKEND_SERVER.URL}/user?_id=${_id}`).then((response) => {
       console.log(response) ;
   
       window.alert("User deleted From Database ");
@@ -68,7 +69,7 @@ class Usermanagement extends Component {
                       <CardText><b>Hourly Feee</b> {item['HOURLY_FEE']}</CardText> */}
                       <CardText><b>User type: </b> {item['USER_TYPE']}</CardText> 
                     </CardBody>
-                    {/* <Button value={item['_id']}onClick={this.blockuserhandler}>Delete User </Button> */}
+                    <Button value={item['_id']}onClick={this.blockuserhandler}>Delete User </Button>
                   </Card>
                   
                   
