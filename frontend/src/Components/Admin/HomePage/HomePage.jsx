@@ -8,6 +8,12 @@ import howData from "../../Common/BannerDataItems/How";
 import whyData from "../../Common/BannerDataItems/Why";
 class HomePage extends Component {
   state = {};
+ 
+  componentDidMount =() => {
+  
+        localStorage.setItem('membershipfee',300)
+    
+}
   render() {
     return (
       <div className="homeLayout">

@@ -25,6 +25,7 @@ class Viewindividualcategory extends Component {
 
 
 setmembershippricehandler =() => {
+
     if(this.state.membershipfee==="")
     {
         this.setState({
@@ -55,6 +56,7 @@ setmembershippricehandler =() => {
 					<div>
 						<div class="card-arrange" >
                         <Container>
+                            {}
                                 Current Price: {localStorage.getItem('membershipfee')} $/6month
                             </Container>
                             <Container>
