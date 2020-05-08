@@ -1,6 +1,7 @@
 import React from "react";
 import "./VehicleCard.styles.css";
 import { useHistory } from "react-router-dom";
+import IMAGE_URL from '../../../Assets/Icons/Hatchback.svg'
 
 function VehicleCard(props) {
   let history = useHistory();
@@ -13,7 +14,7 @@ function VehicleCard(props) {
 
   return (
     <div className="vehicleCard" onClick={clickHandler}>
-      <img alt="cardimage" src={props.IMAGE_URL} className="cardImage"></img>
+      <img alt="cardimage" src={IMAGE_URL} className="cardImage"></img>
       <div className="cardText">
         <h4>
           {props.MAKE} {props.MODEL}
