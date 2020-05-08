@@ -9,7 +9,7 @@ service UserService {
     rpc Insert (User) returns (UserBase) {}
     rpc Get (UserId) returns (UserGet){}
     rpc Update (User) returns (UserBase){}
-    rpc Delete (UserId) returns (UserBase){}
+    rpc Delete (UserReservation) returns (UserBase){}
     rpc UpdateMembership(UserReservation) returns (EmptyUser){}
     rpc GetRes (UserReservation) returns (ResList){}
 

@@ -25,7 +25,11 @@ const userProto = grpc.loadPackageDefinition(userPackageDefinition);
 const reservationPackageDefinition = protoLoader.loadSync('./protos/reservation.proto');
 const reservationProto = grpc.loadPackageDefinition(reservationPackageDefinition);
 
+const membershipPackageDefinition = protoLoader.loadSync('./protos/membership.proto');
+const membershipProto = grpc.loadPackageDefinition(membershipPackageDefinition);
+
 let VehicleService = require('./services/VehicleService');
+let MembershipService = require('./services/MembershipService');
 let AddressService = require('./services/AddressService');
 let CardService = require('./services/CardService');
 let LocationService = require('./services/LocationService');
@@ -35,6 +39,7 @@ let ReservationService = require('./services/ReservationService');
 
 const server = new grpc.Server();
 server.addService(vehicleProto.VehicleService.service, VehicleService);
+server.addService(membershipProto.MembershipService.service, MembershipService);
 server.addService(addressProto.AddressService.service, AddressService);
 server.addService(cardProto.CardService.service, CardService);
 server.addService(categoryProto.CategoryService.service, CategoryService);

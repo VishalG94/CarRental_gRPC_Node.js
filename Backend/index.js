@@ -8,6 +8,7 @@ const categoryRoutes = require("./routes/categoryRoutes")
 const locationRoutes = require("./routes/locationRoutes")
 const reservationRoutes = require("./routes/reservationRoutes")
 const userRoutes = require("./routes/userRoutes")
+const membershipRoutes = require("./routes/membershipRoutes")
 
 
 const cors = require("cors");
@@ -25,7 +26,7 @@ app.use("/static", express.static("./public"));
 app.use(cors(corsOptions));
 app.use(bodyParser.json({ limit: "2mb" }));
 app.use(bodyParser.urlencoded({ limit: "2mb", extended: true }));
-app.set("port", SERVER_PORT);
+
 app.use("/", express.static(path.join(__dirname, "public", "data")));
 app.use("/", routes);
 app.use('/', addressRoutes);
@@ -34,6 +35,7 @@ app.use('/', locationRoutes);
 app.use('/', categoryRoutes);
 app.use('/', reservationRoutes);
 app.use('/', userRoutes);
+app.use('/', membershipRoutes);
 app.set("port", SERVER_PORT);
 
 

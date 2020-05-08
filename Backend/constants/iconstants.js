@@ -17,6 +17,11 @@ module.exports = {
     UPDATE_ADDRESS_ROUTE: "/address",
     DELETE_ADDRESS_ROUTE: "/address",
 
+    /** Membership routes */
+    GET_MEMBERSHIP_ROUTE: "/membership",
+    POST_MEMBERSHIP_ROUTE: "/membership",
+    UPDATE_MEMBERSHIP_ROUTE: "/membership",
+
     /** Card routes */
     GET_CARDS_ROUTE: "/cards",
     GET_CARDBYID_ROUTE: "/card",
