@@ -16,7 +16,18 @@ import CustomButton from "../../Common/CustomButton/CustomButton";
 class memsuccess extends Component {
      state = {
         // let displaydate = moment().add(6, 'm');
+        memstartdate : '',
      };
+     componentDidMount(){
+         var that = this;
+         var date = new Date().getDate(); //Current Date
+         var month = new Date().getMonth() + 7; //Current Month
+         var year = new Date().getFullYear(); //Current Year 
+         that.setState({
+            //Setting the value of the date time
+            date:
+              date + '/' + month + '/' + year + ' ', });
+     }
 render() {
 
     // var displaydate = moment().add(6, 'm');
@@ -26,21 +37,21 @@ render() {
         <div style={{ backgroundColor: "#FB9E00", width: "450px", minHeight: "450px", margin: "auto", border: "3px solid black"}}>
         <br></br>
             <br></br>
-        <p><h3>Congratulations on new membership!</h3></p>
-        <p>
+        <p><h2>Congratulations on new membership!</h2></p>
+        <p><h3>
         <br></br>
             <br></br>
             <br></br>
             <br></br>
             {/* you are now all set to make reservations!  */}
 
-            You have purchased the 6 month membership
+            You have purchased the 6 month membership that expires on {this.state.date}
             {/* insert date here */}
 
             <br></br>
             <br></br>
             <br></br>
-            <br></br>
+            <br></br></h3>
          </p> 
 
          <p>  <Link to = "/users/home" >

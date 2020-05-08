@@ -69,6 +69,7 @@ class payments extends Component {
         //     console.log(response.body);
         //   }) 
           window.alert("Reservation successfull!");
+          this.props.history.push("/users/reservationList");
         // })
       
 
@@ -104,7 +105,7 @@ class payments extends Component {
   render() {
     return (
       <div>
-         {/* <h1>Start your memberhsip today!</h1> */}
+          <h1>Make payment</h1> 
          {/*<h5>    * you will be charged $14.99/6 months +plus taxes </h5>
         <h5>    * we will send a reminder 3 days before your next biling cycle </h5>
         <Link to="/login" style={{ textDecoration: "none" }}>

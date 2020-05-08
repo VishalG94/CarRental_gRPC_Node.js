@@ -10,6 +10,7 @@ service UserService {
     rpc Get (UserId) returns (UserGet){}
     rpc Update (User) returns (UserBase){}
     rpc Delete (UserId) returns (UserBase){}
+    rpc UpdateMembership(UserReservation) returns (EmptyUser){}
 }
 message EmptyUser {}
 
@@ -44,7 +45,6 @@ message UserGet {
    string CREATED = 12;
    string MODIFIED = 13;
    string USER_TYPE = 14;
-
 }
 
 message UserBase {
@@ -66,8 +66,11 @@ message UserBase {
 message UserList {
    repeated UserGet users = 1;
 }
-
+message UserReservation{
+   string _id=1;
+   }
 message UserId {
   string email = 1;
   string password=2;
 }
+
