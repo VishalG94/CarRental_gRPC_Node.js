@@ -196,11 +196,11 @@ class Createvehicleform extends Component {
         MILEAGE: this.state.mileage,
         LAST_SERVICE_DATE: this.state.lastservicedate,
         VEHICLE_CONDITION: this.state.vehiclecondition,
+        LOCATION: this.state.vehicletolocation
       };
 
       axios
         .post(`${Constants.BACKEND_SERVER.URL}/vehicle`, data)
-
         .then((response) => {
           console.log("id for vehicle" + response.data._id);
 
@@ -252,102 +252,102 @@ class Createvehicleform extends Component {
       <Form>
         <h3> Add a vehicle </h3>
         <Row form>
-          
-            <FormGroup>
-              <Label for="carname">Enter Car Make</Label>
-              <Input
-                type="text"
-                font-size="50px"
-                name="carname"
-                onChange={this.makeChangeHandler}
-                id="carname"
-                placeholder="Ex: Tesla"
-                value={this.state.make}
-                style={{ width: "350px" }}
-              />
-            </FormGroup>
-         
 
-          
-            <FormGroup>
-              <Label for="carname">Enter Car Model</Label>
-              <Input
-                type="text"
-                font-size="50px"
-                name="carname"
-                onChange={this.modelChangeHandler}
-                id="carname"
-                placeholder="Ex: Model S"
-                value={this.state.model}
-                style={{ width: "350px" }}
-              />
-            </FormGroup>
-         
+          <FormGroup>
+            <Label for="carname">Enter Car Make</Label>
+            <Input
+              type="text"
+              font-size="50px"
+              name="carname"
+              onChange={this.makeChangeHandler}
+              id="carname"
+              placeholder="Ex: Tesla"
+              value={this.state.make}
+              style={{ width: "350px" }}
+            />
+          </FormGroup>
 
-          
-            <FormGroup>
-              <Label for="carname">Enter Car Year of manufacturing</Label>
-              <Input
-                type="text"
-                font-size="50px"
-                name="carname"
-                onChange={this.yearChangeHandler}
-                id="carname"
-                placeholder="Ex:2019"
-                value={this.state.year}
-                style={{ width: "350px" }}
-              />
-            </FormGroup>
-         
 
-         
-            <FormGroup>
-              <Label for="carname">Enter vehicle Registration Tag </Label>
-              <Input
-                type="text"
-                font-size="50px"
-                name="carname"
-                onChange={this.rtagChangeHandler}
-                id="carname"
-                placeholder="Enter Registartion Tag"
-                value={this.state.rtag}
-                style={{ width: "350px" }}
-              />
-            </FormGroup>
-          
 
-          
-            <FormGroup>
-              <Label for="carname">Enter vehicle Mileage</Label>
-              <Input
-                type="text"
-                font-size="50px"
-                name="carname"
-                onChange={this.mileageChangehandler}
-                id="carname"
-                placeholder="Ex: 25"
-                value={this.state.mileage}
-                style={{ width: "350px" }}
-              />
-            </FormGroup>
-         
+          <FormGroup>
+            <Label for="carname">Enter Car Model</Label>
+            <Input
+              type="text"
+              font-size="50px"
+              name="carname"
+              onChange={this.modelChangeHandler}
+              id="carname"
+              placeholder="Ex: Model S"
+              value={this.state.model}
+              style={{ width: "350px" }}
+            />
+          </FormGroup>
 
-            <FormGroup>
-              <Label for="carname">
-                Enter number of days since Last Service date
+
+
+          <FormGroup>
+            <Label for="carname">Enter Car Year of manufacturing</Label>
+            <Input
+              type="text"
+              font-size="50px"
+              name="carname"
+              onChange={this.yearChangeHandler}
+              id="carname"
+              placeholder="Ex:2019"
+              value={this.state.year}
+              style={{ width: "350px" }}
+            />
+          </FormGroup>
+
+
+
+          <FormGroup>
+            <Label for="carname">Enter vehicle Registration Tag </Label>
+            <Input
+              type="text"
+              font-size="50px"
+              name="carname"
+              onChange={this.rtagChangeHandler}
+              id="carname"
+              placeholder="Enter Registartion Tag"
+              value={this.state.rtag}
+              style={{ width: "350px" }}
+            />
+          </FormGroup>
+
+
+
+          <FormGroup>
+            <Label for="carname">Enter vehicle Mileage</Label>
+            <Input
+              type="text"
+              font-size="50px"
+              name="carname"
+              onChange={this.mileageChangehandler}
+              id="carname"
+              placeholder="Ex: 25"
+              value={this.state.mileage}
+              style={{ width: "350px" }}
+            />
+          </FormGroup>
+
+
+          <FormGroup>
+            <Label for="carname">
+              Enter number of days since Last Service date
               </Label>
-              <Input
-                type="text"
-                font-size="50px"
-                name="carname"
-                onChange={this.servicechangehandler}
-                id="carname"
-                placeholder="EnEx: 30"
-                value={this.state.lastservicedate}
-                style={{ width: "350px" }}
-              />
-            </FormGroup>
-            <br></br>
+            <Input
+              type="text"
+              font-size="50px"
+              name="carname"
+              onChange={this.servicechangehandler}
+              id="carname"
+              placeholder="EnEx: 30"
+              value={this.state.lastservicedate}
+              style={{ width: "350px" }}
+            />
+          </FormGroup>
+          <br></br>
 
           <FormGroup>
             <label for="addcategory">Select Category:</label>
@@ -363,22 +363,22 @@ class Createvehicleform extends Component {
             </select>
           </FormGroup>
           <br></br>
-          
-            <FormGroup>
-              <label for="condition">Select Vehicle Condition:</label>
-              <select
-                id="condition"
-                onChange={this.conditionchangehandler}
-                style={{ width: "350px" }}
-              >
-                <option>--</option>
-                <option value="good">Good</option>
-                <option value="needs_Cleaning">Needs Cleaning</option>
-                <option value="needs_Maintainance">Needs Maintainance</option>
-              </select>
-            </FormGroup>
-         
-<br></br>
+
+          <FormGroup>
+            <label for="condition">Select Vehicle Condition:</label>
+            <select
+              id="condition"
+              onChange={this.conditionchangehandler}
+              style={{ width: "350px" }}
+            >
+              <option>--</option>
+              <option value="good">Good</option>
+              <option value="needs_Cleaning">Needs Cleaning</option>
+              <option value="needs_Maintainance">Needs Maintainance</option>
+            </select>
+          </FormGroup>
+
+          <br></br>
           <FormGroup>
             <label for="addvehicletolocation">
               Add Vehicle to this location:
@@ -395,7 +395,7 @@ class Createvehicleform extends Component {
             </select>
           </FormGroup>
           <br></br>
-       
+
           <Button
             color="success"
             onClick={this.addVehicleHandler}
@@ -425,7 +425,7 @@ class CreateVehicle extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleInputChange = () => {};
+  handleInputChange = () => { };
 
   render() {
     return (

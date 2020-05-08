@@ -24,6 +24,7 @@ message Vehicle {
    int32 MILEAGE = 7;
    string LAST_SERVICE_DATE = 8;
    string VEHICLE_CONDITION = 9;
+   string LOCATION = 10;
 }
 
 
@@ -38,6 +39,7 @@ message VehicleGet {
    string LAST_SERVICE_DATE = 8;
    string VEHICLE_CONDITION = 9;
    repeated Reservation RESERVATIONS=10;
+   Location LOCATION = 11;
 
 }
 

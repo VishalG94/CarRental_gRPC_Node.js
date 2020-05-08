@@ -1,7 +1,7 @@
 import React from "react";
 import "./VehicleCard.styles.css";
 import { useHistory } from "react-router-dom";
-import IMAGE_URL from '../../../Assets/Icons/Hatchback.svg'
+import IMAGE_URL from "../../../Assets/Icons/Hatchback.svg";
 
 function VehicleCard(props) {
   let history = useHistory();
@@ -9,7 +9,6 @@ function VehicleCard(props) {
     console.log(props._id);
     localStorage.setItem("vehicleId", props._id);
     history.push("/users/reservations");
-
   };
 
   return (
