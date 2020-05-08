@@ -15,9 +15,15 @@ class Editvehicledetails extends Component {
     constructor() {
         super();
         this.state = {
-            carname: "",
-            cartype: "",
-            hourlyprice: "",
+            _id:"",
+        MAKE:"",
+        MODEL:"",
+        CATEGORY:"",
+        YEAR:"",
+        rtag: "",
+        condition: "",
+        lastservicedate:"",
+        mileage: "",
 
         }
     }

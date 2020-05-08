@@ -11,6 +11,8 @@ service LocationService {
     rpc Delete (LocationId) returns (Location){}
     rpc AddVehicle(AddVehicle) returns (LocationId){}
 
+    rpc ReassignVehicle(VehicleReassign) returns (LocationId){}
+
 }
 message EmptyLocation {}
 
@@ -20,17 +22,17 @@ message Location {
    Address ADDRESS = 3;
    int32 CURRENT_CAPACITY = 4;
    int32 VEHICLE_CAPACITY = 5;
-   //repeated Vehicle VEHICLES=6; 
-  
+   //repeated Vehicle VEHICLES=6 ;
+
 }
 
 message LocationBase {
    string _id = 1;   
    string NAME =2; 
-   string ADDRESS = 3;
+   Address ADDRESS = 3;
    int32 CURRENT_CAPACITY = 4;
    int32 VEHICLE_CAPACITY = 5;
-   repeated string VEHICLES = 6;
+   repeated Vehicle VEHICLES = 6;
 }
 
 message LocationList {
@@ -43,5 +45,14 @@ message LocationId {
 
 message AddVehicle{
    string _id=1;
-    string VEHICLE=2;
+
+  string VEHICLE=2;
+
+}
+
+message VehicleReassign{
+   string _id=1;
+   string current_location=2;
+   string new_location=3;
+
 }

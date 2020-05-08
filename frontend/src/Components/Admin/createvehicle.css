@@ -2,7 +2,7 @@
     overflow: hidden;
     font-size: 30px;
     font-style: italic;
-    background-color: beige;
+    
 }
 .navDiv{
     float:left;
@@ -12,14 +12,22 @@
     z-index:2;
     top:0;
 }
-.listDiv{
+.mainDiv .listDiv{
     width:100%;
     font-size: 25px;
     float:right;
     margin:28px;
+    
 
 }
 .pages{
     justify-content: center;
 }
-
+.form {
+    padding-left: 10%;
+    width: 100%;
+  background-color: beige;
+  font-size: large;
+  border: 3px solid #555;
+  box-sizing: border-box;
+}

@@ -1,0 +1,17 @@
+.bannerCard .cardText {
+  /* width: 200px; */
+}
+.bannerCard {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border: black;
+}
+.textPart{
+  display: flex;
+}
+
+.buttonGroup{
+  display: flex;
+  justify-content: space-around;
+}

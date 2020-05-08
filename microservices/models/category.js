@@ -7,6 +7,7 @@ mongoose.set('useCreateIndex', true);
 const categorySchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     CATEGORY_NAME: { type: String, required: true },
+    HOURLY_FEE: { type: Number, required: true },
     LATE_FEE: { type: Number, required: true }
 })
 

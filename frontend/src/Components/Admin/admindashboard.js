@@ -187,14 +187,14 @@ export default function Dashboard() {
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      User Billing Management
+                      Set Up Vehicle Pricing 
                     </Typography>
                     <Typography>
-                      Manage the users and their billing
+                      Manage the Pricing of the Vehicles
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button href="/admin/userbillingmanagement" size="small" color="primary">
+                    <Button href="/admin/vehiclepricemanagement" size="small" color="primary">
                       Go
                     </Button>
                     <Button size="small" color="primary">
@@ -262,17 +262,7 @@ export default function Dashboard() {
           </Grid>
         </Container>
       </main>
-      {/* Footer */}
-      <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-          Something here to give the footer a purpose!
-        </Typography>
-        <Copyright />
-      </footer>
-      {/* End footer */}
+     
     </React.Fragment>
   );
 }

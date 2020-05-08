@@ -1,6 +1,6 @@
 .sidebar{
-    position: fixed;
-    width: 30%;
+    position: flex;
+    width: 12%;
     height:120%;
     background-color: black;
     }
@@ -10,4 +10,7 @@
         color:rgba(230, 230, 230, 0.9);
         border-bottom: 1px solid rgba(100,100,100,0.3);
 }
-    
+
+.togglebtn{
+    padding-top: 1px;
+}

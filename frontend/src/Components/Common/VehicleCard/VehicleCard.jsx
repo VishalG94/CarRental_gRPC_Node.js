@@ -5,15 +5,10 @@ import { useHistory } from "react-router-dom";
 function VehicleCard(props) {
   let history = useHistory();
   const clickHandler = (e) => {
-    console.log(props);
+    console.log(props._id);
     localStorage.setItem("vehicleId", props._id);
-    // const userType = localStorage.getItem("userType");
-    // let userType = "admin";
-    // if (userType === "admin") {
-    //   history.push("/admin/vehicle");
-    // } else {
     history.push("/users/reservations");
-    //}
+
   };
 
   return (

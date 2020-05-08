@@ -22,7 +22,8 @@ let CategoryService = {
         Category.create({
             _id: id,
             CATEGORY_NAME: categoryReq.CATEGORY_NAME,
-            LATE_FEE: categoryReq.LATE_FEE
+            LATE_FEE: categoryReq.LATE_FEE,
+            HOURLY_FEE: categoryReq.HOURLY_FEE,
         }, (err, res) => {
             if (err) {
                 console.log("error is", err)
@@ -70,10 +71,11 @@ let CategoryService = {
         Category.findByIdAndUpdate({ _id: id }, {
             $set: {
                 CATEGORY_NAME: categoryReq.CATEGORY_NAME,
-                LATE_FEE: categoryReq.LATE_FEE
+                LATE_FEE: categoryReq.LATE_FEE,
+                HOURLY_FEE: categoryReq.HOURLY_FEE,
             }
         }, { new: true }).then((category) => {
-            console.log("Category created: \n" + JSON.stringify(category))
+            console.log("Category updated: \n" + JSON.stringify(category))
             callback(null, category)
         }).catch(err => {
             console.log("error is", err)

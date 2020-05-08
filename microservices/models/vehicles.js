@@ -15,6 +15,7 @@ const vehicleSchema = mongoose.Schema({
     MILEAGE: { type: Number, required: true },
     LAST_SERVICE_DATE: { type: Number },
     VEHICLE_CONDITION: { type: String, required: true },
+    RESERVATIONS: [{ type: ObjectId, ref: 'Reservation' }]
     // RENTAL_LOCATION_ID: { type: ObjectId, ref: "Location", require: true }
 })
 

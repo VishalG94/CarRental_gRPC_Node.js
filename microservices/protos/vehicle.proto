@@ -1,5 +1,7 @@
 syntax = "proto3";
 import "category.proto";
+import "reservation.proto";
+
 
 service VehicleService {
     
@@ -8,6 +10,7 @@ service VehicleService {
     rpc Get (VehicleId) returns (VehicleGet){}
     rpc Update (Vehicle) returns (Vehicle){}
     rpc Delete (VehicleId) returns (Vehicle){}
+    rpc DeletesVL (VehicleIdWithLocation) returns (Vehicle){}
 }
 message EmptyVehicle {}
 
@@ -23,6 +26,7 @@ message Vehicle {
    string VEHICLE_CONDITION = 9;
 }
 
+
 message VehicleGet {
    string _id = 1;
    string MAKE = 2;
@@ -33,6 +37,7 @@ message VehicleGet {
    int32 MILEAGE = 7;
    string LAST_SERVICE_DATE = 8;
    string VEHICLE_CONDITION = 9;
+   repeated Reservation RESERVATIONS=10;
 }
 
 message VehicleList {
@@ -41,4 +46,9 @@ message VehicleList {
 
 message VehicleId {
   string _id = 1;
+}
+
+message VehicleIdWithLocation {
+  string _id = 1;
+  string location_id=2;
 }
