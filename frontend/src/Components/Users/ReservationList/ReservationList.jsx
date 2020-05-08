@@ -7,6 +7,7 @@ import CustomButton from "../../Common/CustomButton/CustomButton";
 
 import { Modal, Button } from "react-bootstrap";
 
+
 class ReservationList extends Component {
   state = {
     RESERVATIONS: [],

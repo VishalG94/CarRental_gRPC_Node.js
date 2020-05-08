@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+service MembershipService {
+    rpc Insert (Membership) returns (Membership) {}
+    rpc Get (EmptyMembership) returns (Membership){}
+    rpc Update (Membership) returns (Membership){}
+}
+message EmptyMembership {}
+
+message Membership {
+   string _id = 1;
+   int32 MEMBERSHIP_FEE = 2;
+}
+
+message MembershipId {
+  string _id = 1;
+}

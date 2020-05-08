@@ -52,6 +52,7 @@ deletevehiclefromloactionhandler =() =>{
     console.log(response) ;
 
     window.alert("Vehilce Removed From This Location ");
+    window.location.reload();
 
     
   })
@@ -65,6 +66,7 @@ deletelocationhandler =() =>{
     
 
     window.alert("Location Deleted")
+    window.location.reload();
     
   })
   

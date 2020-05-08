@@ -30,6 +30,10 @@ const userProto = grpc.loadPackageDefinition(
     protoLoader.loadSync('./protos/user.proto', protoOptions)
 );
 
+const membershipProto = grpc.loadPackageDefinition(
+    protoLoader.loadSync('./protos/membership.proto', protoOptions)
+);
+
 client = new vehiclesProto.VehicleService('localhost:50051', grpc.credentials.createInsecure());
 addressClient = new addressProto.AddressService('localhost:50051', grpc.credentials.createInsecure());
 cardClient = new cardProto.CardService('localhost:50051', grpc.credentials.createInsecure());
@@ -37,9 +41,11 @@ categoryClient = new categoryProto.CategoryService('localhost:50051', grpc.crede
 locationClient = new locationProto.LocationService('localhost:50051', grpc.credentials.createInsecure());
 reservationClient = new reservationProto.ReservationService('localhost:50051', grpc.credentials.createInsecure());
 userClient = new userProto.UserService('localhost:50051', grpc.credentials.createInsecure());
+membershipClient = new membershipProto.MembershipService('localhost:50051', grpc.credentials.createInsecure());
+
 
 module.exports = {
-    client, addressClient, cardClient, categoryClient, locationClient, userClient, reservationClient
+    client, addressClient, cardClient, categoryClient, locationClient, userClient, reservationClient, membershipClient
 }
 
 // module.exports = client

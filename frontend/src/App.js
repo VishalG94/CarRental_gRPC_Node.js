@@ -12,7 +12,7 @@ import VehicleCatalog from "./Components/Common/VehicleCatalog/VehicleCatalog";
 import membership from "./Components/Users/Membership/membership";
 import membershiphome from "./Components/Users/Membership/membershiphome";
 import membersuccess from "./Components/Users/Membership/memsuccess";
-import payments from "./Components/Users/payments";
+import payments from "./Components/Users/Payments/payments";
 
 import AdminHomePage from "../src/Components/Admin/HomePage/HomePage";
 
@@ -35,6 +35,8 @@ import ReturnCar from "./Components/Users/ReturnCar/ReturnCar";
 
 import Membershipfee from "./Components/Admin/membershipfee";
 import Container from "@material-ui/core/Container";
+
+ 
 
 import Sidenavbar from "./Components/Admin/sidenavbar";
 
@@ -172,6 +174,7 @@ class App extends Component {
               path="/admin/vehiclecatalog"
               component={VehicleCatalog}
             />{" "}
+
           </Switch>{" "}
           <Footer />
         </div>

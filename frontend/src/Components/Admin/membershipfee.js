@@ -5,12 +5,15 @@ import {  Container } from 'reactstrap';
 import {  FormGroup, Label, Input, CardImg} from 'reactstrap';
 import logo1 from './membership.svg'
 
+import axios from 'axios';
+import Constants from '../../Utils/Constants'
 
-class Viewindividualcategory extends Component {
+class Membership extends Component {
 
   constructor(props) {
       super(props);
       this.state = {
+          currentprice:"",
       membershipfee:"",
       
       }
@@ -20,8 +23,31 @@ class Viewindividualcategory extends Component {
     this.setState({
         membershipfee: e.target.value
     });
+
+    
 }
   
+componentDidMount =() => {
+
+    axios.get(`${Constants.BACKEND_SERVER.URL}/membership`).then((response) => {
+        
+        if (response.data != null) {
+            this.setState({
+                currentprice: response.data.MEMBERSHIP_FEE
+
+            })
+        }
+      })
+                
+          
+            .catch((error) => { 
+                console.log(error)
+                this.setState({
+                    errMsg: "Error occured",
+                    successMsg: ""
+                })
+           })
+}
 
 
 setmembershippricehandler =() => {
@@ -33,7 +59,28 @@ setmembershippricehandler =() => {
         });
     }
     else {
-      localStorage.setItem('membershipfee',this.state.membershipfee)
+        const data={
+            _id:"",
+            MEMBERSHIP_FEE:this.state.membershipfee
+        }
+    
+        axios.put(`${Constants.BACKEND_SERVER.URL}/membership`,data).then((response) => {
+            
+            if (response.data != null) {
+                this.setState({
+                    currentprice: response.data.MEMBERSHIP_FEE
+                })
+            }
+          })
+                    
+              
+                .catch((error) => { 
+                    console.log(error)
+                    this.setState({
+                        errMsg: "Error occured",
+                        successMsg: ""
+                    })
+               })
       window.location.reload()
     }
 
@@ -57,10 +104,10 @@ setmembershippricehandler =() => {
 						<div class="card-arrange" >
                         <Container>
                             {}
-                                Current Price: {localStorage.getItem('membershipfee')} $/6month
+                                Current Price: {this.state.currentprice} $/6month
                             </Container>
                             <Container>
-                            <CardImg top width="40%" src={logo1} alt="Card image cap" />
+                            <CardImg top width="50%" src={logo1} alt="Card image cap" />
                                 <br></br>
                                 <br></br>
                                 
@@ -87,7 +134,7 @@ setmembershippricehandler =() => {
   }
 }
 
-export default Viewindividualcategory;
+export default Membership;
 
 
 

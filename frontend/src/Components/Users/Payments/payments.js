@@ -2,11 +2,11 @@ import React from "react";
 
 // import "./membership.styles.css";
 import TextField from '@material-ui/core/TextField';
-import "../Common/SignUp/SignUp-style.css";
+import "../../Common/SignUp/SignUp-style.css";
 import { Component } from "react";
-import CustomButton from "../Common/CustomButton/CustomButton";
+import CustomButton from "../../Common/CustomButton/CustomButton";
 import axios from "axios";
-import Constants from "../../Utils/Constants";
+import Constants from "../../../Utils/Constants";
 import { Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 
@@ -105,6 +105,7 @@ class payments extends Component {
   render() {
     return (
       <div>
+        <h2>Payment Amount: {localStorage.getItem('price')}</h2>
           <h1>Make payment</h1> 
          {/*<h5>    * you will be charged $14.99/6 months +plus taxes </h5>
         <h5>    * we will send a reminder 3 days before your next biling cycle </h5>
