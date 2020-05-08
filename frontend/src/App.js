@@ -34,9 +34,7 @@ import Viewindividualuser from "./Components/Admin/viewindividualuser";
 import ReturnCar from "./Components/Users/ReturnCar/ReturnCar";
 
 import Membershipfee from "./Components/Admin/membershipfee";
-import Container from "@material-ui/core/Container";
-
- 
+// import Container from "@material-ui/core/Container";
 
 import Sidenavbar from "./Components/Admin/sidenavbar";
 
@@ -174,7 +172,11 @@ class App extends Component {
               path="/admin/vehiclecatalog"
               component={VehicleCatalog}
             />{" "}
-
+            <Route
+              exact
+              path="/admin/membershippricing"
+              component={Membershipfee}
+            />{" "}
           </Switch>{" "}
           <Footer />
         </div>

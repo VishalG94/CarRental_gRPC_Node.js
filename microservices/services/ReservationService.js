@@ -20,7 +20,7 @@ let ReservationService = {
             .populate("LOCATION")
     },
     insert: (call, callback) => {
-        console.log("inside microservice insert");
+        console.log("inside microservice reservation insert" + JSON.stringify(call.request));
         let reservationReq = call.request
         let id = mongoose.Types.ObjectId()
         console.log(JSON.stringify(reservationReq) + " id: " + id);

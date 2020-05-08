@@ -38,7 +38,7 @@ const BannerCard = (props) => {
       .then((res) => {
         if (timeLeft < 1) {
           localStorage.setItem("price");
-          this.props.history.push("/payment");
+          this.props.history.push("/payments");
         }
         console.log("Reservation cancelled" + res);
         props.CancelmodalShowHandler(false);

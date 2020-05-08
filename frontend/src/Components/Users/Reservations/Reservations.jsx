@@ -37,17 +37,13 @@ class Reservations extends Component {
       })
       .then(() => {
         let reservation;
+        console.log(this.state)
         for (reservation in this.state.vehicleDetails.RESERVATIONS) {
           let date = new Date(
             this.state.vehicleDetails.RESERVATIONS[reservation].PICKUP_TIME
           );
           this.state.reservedDates.push(date);
-          for (
-            let i = 0;
-            i <
-            this.state.vehicleDetails.RESERVATIONS[reservation].RENTAL_DURATION;
-            i++
-          ) {
+          for (let i = 0; i < this.state.vehicleDetails.RESERVATIONS[reservation].RENTAL_DURATION; i++) {
             this.state.reservedDates.push(
               setHours(setMinutes(date, 0), i).toTimeString()
             );
@@ -60,19 +56,25 @@ class Reservations extends Component {
           // console.log(typeof (this.state.reservedDates[reservation]))
           // console.log(this.state.vehicleDetails.RESERVATIONS[reservation].PICKUP_TIME)
         }
-        console.log(this.state);
-      });
-    axios
-      .get(`${Constants.BACKEND_SERVER.URL}/location`, {
-        params: {
-          _id: localStorage.getItem("locationId"),
-        },
-      })
-      .then((res) => {
-        this.setState({
-          locationDetails: res.data,
-        });
-        // console.log(res)
+        let loc
+        if (localStorage.getItem("locationId") == null) {
+          loc = this.state.vehicleDetails.LOCATION._id
+        }
+        else {
+          loc = localStorage.getItem("locationId")
+        }
+        axios
+          .get(`${Constants.BACKEND_SERVER.URL}/location`, {
+            params: {
+              _id: loc,
+            },
+          })
+          .then((res) => {
+            this.setState({
+              locationDetails: res.data,
+            });
+            // console.log(res)
+          });
       });
   }
 
@@ -133,60 +135,64 @@ class Reservations extends Component {
   };
 
   render() {
+    let display
+    if (this.state.vehicleDetails.LOCATION) {
+      display = <div>
+        <form onSubmit={this.submitHandler} className="reservationOptions">
+          <div className="options">
+            <div>Vehicle Make : </div>
+            <div> {this.state.vehicleDetails.MAKE}</div>
+          </div>
+          <div className="options">
+            <div> Vehicle Model : </div>
+            <div>{this.state.vehicleDetails.MODEL}</div>
+          </div>
+          <div className="options">
+            Location Name : {this.state.vehicleDetails.LOCATION.NAME}
+          </div>
+          <div className="options">
+            Select Pick-up Date and Time :{" "}
+            <DatePicker
+              name="pickupDate"
+              selected={this.state.pickupDate}
+              onChange={this.pickupHandler}
+              showTimeSelect
+              timeIntervals={60}
+              //excludeDates={(this.state.reservedDates)}
+              placeholderText="Click to select a date"
+              minDate={new Date()}
+              maxDate={addDays(new Date(), 30)}
+            />
+          </div>
+          <div className="options">
+            Select Drop-off Date and Time :{" "}
+            <DatePicker
+              name="pickupDate"
+              selected={this.state.dropoffDate}
+              onChange={this.dropoffHandler}
+              showTimeSelect
+              timeIntervals={60}
+              placeholderText="Click to select a date"
+              minDate={new Date()}
+              maxDate={addDays(new Date(), 30)}
+            />
+          </div>
+          <div>
+            {/* <ReactTimeslotCalendar
+                        initialDate={moment().format()}
+                    /> */}
+          </div>
+        Note: Maximum duration is 72 hours and can be booked upto 30 days in
+        advance
+        <CustomButton type="submit">Submit</CustomButton>
+        </form>
+        {/* <TimePicker {...pickerOptions} /> */}
+      </div>
+    }
     return (
       <div className="reservations">
         Reservations
-        <div>
-          <form onSubmit={this.submitHandler} className="reservationOptions">
-            <div className="options">
-              <div>Vehicle Make : </div>
-              <div> {this.state.vehicleDetails.MAKE}</div>
-            </div>
-            <div className="options">
-              <div> Vehicle Model : </div>
-              <div>{this.state.vehicleDetails.MODEL}</div>
-            </div>
-            <div className="options">
-              Location Name : {this.state.locationDetails.NAME}
-            </div>
-            <div className="options">
-              Select Pick-up Date and Time :{" "}
-              <DatePicker
-                name="pickupDate"
-                selected={this.state.pickupDate}
-                onChange={this.pickupHandler}
-                showTimeSelect
-                timeIntervals={60}
-                //excludeDates={(this.state.reservedDates)}
-                placeholderText="Click to select a date"
-                minDate={new Date()}
-                maxDate={addDays(new Date(), 30)}
-              />
-            </div>
-            <div className="options">
-              Select Drop-off Date and Time :{" "}
-              <DatePicker
-                name="pickupDate"
-                selected={this.state.dropoffDate}
-                onChange={this.dropoffHandler}
-                showTimeSelect
-                timeIntervals={60}
-                placeholderText="Click to select a date"
-                minDate={new Date()}
-                maxDate={addDays(new Date(), 30)}
-              />
-            </div>
-            <div>
-              {/* <ReactTimeslotCalendar
-                            initialDate={moment().format()}
-                        /> */}
-            </div>
-            Note: Maximum duration is 72 hours and can be booked upto 30 days in
-            advance
-            <CustomButton type="submit">Submit</CustomButton>
-          </form>
-          {/* <TimePicker {...pickerOptions} /> */}
-        </div>
+        {display}
       </div>
     );
   }

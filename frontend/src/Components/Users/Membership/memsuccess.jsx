@@ -14,71 +14,72 @@ import CustomButton from "../../Common/CustomButton/CustomButton";
 // import { Grid } from "@material-ui/core";
 
 class memsuccess extends Component {
-     state = {
+    state = {
         // let displaydate = moment().add(6, 'm');
-        memstartdate : '',
-     };
-     componentDidMount(){
-         var that = this;
-         var date = new Date().getDate(); //Current Date
-         var month = new Date().getMonth() + 7; //Current Month
-         var year = new Date().getFullYear(); //Current Year 
-         that.setState({
+        memstartdate: '',
+    };
+    componentDidMount() {
+        var that = this;
+        var date = new Date().getDate(); //Current Date
+        var month = new Date().getMonth() + 7; //Current Month
+        var year = new Date().getFullYear(); //Current Year 
+        that.setState({
             //Setting the value of the date time
             date:
-              date + '/' + month + '/' + year + ' ', });
-     }
-render() {
+                date + '/' + month + '/' + year + ' ',
+        });
+    }
+    render() {
 
-    // var displaydate = moment().add(6, 'm');
+        // var displaydate = moment().add(6, 'm');
 
-    return (    
-        <div>
-        <div style={{ backgroundColor: "#FB9E00", width: "450px", minHeight: "450px", margin: "auto", border: "3px solid black"}}>
-        <br></br>
-            <br></br>
-        <p><h2>Congratulations on new membership!</h2></p>
-        <p><h3>
-        <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            {/* you are now all set to make reservations!  */}
+        return (
+            <div>
+                <div style={{ backgroundColor: "#FB9E00", width: "450px", minHeight: "450px", margin: "auto", border: "3px solid black" }}>
+                    <br></br>
+                    <br></br>
+                    <p><h2>Congratulations on new membership!</h2></p>
+                    <p><h3>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        {/* you are now all set to make reservations!  */}
 
             You have purchased the 6 month membership that expires on {this.state.date}
-            {/* insert date here */}
+                        {/* insert date here */}
 
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br></h3>
-         </p> 
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br></h3>
+                    </p>
 
-         <p>  <Link to = "/users/home" >
-            Yayy! You are now all set to make reservations! 
+                    <p>  <Link to="/login" >
+                        Yayy! You are now all set to make reservations!
             </Link>
-            {/* you have purchased the 6 month membership which is valid through : //display date here// */}
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-        </p>
-        
-        </div>
-        {/* <p>
+                        {/* you have purchased the 6 month membership which is valid through : //display date here// */}
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                    </p>
+
+                </div>
+                {/* <p>
             you have now all set to make reservations! 
             you have purchased the 6 month membership which is valid through 
         </p>*/}
-         <div> 
-        <h5>
-            {/* your membership expires on {displaydate} ; */}
-        </h5>
-        </div> 
-        </div>
-    );
+                <div>
+                    <h5>
+                        {/* your membership expires on {displaydate} ; */}
+                    </h5>
+                </div>
+            </div>
+        );
+    }
 }
-}
- export default memsuccess;
+export default memsuccess;
 
 
 
@@ -122,7 +123,7 @@ render() {
 //         <h2>
 //             Congratulations on your new membership!!
 //         </h2>
-        
+
 //         <Typography className={classes.pos} color="textSecondary">
 //           Congratulations on your new membership!
 //         </Typography>

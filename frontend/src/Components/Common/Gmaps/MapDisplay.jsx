@@ -23,7 +23,7 @@ class MapDisplay extends Component {
     selectedPlace: {
       name: "someplacename",
     },
-    locations: []
+    locations: [],
   };
 
   async componentWillMount() {
@@ -42,10 +42,8 @@ class MapDisplay extends Component {
         // console.log(res.data)
         locationdata = res.data.locations;
         // console.log(locationdata)
-
       }
-    }
-    )
+    });
 
     await this.setState({ locations: locationdata }, () => {
       //  console.log(this.state.locations);
@@ -53,7 +51,7 @@ class MapDisplay extends Component {
       //   console.log(location.ADDRESS.STREET);
       // })
       // console.log("after set state" + d.getMilliseconds());
-    })
+    });
   }
   onMarkerClick = (props, marker, e) => {
     this.setState({
@@ -62,7 +60,7 @@ class MapDisplay extends Component {
       showingInfoWindow: true,
     });
     localStorage.setItem("locationId", props.locationID);
-    localStorage.setItem("locationName", props.name)
+    localStorage.setItem("locationName", props.name);
     console.log(props);
   };
   onMapClicked = (props) => {
@@ -122,11 +120,13 @@ class MapDisplay extends Component {
           >
             <h3>{this.state.selectedPlace.name}</h3>
             <p>{this.state.selectedPlace.title}</p>
-            <CustomButton style={{ height: '40px', textAlign: 'center', textTop: '0px' }}>
-              <a href="./vehicleCatalog" style={{ textDecoration: "none" }}>
+            <a href="./vehicleCatalog" style={{ textDecoration: "none" }}>
+              <CustomButton
+              // style={{ height: "40px", textAlign: "center", textTop: "0px" }}
+              >
                 Go to the Location
-              </a>
-            </CustomButton>
+              </CustomButton>
+            </a>
           </InfoWindow>
         </Map>
       </div>

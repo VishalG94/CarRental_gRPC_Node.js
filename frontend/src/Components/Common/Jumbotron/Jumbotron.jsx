@@ -6,19 +6,17 @@ class Jumbotron extends Component {
   state = {};
   render() {
     return (
-
-      <div class="container">
+      <div class="jumbocontainer">
         <div className="jumbotronText">
           <p class="title">Spartan Car Rentals</p>
           <p class="subtext">
             The freedom of cars on demand in hundreds of cities, ready to book
             by the hour or day.
-            </p>
+          </p>
         </div>
         <div className="jumbotronImage">
-          <img src={img} alt="JumbotronImage" width="100vw"  ></img>
+          <img src={img} alt="JumbotronImage"></img>
         </div>
-
       </div>
     );
   }
