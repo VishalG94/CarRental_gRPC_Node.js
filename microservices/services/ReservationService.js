@@ -100,23 +100,40 @@ let ReservationService = {
         })
     },
     update: (call, callback) => {
-        console.log("inside microservice insert");
+        console.log("inside microservice reservation update");
         let reservationReq = call.request
         let id = call.request._id
         console.log(JSON.stringify(reservationReq) + " id: " + id);
         Reservation.findByIdAndUpdate({ _id: id }, {
             $set: {
-                USER: reservationReq.USER,
-                VEHICLE: reservationReq.VEHICLE,
-                LOCATION: reservationReq.LOCATION,
-                RENTAL_DURATION: reservationReq.RENTAL_DURATION,
-                PICKUP_TIME: reservationReq.PICKUP_TIME,
-                RETURN_TIME: reservationReq.RETURN_TIME,
-                PRICE: reservationReq.PRICE,
+                // USER: reservationReq.USER,
+                // VEHICLE: reservationReq.VEHICLE,
+                // LOCATION: reservationReq.LOCATION,
+                // RENTAL_DURATION: reservationReq.RENTAL_DURATION,
+                // PICKUP_TIME: reservationReq.PICKUP_TIME,
+                // RETURN_TIME: reservationReq.RETURN_TIME,
+                STATUS: reservationReq.STATUS,
+                // PRICE: reservationReq.PRICE,
                 USER_COMMENTS: reservationReq.USER_COMMENTS
             }
         }, { new: true }).then((reservation) => {
-            console.log("Reservation created: \n" + JSON.stringify(reservation))
+            Vehicle.findOneAndUpdate({ _id: reservationReq.VEHICLE_ID },
+                {
+                    $pull: {
+                        RESERVATIONS: id
+                    }
+                }
+            )
+            User.findOneAndUpdate({ _id: reservationReq.USER_ID },
+                {
+                    $pull: {
+                        RESERVATIONS: id
+                    }
+                }
+            ).then((res) => {
+                console.log("user res updated")
+            })
+            console.log("Reservation Updated: \n" + JSON.stringify(reservation))
             callback(null, reservation)
         }).catch(err => {
             console.log("error is", err)

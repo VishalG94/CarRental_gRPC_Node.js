@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import user from "../../../DummyData/Users";
 import CustomInput from "../../Common/CustomInput/CustomInput";
 import axios from "axios";
 import Constants from "../../../Utils/Constants";
@@ -13,7 +12,7 @@ class Profile extends Component {
     DL_NUMBER: "",
     EMAIL: "",
     PHONE: 0,
-    PASSWORD: "",
+    // PASSWORD: "",
     ADDRESS: {
       _id: 0,
       STREET: "",
@@ -48,12 +47,24 @@ class Profile extends Component {
     //console.log(this.state);
   };
   componentWillMount() {
-    const body = user;
-    console.log(body._id);
-    this.setState({ oldDetails: body });
-    this.setState({
-      ...body,
-    });
+
+
+    let body;
+    axios.get(`${Constants.BACKEND_SERVER.URL}/userRes`,
+      {
+        params: {
+          _id: localStorage.getItem("userId")
+        }
+      }).then((res) => {
+
+        console.log(this.state);
+        this.setState({ oldDetails: { ADDRESS: { ...res.data.ADDRESS }, ...res.data }, ...res.data }, () => {
+          console.log(this.state);
+        });
+
+
+      })
+
     // axios
     //   .get(
     //     `${Constants.BACKEND_SERVER}/users/getuser`,
@@ -95,24 +106,70 @@ class Profile extends Component {
       disabled,
       editstate,
       oldDetails,
-      ADDRESS,
       ...userDetails
     } = this.state;
-    console.log(userDetails);
-    console.log(ADDRESS);
+
+
     const req = {
-      userDetails: userDetails,
-      address: ADDRESS,
+      ...userDetails,
     };
+    console.log(req)
     axios
-      .post(`${Constants.BACKEND_SERVER}/users/updateProfile`, req)
+      .put(`${Constants.BACKEND_SERVER.URL}/user`, req)
       .then((res) => {
+        console.log(res)
         if (res.status === 200) {
           window.alert("Changes Updated Successfully");
         }
       });
   };
   render() {
+    let addresschange
+    if (this.state.oldDetails.ADDRESS) {
+      addresschange = <div className='addressOptions'>
+        <div className="option">
+          Street Address:{" "}
+          <input
+            label={this.state.oldDetails.ADDRESS.STREET}
+            disabled={this.state.disabled}
+            value={this.state.ADDRESS.STREET}
+            onChange={this.handleAddressChange}
+            name="STREET"
+          />
+        </div>
+        <div className="option">
+          State:{" "}
+          <input
+            label={this.state.oldDetails.ADDRESS.STATE}
+            disabled={this.state.disabled}
+            value={this.state.ADDRESS.STATE}
+            onChange={this.handleAddressChange}
+            name="STATE"
+          />
+        </div>
+        <div className="option">
+          Country:{" "}
+          <input
+            //  label={this.state.oldDetails.ADDRESS.COUNTRY}
+            disabled={this.state.disabled}
+            value={this.state.ADDRESS.COUNTRY}
+            onChange={this.handleAddressChange}
+            name="COUNTRY"
+          />
+        </div>
+        <div className="option">
+          Zip Code:{" "}
+          <input
+            // label={this.state.oldDetails.ADDRESS.PIN}
+            disabled={this.state.disabled}
+            value={this.state.ADDRESS.PIN}
+            onChange={this.handleAddressChange}
+            name="PIN"
+          />
+        </div>
+      </div>
+
+    }
     return (
       <div className="profile">
         <form className="userdetails">
@@ -160,46 +217,7 @@ class Profile extends Component {
               name="PHONE"
             />
           </div>
-          <div className="option">
-            Street Address:{" "}
-            <input
-              label={this.state.oldDetails.ADDRESS.STREET}
-              disabled={this.state.disabled}
-              value={this.state.ADDRESS.STREET}
-              onChange={this.handleAddressChange}
-              name="STREET"
-            />
-          </div>
-          <div className="option">
-            State:{" "}
-            <input
-              label={this.state.oldDetails.ADDRESS.STATE}
-              disabled={this.state.disabled}
-              value={this.state.ADDRESS.STATE}
-              onChange={this.handleAddressChange}
-              name="STATE"
-            />
-          </div>
-          <div className="option">
-            Country:{" "}
-            <input
-              //  label={this.state.oldDetails.ADDRESS.COUNTRY}
-              disabled={this.state.disabled}
-              value={this.state.ADDRESS.COUNTRY}
-              onChange={this.handleAddressChange}
-              name="COUNTRY"
-            />
-          </div>
-          <div className="option">
-            Zip Code:{" "}
-            <input
-              // label={this.state.oldDetails.ADDRESS.PIN}
-              disabled={this.state.disabled}
-              value={this.state.ADDRESS.PIN}
-              onChange={this.handleAddressChange}
-              name="PIN"
-            />
-          </div>
+          {addresschange}
           <div className="option">
             <CustomButton type="submit" onClick={this.handleEdit}>
               Edit Details

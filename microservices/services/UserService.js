@@ -173,32 +173,37 @@ let UserService = {
         })
     },
     update: (call, callback) => {
-        console.log("inside microservice insert");
+        console.log("inside microservice update");
         let userReq = call.request
         let id = call.request._id
         console.log(JSON.stringify(userReq) + " id: " + id);
-        User.findByIdAndUpdate({ _id: id }, {
+        Address.findByIdAndUpdate({ _id: call.request.ADDRESS._id }, {
             $set: {
-                NAME: userReq.NAME,
-                DL_STATE: userReq.DL_STATE,
-                DL_NUMBER: userReq.DL_NUMBER,
-                EMAIL: userReq.EMAIL,
-                PHONE: userReq.PHONE,
-                PASSWORD: userReq.PASSWORD,
-                ADDRESS: userReq.ADDRESS,
-                MEMBERSHIP_START: userReq.MEMBERSHIP_START,
-                // RESERVATION_ID: userReq.RESERVATION_ID,
-                CARD: userReq.CARD,
-                CREATED: userReq.CREATED,
-                MODIFIED: userReq.MODIFIED,
+                ...call.request.ADDRESS
             }
-        }, { new: true }).then((user) => {
-            console.log("User created: \n" + JSON.stringify(user))
-            callback(null, user)
-        }).catch(err => {
-            console.log("error is", err)
-            callback(err, null)
-        })
+        }).then(
+            User.findByIdAndUpdate({ _id: id }, {
+                $set: {
+                    NAME: userReq.NAME,
+                    DL_STATE: userReq.DL_STATE,
+                    DL_NUMBER: userReq.DL_NUMBER,
+                    //  EMAIL: userReq.EMAIL,
+                    PHONE: userReq.PHONE,
+                    //  PASSWORD: userReq.PASSWORD,
+                    ADDRESS: userReq.ADDRESS,
+                    //MEMBERSHIP_START: userReq.MEMBERSHIP_START,
+                    // RESERVATION_ID: userReq.RESERVATION_ID,
+                    // CARD: userReq.CARD,
+                    // CREATED: userReq.CREATED,
+                    // MODIFIED: userReq.MODIFIED,
+                }
+            }, { new: true }).then((user) => {
+                console.log("User Updated: \n" + JSON.stringify(user))
+                callback(null, user)
+            }).catch(err => {
+                console.log("error is", err)
+                callback(err, null)
+            }))
     },
 
     updateMembership: (call, callback) => {
