@@ -144,7 +144,7 @@ class App extends Component {
             />
             <Route exact path="/users/home" component={UserHomePage} />{" "}
             <Route exact path="/users/signup" component={SignupPage} />{" "}
-            <Route exact path="/users/profile" component={Profile} />{" "}
+            <Route path="/profile" component={Profile} />{" "}
             <Route exact path="/users/reservations" component={Reservations} />{" "}
             <Route
               exact

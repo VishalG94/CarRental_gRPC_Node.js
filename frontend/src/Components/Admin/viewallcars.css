@@ -14,7 +14,7 @@
     .mainDiv{
         overflow: hidden;
         display: flex;
-        background-color: beige;
+        /* background-color: beige; */
         
     }
     .navDiv{
