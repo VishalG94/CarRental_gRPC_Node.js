@@ -57,4 +57,3 @@ message ReservationList {
 message ReservationId {
   string _id = 1;
 }
-
