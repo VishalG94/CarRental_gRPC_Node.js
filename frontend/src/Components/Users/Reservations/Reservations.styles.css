@@ -1,12 +1,19 @@
-.reservations{
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+.reservations {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 600px;
+  align-items: center;
+  align-self: center;
 }
-.reservations .reservationOptions{
-    display: flex;
-    height: 500px;
-    align-content: center;
-    flex-direction: column;
-    justify-content: space-between;
+.reservations .reservationOptions {
+  display: flex;
+  height: 500px;
+  align-content: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.options {
+  display: flex;
+  align-self: center;
 }

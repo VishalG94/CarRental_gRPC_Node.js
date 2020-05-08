@@ -8,7 +8,7 @@ service ReservationService {
     rpc List (EmptyReservation) returns (ReservationList) {}
     rpc Insert (Reservation) returns (Reservation) {}
     rpc Get (ReservationId) returns (ReservationResponse){}
-    rpc Update (Reservation) returns (Reservation){}
+    rpc Update (updateReservation) returns (Reservation){}
     rpc Delete (ReservationId) returns (Reservation){}
 
 }
@@ -58,3 +58,15 @@ message ReservationId {
   string _id = 1;
 }
 
+message updateReservation{
+   string _id = 1;
+   string USER_ID = 2;
+   string VEHICLE_ID = 3;
+   enum Status {
+    ACTIVE = 0;
+    CANCELLED = 1;
+    COMPLETED = 2;
+   }
+   Status STATUS = 5;
+   string USER_COMMENTS = 10;
+}

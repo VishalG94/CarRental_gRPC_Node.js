@@ -1,4 +1,6 @@
-.ResList {
+
+  /* @import  "bootstrap/dist/css/bootstrap.min.css" */
+  .ResList {
     display: flex;
     justify-content: space-around;
     width: 80%;

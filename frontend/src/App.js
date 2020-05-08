@@ -35,6 +35,8 @@ import Logout from "./Components/Common/Header/Logout";
 import Reservations from "./Components/Users/Reservations/Reservations";
 import ReservationList from "./Components/Users/ReservationList/ReservationList";
 
+import AllVehicles from './Components/Common/VehicleCatalog/AllVehicles'
+
 class App extends Component {
   state = {
     loggedIn: false
@@ -108,6 +110,8 @@ class App extends Component {
 
 
             <Route exact path="/users/vehiclecatalog" component={VehicleCatalog} />{" "}
+            <Route exact path="/users/vehicleList" component={AllVehicles} />{" "}
+
 
             <Route exact path="/admin/home" component={AdminHomePage} />{" "}
             <Route exact path="/admin/vehiclecatalog" component={VehicleCatalog} />{" "}

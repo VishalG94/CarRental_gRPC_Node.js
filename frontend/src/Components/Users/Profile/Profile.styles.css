@@ -8,10 +8,19 @@
   height: 800px;
   align-content: center;
 }
+.userdetails .addressOptions {
+  display: flex;
+  width: 60%;
+ 
+  justify-content: space-around;
+  flex-direction: column;
+  align-content: center;
+}
 
 .option {
   width: 600px;
   display: flex;
+  padding: 15px;
   justify-content: flex-end;
 }
 
