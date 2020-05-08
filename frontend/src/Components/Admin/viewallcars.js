@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import './viewallcars.css'
 import VehicleCard from "../Common/VehicleCard/VehicleCard"
-import { Card, CardBody, CardHeader, CardText, CardTitle, Container,CardImg,Col, Row, } from 'reactstrap';
+import { Card, CardBody, CardHeader, CardText, CardTitle, Container, CardImg, Col, Row, } from 'reactstrap';
 import logo1 from './suvimg.jpg'
 import logo2 from './hatchback.jpg'
 import logo3 from './luxury.png'
@@ -14,110 +14,109 @@ import { Grid } from '@material-ui/core';
 class Viewallcars extends Component {
 
   constructor(props) {
-      super(props);
-      this.state = {
-        allProjCards: []
-      }
+    super(props);
+    this.state = {
+      allProjCards: []
+    }
   }
 
- 
+
   componentDidMount() {
-      
-        axios.get(`${Constants.BACKEND_SERVER.URL}/vehicles`).then((response) => {
-        
-          if (response.data != null) {
-           var obj=(response.data)
-            console.log(obj.vehicles)
-            var projectCards = [],
-              item,logo
-            //for (var index in obj.vehicles) {
-               Object.keys(obj.vehicles).map((index) =>
-                 {
-                   
-              item=obj.vehicles[index]
-              console.log(item['CATEGORY'])
-              if(item['CATEGORY']['CATEGORY_NAME']=="SUV"){
-                logo=logo1;
-              }
-              else if(item['CATEGORY']['CATEGORY_NAME']=="Luxury"){
-               
-                logo=logo3;
-              }
-              else if(item['CATEGORY']['CATEGORY_NAME']=="Hatchback"){
-               
-                logo=logo2;
-              }
-              else if(item['CATEGORY']['CATEGORY_NAME']=="Sedan"){
-                logo=logo4;
-              }
-              localStorage.setItem(item['REGISTRATION_TAG'],item['_id'] );
 
-              
-              projectCards.push(
-                
-                <a href={`/admin/viewallcars/view/${item['_id']}`} className="text-decoration-none text-dark">
-                    
-                  <Card className="card">
-                 <CardImg top width="100%" src={logo} alt="Card image cap" />
-                    <CardHeader><b>RTag: </b>{item['REGISTRATION_TAG']}</CardHeader>
-                    <CardBody>
-                    
-                      <CardTitle><b>MAKE:</b> {item['MAKE']}</CardTitle>
-                      <CardText><b>Model:</b> {item['MODEL']}</CardText>
-                       <CardText><b>Category</b> {item['CATEGORY']['CATEGORY_NAME']}</CardText> 
-                      {/* <CardText><b>Late Fee</b> {item['LATE_FEE']}</CardText>
-                      <CardText><b>Hourly Feee</b> {item['HOURLY_FEE']}</CardText> */}
-                      <CardText><b>Year: </b> {item['YEAR']}</CardText> 
-                    </CardBody>
-                    <Button href={`/admin/viewallcars/view/${item['_id']}`}>View </Button>
-                  </Card>
-                  
-                  </a>
-                  
-              )
-            })
-  
-            this.setState({
-              allProjCards: projectCards
-            })
+    axios.get(`${Constants.BACKEND_SERVER.URL}/vehicles`).then((response) => {
+
+      if (response.data != null) {
+        var obj = (response.data)
+        console.log(obj.vehicles)
+        var projectCards = [],
+          item, logo
+        //for (var index in obj.vehicles) {
+        Object.keys(obj.vehicles).map((index) => {
+
+          item = obj.vehicles[index]
+          console.log(item['CATEGORY'])
+          if (item['CATEGORY']['CATEGORY_NAME'] == "SUV") {
+            logo = logo1;
           }
+          else if (item['CATEGORY']['CATEGORY_NAME'] == "Luxury") {
+
+            logo = logo3;
+          }
+          else if (item['CATEGORY']['CATEGORY_NAME'] == "Hatchback") {
+
+            logo = logo2;
+          }
+          else if (item['CATEGORY']['CATEGORY_NAME'] == "Sedan") {
+            logo = logo4;
+          }
+          localStorage.setItem(item['REGISTRATION_TAG'], item['_id']);
+
+
+          projectCards.push(
+
+            <a href={`/admin/viewallcars/view/${item['_id']}`} className="text-decoration-none text-dark">
+
+              <Card className="card" style={{ width: '250px', height: '400px' }} >
+                <CardImg src={logo} alt="Card image cap" />
+                <CardHeader><b>RTag: </b>{item['REGISTRATION_TAG']}</CardHeader>
+                <CardBody>
+
+                  <CardTitle><b>MAKE:</b> {item['MAKE']}</CardTitle>
+                  <CardText><b>Model:</b> {item['MODEL']}</CardText>
+                  <CardText><b>Category</b> {item['CATEGORY']['CATEGORY_NAME']}</CardText>
+                  {/* <CardText><b>Late Fee</b> {item['LATE_FEE']}</CardText>
+                      <CardText><b>Hourly Feee</b> {item['HOURLY_FEE']}</CardText> */}
+                  <CardText><b>Year: </b> {item['YEAR']}</CardText>
+                </CardBody>
+                <Button href={`/admin/viewallcars/view/${item['_id']}`}>View </Button>
+              </Card>
+
+            </a>
+
+          )
         })
-                  
-            
-              .catch((error) => { 
-                  console.log(error)
-                  this.setState({
-                      errMsg: "Error occured",
-                      successMsg: ""
-                  })
-             })
+
+        this.setState({
+          allProjCards: projectCards
+        })
       }
+    })
 
-  
-  render () {
-      return (
-          <div>
-            <Button color="danger" href="/admin/viewallcars" className="w-100"> Get all Vehicles</Button> 
-            <Button color="danger" href="/admin/viewalllocations"className="w-100"> Get all Locations</Button> 
 
-            <div className="mainDiv">
-				<div className="navDiv">
-				</div>
-				<div style={{ marginTop: "1%" }}>
-					<div>
-						<div class="card-arrange">
-              <Col><br></br></Col>
-							<Container>
-								{ this.state.allProjCards }
-							</Container>
-						</div>
-					</div>
-				</div>
-			</div>
-           
+      .catch((error) => {
+        console.log(error)
+        this.setState({
+          errMsg: "Error occured",
+          successMsg: ""
+        })
+      })
+  }
+
+
+  render() {
+    return (
+      <div>
+        <Button color="danger" href="/admin/viewallcars" className="w-100"> Get all Vehicles</Button>
+        <Button color="danger" href="/admin/viewalllocations" className="w-100"> Get all Locations</Button>
+
+        <div className="mainDiv">
+          <div className="navDiv">
+          </div>
+          <div style={{ marginTop: "1%" }}>
+            <div>
+              <div class="card-arrange">
+                <Col><br></br></Col>
+                <Container>
+                  {this.state.allProjCards}
+                </Container>
+              </div>
             </div>
+          </div>
+        </div>
 
-      );
+      </div>
+
+    );
   }
 }
 
