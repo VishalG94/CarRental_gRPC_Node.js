@@ -6,7 +6,7 @@ import {  FormGroup, Label, Input, CardImg} from 'reactstrap';
 import logo1 from './membership.svg'
 
 
-class Viewindividualcategory extends Component {
+class Membership extends Component {
 
   constructor(props) {
       super(props);
@@ -87,7 +87,7 @@ setmembershippricehandler =() => {
   }
 }
 
-export default Viewindividualcategory;
+export default Membership;
 
 
 

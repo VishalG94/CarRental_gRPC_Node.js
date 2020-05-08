@@ -145,21 +145,21 @@ addcategoryhandler = () => {
                     <Col  >
                         <FormGroup>
                             <Label for="carname" >Enter Category Name</Label>
-                            <Input type="text" font-size="50px" name="carname" onChange={this.categoryhandler} id="carname" placeholder="Ex: TUV" value={ this.state.category } style={{ width: "350px" }}/>
+                            <Input type="text" font-size="20px" name="carname" onChange={this.categoryhandler} id="carname" placeholder="Ex: TUV" value={ this.state.category } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <Col  >
                         <FormGroup>
                             <Label for="carname" >Enter Hourly fees</Label>
-                            <Input type="text" font-size="50px" name="carname" onChange={this.hourlyfeehandler} id="carname" placeholder="Ex: 30" value={ this.state.hourlyfee } style={{ width: "350px" }}/>
+                            <Input type="text" font-size="20px" name="carname" onChange={this.hourlyfeehandler} id="carname" placeholder="Ex: 30" value={ this.state.hourlyfee } style={{ width: "350px" }}/>
                         </FormGroup>
                     </Col>
                     <Col  >
                         <FormGroup>
                             <Label for="carname" >Enter Late Fees</Label>
-                            <Input type="text" font-size="50px" name="carname" onChange={this.latefeehandler} id="carname" placeholder="Ex: 20" value={ this.state.latefee } style={{ width: "350px" }}/>
+                            <Input type="text" font-size="20px" name="carname" onChange={this.latefeehandler} id="carname" placeholder="Ex: 20" value={ this.state.latefee } style={{ width: "350px" }}/>
                         </FormGroup>
-                        <Button onClick={this.addcategoryhandler}> Add Category </Button>
+                        <Button onClick={this.addcategoryhandler} style={{ width: "350px" }}> Add Category </Button>
                     </Col>
                     <p className="text-danger text-center">{ this.state.errMsg }</p>
                     <p className="text-success text-center">{ this.state.successMsg }</p> 

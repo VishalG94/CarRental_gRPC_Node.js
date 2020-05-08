@@ -6,7 +6,7 @@ import ReservationModal from './ReservationModal/ReservationModal'
 import CustomButton from '../../Common/CustomButton/CustomButton';
 
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 

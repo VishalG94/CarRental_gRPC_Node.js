@@ -12,7 +12,7 @@ import VehicleCatalog from "./Components/Common/VehicleCatalog/VehicleCatalog";
 import membership from "./Components/Users/Membership/membership";
 import membershiphome from "./Components/Users/Membership/membershiphome";
 import membersuccess from "./Components/Users/Membership/memsuccess";
-import payments from "./Components/Users/payments";
+import payments from "./Components/Users/Payments/payments";
 
 import AdminHomePage from "../src/Components/Admin/HomePage/HomePage";
 
@@ -36,6 +36,8 @@ import ReturnCar from './Components/Users/ReturnCar/ReturnCar'
 
 import Membershipfee from './Components/Admin/membershipfee'
 import Container from '@material-ui/core/Container';
+
+ 
 
 import Sidenavbar from "./Components/Admin/sidenavbar";
 
@@ -121,6 +123,7 @@ class App extends Component {
             <Route exact path="/users/reservationList" component={ReservationList} />{" "}
             <Route exact path="/users/returnCar" component={ReturnCar} />{" "}
 
+
  <Route exact path="/users/membership" component={membership} />{" "}
           <Route exact path="/users/membershiphome" component={membershiphome} />{" "}
           <Route exact path="/users/memsuccess" component={memsuccess} />{" "}
@@ -131,6 +134,8 @@ class App extends Component {
 
             <Route exact path="/admin/home" component={AdminHomePage} />{" "}
             <Route exact path="/admin/vehiclecatalog" component={VehicleCatalog} />{" "}
+            <Route exact path="/admin/membershippricing" component={Membershipfee} />{" "}
+
           </Switch>{" "}
           <Footer />
         </div>
