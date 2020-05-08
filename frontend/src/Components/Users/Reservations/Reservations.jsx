@@ -9,6 +9,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { addDays, setHours, setMinutes, moment } from 'date-fns';
 
+import TimePicker from './TimePicker';
+
+
 // import ReactTimeslotCalendar from 'react-timeslot-calendar';
 
 
@@ -40,7 +43,7 @@ class Reservations extends Component {
                     let date = new Date(this.state.vehicleDetails.RESERVATIONS[reservation].PICKUP_TIME)
                     this.state.reservedDates.push(date)
                     for (let i = 0; i < this.state.vehicleDetails.RESERVATIONS[reservation].RENTAL_DURATION; i++) {
-                        this.state.reservedDates.push(setHours(setMinutes(date, 0), i))
+                        this.state.reservedDates.push((setHours(setMinutes(date, 0), i)).toTimeString())
 
                     }
                     this.state.reservedDates.push(new Date(this.state.vehicleDetails.RESERVATIONS[reservation].PICKUP_TIME))
@@ -119,6 +122,11 @@ class Reservations extends Component {
 
 
     render() {
+        let pickerOptions = {
+            leadingZero: true,
+            interval: 60,
+            //disabled: this.state.reservedDates
+        }
         return (<div className='reservations'>
             Reservations
             <div className="vehicleDetails">
@@ -168,7 +176,7 @@ class Reservations extends Component {
                             Note: Maximum duration is 72 hours and can be booked upto 30 days in advance
                             <button type="submit"  >Submit</button>
                 </form>
-
+                <TimePicker {...pickerOptions} />
             </div>
 
 

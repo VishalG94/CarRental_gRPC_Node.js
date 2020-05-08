@@ -1,0 +1,14 @@
+.returnCar .options{
+    width:600px;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.returnCar{
+    display: flex;
+    /* flex-direction: column; */
+    height: 100%;
+}

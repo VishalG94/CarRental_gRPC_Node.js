@@ -10,6 +10,7 @@ import { Map, Marker, GoogleApiWrapper, InfoWindow } from "google-maps-react";
 import "./MapDisplay-styles.css";
 import axios from "axios";
 import Constants from "../../../Utils/Constants";
+import CustomButton from "../CustomButton/CustomButton";
 
 class MapDisplay extends Component {
   state = {
@@ -121,11 +122,11 @@ class MapDisplay extends Component {
           >
             <h3>{this.state.selectedPlace.name}</h3>
             <p>{this.state.selectedPlace.title}</p>
-            <button>
+            <CustomButton style={{ height: '40px', textAlign: 'center', textTop: '0px' }}>
               <a href="./vehicleCatalog" style={{ textDecoration: "none" }}>
                 Go to the Location
               </a>
-            </button>
+            </CustomButton>
           </InfoWindow>
         </Map>
       </div>
