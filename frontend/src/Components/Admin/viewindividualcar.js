@@ -151,7 +151,7 @@ componentDidMount() {
               
                   
                 <Card className="card">
-               <CardImg top width="100%" src={logo} alt="Card image cap" />
+               <CardImg top width="100%" src={logo5} alt="Card image cap" />
                   <CardHeader><b>RTag: </b>{item['REGISTRATION_TAG']}</CardHeader>
                   <CardBody >
                   
@@ -295,18 +295,15 @@ deletecarhandler =() =>{
             <div className="mainDiv">
 				<div className="navDiv">
 				</div>
-				<div style={{ marginTop: "1%" , marginLeft:"15%"}}>
+				<div style={{ marginTop: "1%" , marginLeft:"8%"}}>
 					<div>
 						<div class="card-arrange" >
 							<Container>
 								{ this.state.allProjCards }
 							</Container>
-                            <br></br>
+                           
                             <Container>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
+  <h4>Edit Car details</h4>
                             <FormGroup>
                           <Label for="carname" >Change Car Registration tag</Label>
                           <Input type="text" font-size="50px" name="carname" onChange={this.changertagHandler} id="carname" placeholder="Enter car registration tag" value={ this.state.rtag } style={{ width: "350px" }}/>

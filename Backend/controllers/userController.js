@@ -132,3 +132,27 @@ module.exports.updateUser = (req, res) => {
         }
     });
 };
+
+module.exports.updateMembership= (req, res) => {
+    console.log("inside update User Membership router: " + JSON.stringify(req.body));
+    userClient.updateMembership(req.body, (error, user) => {
+        if (!error && user) {
+            if (user.n === 0) {
+                console.log("No records updated" + JSON.stringify(user.n));
+            }
+            console.log("inside update User router" + JSON.stringify(user));
+            res.setHeader(CONTENT_TYPE, APP_JSON);
+            res.status(RES_SUCCESS).end(JSON.stringify(user));
+        } else {
+            if (error.code === 13) {
+                console.log("User with id " + req.body._id + " not found");
+                res.setHeader(CONTENT_TYPE, TEXT_PLAIN);
+                res.status(RES_NOT_FOUND).end("User with id '" + req.body._id + "' not found");
+            } else {
+                res.setHeader(CONTENT_TYPE, TEXT_PLAIN);
+                res.status(RES_BAD_REQUEST).end("Error occured while inserting data into DB, " + error.message);
+            }
+
+        }
+    });
+};
