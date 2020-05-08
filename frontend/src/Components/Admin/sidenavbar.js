@@ -16,7 +16,9 @@ class Sidenavbar extends Component {
        <Button style={{ color:'white' }}href="/admin/viewallcars">View All Cars</Button>
        <Button style={{ color:'white' }}href="/admin/viewalllocations">View All Locations</Button>
        <Button style={{ color:'white' }} href="/admin/usermanagement">USer Management</Button>
-       <Button style={{ color:'white' }}href="/admin/vehiclepricemanagement">Vehicle Price</Button>
+       <Button style={{ color:'white' }}href="/admin/vehiclepricemanagement">Vehicle Pricing</Button>
+       <Button style={{ color:'white' }}href="/admin/membershippricing">Membership Pricing</Button>
+       <Button style={{ color:'white' }}href="/admin/home">Home</Button>
        </ul>
        </div>
     </div>  

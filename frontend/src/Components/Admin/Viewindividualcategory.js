@@ -21,9 +21,16 @@ class Viewindividualcategory extends Component {
         hourlyfee:"",
         latefee:"",
         categoryname:"",
+        categoryname1:"",
       
       }
   }
+
+  namechangehandler = (e) => {
+    this.setState({
+        categoryname1: e.target.value
+    });
+}
   hourlyfeechangehandler = (e) => {
     this.setState({
         hourlyfee: e.target.value
@@ -41,7 +48,7 @@ editcategoryhandler =() => {
    
     
     console.log(this.state.objectout)
-    if (this.state.hourlyfee === "" || this.state.latefee === "" )
+    if (this.state.hourlyfee === "" || this.state.latefee === "" || this.state.categoryname1 === "")
     {
         this.setState({
             errMsg: "Required fields are empty",
@@ -52,6 +59,7 @@ editcategoryhandler =() => {
 
         const data={
             _id:this.props.match.params.projectId,
+            CATEGORY_NAME: this.state.categoryname1,
             HOURLY_FEE:this.state.hourlyfee,
             LATE_FEE:this.state.latefee,
             
@@ -158,8 +166,12 @@ deletecarhandler =() =>{
                             <Container>
                                 <br></br>
                                 <br></br>
-                                <br></br>
-                                <br></br>
+                                
+                                <FormGroup>
+                          <Label for="carname" >Change Category Name </Label>
+                          <Input type="text" font-size="50px" name="carname" onChange={this.namechangehandler} id="carname" placeholder="Ex: SUV" value={ this.state.categoryname1 } style={{ width: "350px" }}/>
+                      </FormGroup>
+                      <br></br>
                             <FormGroup>
                           <Label for="carname" >Change Hourly Price</Label>
                           <Input type="text" font-size="50px" name="carname" onChange={this.hourlyfeechangehandler} id="carname" placeholder="Ex: 32" value={ this.state.hourlyfee } style={{ width: "350px" }}/>

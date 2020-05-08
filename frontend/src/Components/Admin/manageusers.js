@@ -14,10 +14,28 @@ class Usermanagement extends Component {
   constructor(props) {
       super(props);
       this.state = {
-        allProjCards: []
+        allProjCards: [],
+        _id:"",
       }
   }
 
+
+
+  blockuserhandler= async (e) => {
+    
+     const _id=e.currentTarget.value
+    console.log("User Delete")
+    console.log(_id)
+    await axios.delete(`${Constants.BACKEND_SERVER.URL}/user?_id=${_id}`).then((response) => {
+      console.log(response) ;
+  
+      window.alert("User deleted From Database ");
+  
+      
+    })
+
+}
+  
  
   componentDidMount() {
       
@@ -39,24 +57,22 @@ class Usermanagement extends Component {
               
               projectCards.push(
                 
-                <a href={`/admin/usermanagement/view/${item['_id']}`} className="text-decoration-none text-dark">
-                   {/* localStorage.setItem('{item['_id']}', '{item['PASSWORD']}') */}
                    
                   <Card className="card">
                  <CardImg top width="100%" src={logo1} alt="Card image cap" />
                     <CardHeader><b>Name: </b>{item['NAME']}</CardHeader>
                     <CardBody>
-                    
+                    {/* <CardTitle><b>Id:</b> {item['_id']}</CardTitle> */}
                       <CardTitle><b>Phone:</b> {item['PHONE']}</CardTitle>
                       <CardText><b>Email:</b> {item['EMAIL']}</CardText>
                       {/* <CardText><b>Late Fee</b> {item['LATE_FEE']}</CardText>
                       <CardText><b>Hourly Feee</b> {item['HOURLY_FEE']}</CardText> */}
                       <CardText><b>User type: </b> {item['USER_TYPE']}</CardText> 
                     </CardBody>
-                    <Button href={`/admin/manageusers/view/${item['_id']}`}>View </Button>
+                    <Button value={item['_id']}onClick={this.blockuserhandler}>Delete User </Button>
                   </Card>
                   
-                  </a>
+                  
                   
               )
             })
@@ -89,6 +105,7 @@ class Usermanagement extends Component {
 <div style={{ marginTop: "1%" }}>
 <div>
  <div class="card-arrange">
+ <h1>Active Users</h1>
    <Container>
      { this.state.allProjCards }
    </Container>
@@ -98,7 +115,7 @@ class Usermanagement extends Component {
 </div>
 
  </div>
-        <h1>User management</h1>
+        
         
                 
       </div>

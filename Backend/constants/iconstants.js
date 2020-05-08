@@ -58,6 +58,7 @@ module.exports = {
     POST_USERBYID_ROUTE: "/userID",
     POST_USER_ROUTE: "/user",
     UPDATE_USER_ROUTE: "/user",
+    UPDATE_USER_MEMBERSHIP_ROUTE:"/userMembership",
     DELETE_USER_ROUTE: "/user",
 
     /** string constants */

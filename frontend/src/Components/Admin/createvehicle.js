@@ -318,11 +318,11 @@ class Createvehicleform extends Component {
                         </FormGroup>
                         <br></br>
                         <br></br>
-                    <Button color="danger" onClick={this.addVehicleHandler} className="w-100"> Add Car </Button> 
+                    <Button color="success" onClick={this.addVehicleHandler} className="w-100"> Add Car </Button> 
                     <p className="text-danger text-center">{ this.state.errMsg }</p>
                     <p className="text-success text-center">{ this.state.successMsg }</p> 
                     <h4>Available Locations</h4>
-                    <Container>
+                    <Container >
 								{ this.state.allProjCards }
 							</Container>
                             {/* <Container>
@@ -354,7 +354,7 @@ class CreateVehicle extends Component {
             // <div className="mainDiv">
                 
                 // <div className="listDiv">
-                    <div> 
+                    <div className="form"> 
                     <Createvehicleform /> 
                     <br></br>
                     <Col  >
