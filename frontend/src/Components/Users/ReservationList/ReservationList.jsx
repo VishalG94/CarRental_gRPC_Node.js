@@ -2,10 +2,21 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Constants from '../../../Utils/Constants';
 import BannerCard from './BannerCard/BannerCard'
+import ReservationModal from './ReservationModal/ReservationModal'
+import CustomButton from '../../Common/CustomButton/CustomButton';
+
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+
+import { Modal, Button } from 'react-bootstrap';
 
 class ReservationList extends Component {
     state = {
-        RESERVATIONS: []
+        RESERVATIONS: [],
+        modalShow: false,
+        setModalShow: false
     }
     componentWillMount() {
 
@@ -19,12 +30,26 @@ class ReservationList extends Component {
         })
     }
 
+
+    // cancelHandler = () => {
+
+    // }
     render() {
+        let modalDetails = {
+            modalHeader: "Confirm Action",
+
+        }
+        //const [modalShow, setModalShow] = React.useState(false);
         return (
             <div className="ResList">
+
                 {this.state.RESERVATIONS.map((details) => (
-                    <BannerCard {...details} />
+                    <BannerCard {...details} modalShow={this.state.modalShow} modalShowHandler={this.setModalShow} modalDetails={modalDetails} />
                 ))}
+
+
+
+
             </div>
         );
     }

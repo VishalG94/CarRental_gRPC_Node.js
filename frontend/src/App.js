@@ -26,8 +26,7 @@ import Viewallcars from "./Components/Admin/viewallcars";
 import Viewindividualcar from "./Components/Admin/viewindividualcar"
 import Viewindividuallocation from "./Components/Admin/viewindividuallocation"
 import Viewindividualuser from "./Components/Admin/viewindividualuser"
-import Container from '@material-ui/core/Container';
-
+import ReturnCar from './Components/Users/ReturnCar/ReturnCar'
 import Sidenavbar from "./Components/Admin/sidenavbar";
 
 import LandingPage from "../src/Components/LandingPage/LandingPage";
@@ -57,15 +56,15 @@ class App extends Component {
   render() {
     return (
       <div>
-     
-        <Route path="/admin" component={Sidenavbar}/>
-        
-      <div className="App">
-         
-        <Header {...this.props} onSignout={this.onSignout} />
 
-        <Switch>
-          {/* <Route
+        <Route path="/admin" component={Sidenavbar} />
+
+        <div className="App">
+
+          <Header {...this.props} onSignout={this.onSignout} />
+
+          <Switch>
+            {/* <Route
           exact
           path="/login"
           render={() =>
@@ -77,42 +76,44 @@ class App extends Component {
           }
           component={LoginPage}
         />{" "} */}
-          <Route exact path="/" component={LandingPage} />
+            <Route exact path="/" component={LandingPage} />
 
 
-          <Route exact path="/logout"
-            render={props =>
-              (<Logout {...props} onSignout={this.onSignout} />)} />
+            <Route exact path="/logout"
+              render={props =>
+                (<Logout {...props} onSignout={this.onSignout} />)} />
 
 
-          <Route exact path="/admin/admindashboard" component={Dashboard} />
-          <Route exact path="/admin/addvehicle" component={CreateVehicle} />
-          <Route exact path="/admin/addlocation" component={CreateRental} />
-          {/* <Route exact path="/admin/editall" component={Editvehicledetails} /> */}
-          <Route exact path="/admin/usermanagement" component={Usermanagement} />
-          <Route exact path="/admin/vehiclepricemanagement" component={Vehiclepricemanagement} />
-          <Route exact path="/admin/viewallcars" component={Viewallcars} />
-          <Route exact path="/admin/viewalllocations" component={Viewalllocations} />
-          <Route exact path="/login"
-            render={props =>
-              (<LoginPage {...props} onSignIn={this.onSignIn} />)} />
-          <Route exact path="/admin/viewallcars/view/:projectId" component={Viewindividualcar} />   
-          <Route exact path="/admin/viewalllocations/view/:projectId" component={Viewindividuallocation} /> 
-          <Route exact path="/admin/usermanagement/view/:projectId" component={Viewindividualuser} /> 
-          <Route exact path="/admin/vehiclepricemanagement/view/:projectId" component={Viewindividualcategory} /> 
-          <Route exact path="/users/home" component={UserHomePage} />{" "}
-          <Route exact path="/users/signup" component={SignupPage} />{" "}
-          <Route exact path="/users/profile" component={Profile} />{" "}
-          <Route exact path="/users/reservations" component={Reservations} />{" "}
-          <Route exact path="/users/reservationList" component={ReservationList} />{" "}
+            <Route exact path="/admin/admindashboard" component={Dashboard} />
+            <Route exact path="/admin/addvehicle" component={CreateVehicle} />
+            <Route exact path="/admin/addlocation" component={CreateRental} />
+            {/* <Route exact path="/admin/editall" component={Editvehicledetails} /> */}
+            <Route exact path="/admin/usermanagement" component={Usermanagement} />
+            <Route exact path="/admin/vehiclepricemanagement" component={Vehiclepricemanagement} />
+            <Route exact path="/admin/viewallcars" component={Viewallcars} />
+            <Route exact path="/admin/viewalllocations" component={Viewalllocations} />
+            <Route exact path="/login"
+              render={props =>
+                (<LoginPage {...props} onSignIn={this.onSignIn} />)} />
+            <Route exact path="/admin/viewallcars/view/:projectId" component={Viewindividualcar} />
+            <Route exact path="/admin/viewalllocations/view/:projectId" component={Viewindividuallocation} />
+            <Route exact path="/admin/usermanagement/view/:projectId" component={Viewindividualuser} />
+            <Route exact path="/admin/vehiclepricemanagement/view/:projectId" component={Viewindividualcategory} />
+            <Route exact path="/users/home" component={UserHomePage} />{" "}
+            <Route exact path="/users/signup" component={SignupPage} />{" "}
+            <Route exact path="/users/profile" component={Profile} />{" "}
+            <Route exact path="/users/reservations" component={Reservations} />{" "}
+            <Route exact path="/users/reservationList" component={ReservationList} />{" "}
+            <Route exact path="/users/returnCar" component={ReturnCar} />{" "}
 
-          <Route exact path="/users/vehiclecatalog" component={VehicleCatalog} />{" "}
 
-          <Route exact path="/admin/home" component={AdminHomePage} />{" "}
-          <Route exact path="/admin/vehiclecatalog" component={VehicleCatalog} />{" "}
-        </Switch>{" "}
-        <Footer />
-      </div>
+            <Route exact path="/users/vehiclecatalog" component={VehicleCatalog} />{" "}
+
+            <Route exact path="/admin/home" component={AdminHomePage} />{" "}
+            <Route exact path="/admin/vehiclecatalog" component={VehicleCatalog} />{" "}
+          </Switch>{" "}
+          <Footer />
+        </div>
       </div>
     );
   }
