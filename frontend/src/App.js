@@ -9,6 +9,11 @@ import Footer from "./Components/Common/Footer/Footer";
 import SignupPage from "./Components/Users/SignUpPage/SignUpPage";
 import VehicleCatalog from "./Components/Common/VehicleCatalog/VehicleCatalog";
 
+import membership from "./Components/Users/Membership/membership";
+import membershiphome from "./Components/Users/Membership/membershiphome";
+import membersuccess from "./Components/Users/Membership/memsuccess";
+import payments from "./Components/Users/payments";
+
 import AdminHomePage from "../src/Components/Admin/HomePage/HomePage";
 
 import CreateVehicle from "./Components/Admin/createvehicle";
@@ -34,8 +39,12 @@ import Sidenavbar from "./Components/Admin/sidenavbar";
 import LandingPage from "../src/Components/LandingPage/LandingPage";
 import Profile from "./Components/Users/Profile/Profile";
 import Logout from "./Components/Common/Header/Logout";
+
+import memsuccess from "./Components/Users/Membership/memsuccess";
+
 import Reservations from "./Components/Users/Reservations/Reservations";
 import ReservationList from "./Components/Users/ReservationList/ReservationList";
+
 
 class App extends Component {
   state = {
@@ -108,6 +117,13 @@ class App extends Component {
           <Route exact path="/users/reservationList" component={ReservationList} />{" "}
 
           <Route exact path="/users/vehiclecatalog" component={VehicleCatalog} />{" "}
+
+          
+          <Route exact path="/users/membership" component={membership} />{" "}
+          <Route exact path="/users/membershiphome" component={membershiphome} />{" "}
+          <Route exact path="/users/memsuccess" component={memsuccess} />{" "}
+          <Route exact path="/users/payments" component={payments} />{" "}
+
 
           <Route exact path="/admin/home" component={AdminHomePage} />{" "}
           <Route exact path="/admin/vehiclecatalog" component={VehicleCatalog} />{" "}

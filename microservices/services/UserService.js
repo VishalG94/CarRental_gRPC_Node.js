@@ -200,6 +200,25 @@ let UserService = {
             callback(err, null)
         })
     },
+
+    updateMembership: (call, callback) => {
+        console.log("inside microservice insert");
+        let userReq = call.request
+        let id = call.request._id
+        console.log(JSON.stringify(userReq) + " id: " + id);
+        User.findByIdAndUpdate({ _id: id }, {
+            $set: {
+                MEMBERSHIP_START: userReq.MEMBERSHIP_START,
+            }
+        }, { new: true }).then((user) => {
+            console.log("Membership Updated: \n" + JSON.stringify(user))
+            callback(null, user)
+        }).catch(err => {
+            console.log("error is", err)
+            callback(err, null)
+        })
+    },
+
     getRes: (call, callback) => {
         let id = call.request._id
         console.log("id value: " + JSON.stringify(call.request));
