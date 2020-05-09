@@ -1,11 +1,9 @@
 
 
-.form {
-    padding-left: 10%;
-    width: 100%;
-    font-size: 15px;
-    font-style: italic;
-  align-content: center;
-  background-color: beige;
-
+.createOptions{
+  margin-top: 50px ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
 }

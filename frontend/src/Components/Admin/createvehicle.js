@@ -249,15 +249,16 @@ class Createvehicleform extends Component {
   };
   render() {
     return (
-      <Form>
-        <h3> Add a vehicle </h3>
-        <Row form>
+      <div>
 
-          <FormGroup>
+        <div className='createOptions'>
+          <h3> Add a vehicle </h3>
+          <br />
+          <FormGroup className='option'>
             <Label for="carname">Enter Car Make</Label>
             <Input
               type="text"
-              font-size="50px"
+              // font-size="50px"
               name="carname"
               onChange={this.makeChangeHandler}
               id="carname"
@@ -267,29 +268,28 @@ class Createvehicleform extends Component {
             />
           </FormGroup>
 
+          <div className='option'>
+            <FormGroup className='option'>
+              <Label for="carname">Enter Car Model</Label>
+              <Input
+                type="text"
+                // font-size="50px"
+                name="carname"
+                onChange={this.modelChangeHandler}
+                id="carname"
+                placeholder="Ex: Model S"
+                value={this.state.model}
+                style={{ width: "350px" }}
+              />
+            </FormGroup>
 
+          </div>
 
-          <FormGroup>
-            <Label for="carname">Enter Car Model</Label>
+          <FormGroup className='option'>
+            <Label for="carname">Enter manufacturing year</Label>
             <Input
               type="text"
-              font-size="50px"
-              name="carname"
-              onChange={this.modelChangeHandler}
-              id="carname"
-              placeholder="Ex: Model S"
-              value={this.state.model}
-              style={{ width: "350px" }}
-            />
-          </FormGroup>
-
-
-
-          <FormGroup>
-            <Label for="carname">Enter Car Year of manufacturing</Label>
-            <Input
-              type="text"
-              font-size="50px"
+              // font-size="50px"
               name="carname"
               onChange={this.yearChangeHandler}
               id="carname"
@@ -301,11 +301,11 @@ class Createvehicleform extends Component {
 
 
 
-          <FormGroup>
+          <FormGroup className='option'>
             <Label for="carname">Enter vehicle Registration Tag </Label>
             <Input
               type="text"
-              font-size="50px"
+              // font-size="50px"
               name="carname"
               onChange={this.rtagChangeHandler}
               id="carname"
@@ -317,11 +317,11 @@ class Createvehicleform extends Component {
 
 
 
-          <FormGroup>
+          <FormGroup className='option'>
             <Label for="carname">Enter vehicle Mileage</Label>
             <Input
               type="text"
-              font-size="50px"
+              // font-size="50px"
               name="carname"
               onChange={this.mileageChangehandler}
               id="carname"
@@ -332,9 +332,9 @@ class Createvehicleform extends Component {
           </FormGroup>
 
 
-          <FormGroup>
+          <FormGroup className='option'>
             <Label for="carname">
-              Enter number of days since Last Service date
+              Days since Last Service date
               </Label>
             <Input
               type="text"
@@ -342,14 +342,14 @@ class Createvehicleform extends Component {
               name="carname"
               onChange={this.servicechangehandler}
               id="carname"
-              placeholder="EnEx: 30"
+              placeholder="Ex:30"
               value={this.state.lastservicedate}
               style={{ width: "350px" }}
             />
           </FormGroup>
           <br></br>
 
-          <FormGroup>
+          <FormGroup className='option'>
             <label for="addcategory">Select Category:</label>
             <select
               id="addvehicletolocation"
@@ -364,7 +364,7 @@ class Createvehicleform extends Component {
           </FormGroup>
           <br></br>
 
-          <FormGroup>
+          <FormGroup className='option'>
             <label for="condition">Select Vehicle Condition:</label>
             <select
               id="condition"
@@ -379,7 +379,7 @@ class Createvehicleform extends Component {
           </FormGroup>
 
           <br></br>
-          <FormGroup>
+          <FormGroup className='option'>
             <label for="addvehicletolocation">
               Add Vehicle to this location:
             </label>
@@ -399,21 +399,22 @@ class Createvehicleform extends Component {
           <Button
             color="success"
             onClick={this.addVehicleHandler}
-            style={{ width: "350px" }}
-            className="w-20"
+            style={{ width: "120px" }}
+          // className="w-20 option"
+
           >
             {" "}
             Add Car{" "}
           </Button>
           <p className="text-danger text-center">{this.state.errMsg}</p>
           <p className="text-success text-center">{this.state.successMsg}</p>
-          <h4>Available Locations</h4>
-          <Container>{this.state.allProjCards}</Container>
+          {/* <h4>Available Locations</h4> */}
+          {/* <Container>{this.state.allProjCards}</Container> */}
           {/* <Container>
 								{ this.state.allcategory }
 							</Container> */}
-        </Row>
-      </Form>
+        </div>
+      </div >
     );
   }
 }
@@ -429,12 +430,9 @@ class CreateVehicle extends Component {
 
   render() {
     return (
-      <div className="form">
+      <div >
         <Createvehicleform />
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+
       </div>
     );
   }

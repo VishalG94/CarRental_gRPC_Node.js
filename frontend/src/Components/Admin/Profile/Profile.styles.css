@@ -1,6 +1,6 @@
 .userdetails {
   display: flex;
-  width: 60%;
+  width: 80%;
   position: relative;
   left: 20%;
   justify-content: space-around;
@@ -11,19 +11,19 @@
 .userdetails .addressOptions {
   display: flex;
   width: 60%;
- 
+  height: 250px;
+
   justify-content: space-around;
   flex-direction: column;
   align-content: center;
 }
 
 .option {
-  width: 600px;
+  width: 800px;
   display: flex;
-  padding: 15px;
+  /* padding: 15px; */
   justify-content: flex-end;
 }
-
 
 .profile input {
   width: 250px;
@@ -35,6 +35,7 @@
   background-color: #fff;
   text-align: center;
 }
+
 .profile {
   width: 100%;
 }

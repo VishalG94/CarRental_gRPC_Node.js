@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import './viewallcars.css'
 import VehicleCard from "../Common/VehicleCard/VehicleCard"
-import { Card, CardBody, CardHeader, CardText, CardTitle, Container,CardImg } from 'reactstrap';
+import { Card, CardBody, CardHeader, CardText, CardTitle, Container, CardImg } from 'reactstrap';
 import logo1 from './Usersicon.jpg'
 
 import axios from 'axios';
@@ -12,117 +12,113 @@ import { Grid } from '@material-ui/core';
 class Usermanagement extends Component {
 
   constructor(props) {
-      super(props);
-      this.state = {
-        allProjCards: [],
-        _id:"",
-      }
+    super(props);
+    this.state = {
+      allProjCards: [],
+      _id: "",
+    }
   }
 
 
 
-  blockuserhandler= async (e) => {
-    
-     const _id=e.currentTarget.value
+  blockuserhandler = async (e) => {
+
+    const _id = e.currentTarget.value
     console.log("User Delete")
     console.log(_id)
     await axios.delete(`${Constants.BACKEND_SERVER.URL}/user?_id=${_id}`).then((response) => {
-      console.log(response) ;
-  
+      console.log(response);
+
       window.alert("User deleted From Database ");
-  
-      
+
+
+    }).then(() => {
+      window.location.reload(false)
     })
 
-}
-  
- 
+  }
+
+
   componentDidMount() {
-      
-        axios.get(`${Constants.BACKEND_SERVER.URL}/users`).then((response) => {
-        
-          if (response.data != null) {
-           var obj=(response.data)
-            console.log(obj.users)
-            var projectCards = [],
-              item,logo
-            //for (var index in obj.vehicles) {
-               Object.keys(obj.users).map((index) =>
-                 {
-                  
-              item=obj.users[index]
-              
-              localStorage.setItem(item['_id'], item['EMAIL']) ;
-              localStorage.setItem(item['EMAIL'], item['PASSWORD']) ;
-              
-              projectCards.push(
-                
-                   
-                  <Card className="card">
-                 <CardImg top width="100%" src={logo1} alt="Card image cap" />
-                    <CardHeader><b>Name: </b>{item['NAME']}</CardHeader>
-                    <CardBody>
-                    {/* <CardTitle><b>Id:</b> {item['_id']}</CardTitle> */}
-                      <CardTitle><b>Phone:</b> {item['PHONE']}</CardTitle>
-                      <CardText><b>Email:</b> {item['EMAIL']}</CardText>
-                      {/* <CardText><b>Late Fee</b> {item['LATE_FEE']}</CardText>
+
+    axios.get(`${Constants.BACKEND_SERVER.URL}/users`).then((response) => {
+
+      if (response.data != null) {
+        var obj = (response.data)
+        console.log(obj.users)
+        var projectCards = [],
+          item, logo
+        //for (var index in obj.vehicles) {
+        Object.keys(obj.users).map((index) => {
+
+          item = obj.users[index]
+
+          localStorage.setItem(item['_id'], item['EMAIL']);
+          localStorage.setItem(item['EMAIL'], item['PASSWORD']);
+
+          projectCards.push(
+
+
+
+
+            <Card className="card">
+
+              <CardHeader style={{ width: '400px' }}><b>Loc Name: </b>{item['NAME']}</CardHeader>
+              <div className="option" style={{ width: '400px' }}>
+                <img width="90px" height="90px" src={logo1} alt="Card  cap" />
+                <CardBody style={{ padding: '0', width: '150px' }}>
+                  <CardTitle><b>Phone:</b> {item['PHONE']}</CardTitle>
+                  <CardText><b>Email:</b> {item['EMAIL']}</CardText>
+                  {/* <CardText><b>Late Fee</b> {item['LATE_FEE']}</CardText>
                       <CardText><b>Hourly Feee</b> {item['HOURLY_FEE']}</CardText> */}
-                      <CardText><b>User type: </b> {item['USER_TYPE']}</CardText> 
-                    </CardBody>
-                    <Button value={item['_id']}onClick={this.blockuserhandler}>Delete User </Button>
-                  </Card>
-                  
-                  
-                  
-              )
-            })
-  
-            this.setState({
-              allProjCards: projectCards
-            })
-          }
+                  <CardText><b>User type: </b> {item['USER_TYPE']}</CardText>
+
+                </CardBody>
+              </div>
+              <Button value={item['_id']} onClick={this.blockuserhandler}>Delete User </Button>
+            </Card>
+
+
+          )
         })
-                  
-            
-              .catch((error) => { 
-                  console.log(error)
-                  this.setState({
-                      errMsg: "Error occured",
-                      successMsg: ""
-                  })
-             })
+
+        this.setState({
+          allProjCards: projectCards
+        })
       }
+    })
 
-  
-  render () {
-      return (
-       <div className="manageusers">
- <div>
 
- <div className="mainDiv">
-<div className="navDiv">
-</div>
-<div style={{ marginTop: "1%" }}>
-<div>
- <div class="card-arrange">
- <h1>Active Users</h1>
-   <Container>
-     { this.state.allProjCards }
-   </Container>
- </div>
-</div>
-</div>
-</div>
+      .catch((error) => {
+        console.log(error)
+        this.setState({
+          errMsg: "Error occured",
+          successMsg: ""
+        })
+      })
+  }
 
- </div>
-        
-        
-                
+
+  render() {
+    return (
+      // <div className="manageusers">
+
+
+      <div style={{ marginTop: "1%", marginLeft: '8%' }}>
+        <h1 style={{ marginTop: "1%", marginLeft: '-8%' }}>Active Users</h1>
+        <div>
+
+          {/* <Container> */}
+          {this.state.allProjCards}
+          {/* </Container> */}
+        </div>
       </div>
-        
-          
 
-      );
+
+      // </div>
+
+
+    );
   }
 }
 
@@ -222,7 +218,7 @@ export default Usermanagement;
 //   render() {
 //     return (
 //       <div className="manageusers">
-        
+
 //         <h1>User management</h1>
 //         <Row form >
 //                     <Col  >
@@ -233,13 +229,13 @@ export default Usermanagement;
 //                         <Button onClick={this.getuserhandler}> Get Details</Button>
 //                         <img src={logo1} flex="1"/>
 //                     </Col>
-                   
-                    
+
+
 //                 <h3>User Details will be displayed here</h3>
-            
+
 //                     <Button onClick={this.deleteuserhandler}> Delete User </Button>
 //                 </Row>
-                
+
 //       </div>
 //     );
 //   }

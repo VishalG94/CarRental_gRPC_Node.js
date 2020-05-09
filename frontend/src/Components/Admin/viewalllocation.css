@@ -1,0 +1,16 @@
+
+
+    .card{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height:300px;
+        float:left;
+        margin:10px;
+    }
+  
+    .card-arrange{
+        display: flex;
+        flex-wrap: wrap;
+       
+     }  
