@@ -71,6 +71,8 @@ class Viewindividualcategory extends Component {
             name: "",
             successMsg: "Successfully changed"
 
+          }, () => {
+            window.location.reload(false);
           })
         })
         .catch((error) => {
@@ -92,7 +94,9 @@ class Viewindividualcategory extends Component {
     axios.delete(`${Constants.BACKEND_SERVER.URL}/category/?_id=${this.props.match.params.projectId}`).then((response) => {
       console.log(response)
 
-      window.alert("Vehicle Deleted")
+      window.alert("Category Deleted")
+      window.location.reload(false);
+      window.location.href = "/admin/vehiclepricemanagement";
 
     })
 

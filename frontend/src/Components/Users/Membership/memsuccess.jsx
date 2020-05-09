@@ -35,7 +35,7 @@ class memsuccess extends Component {
 
         return (
             <div>
-                <div style={{ backgroundColor: "#FB9E00", width: "450px", minHeight: "450px", margin: "auto", border: "3px solid black" }}>
+                <div style={{ width: "450px", minHeight: "450px", margin: "auto" }}>
                     <br></br>
                     <br></br>
                     <p><h2>Congratulations on new membership!</h2></p>

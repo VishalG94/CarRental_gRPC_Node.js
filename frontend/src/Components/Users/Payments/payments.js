@@ -111,23 +111,23 @@ class payments extends Component {
         value: 'AmEx',
         label: 'AmEx',
       },
-      
+
     ];
     return (
       <div>
-        <h5>{localStorage.getItem("actualPrice")?`Full Amount:${localStorage.getItem("actualPrice")}`:" "}</h5>
-        <h5>{localStorage.getItem("price")?`Payment Amount:${localStorage.getItem("price")}`:" "}</h5>
-        <h5>{localStorage.getItem("lateFee")?`Late Return Amount:${localStorage.getItem("lateFee")}`:" "}</h5>
-        <h5>{localStorage.getItem("discount")?`You have a discount of:${localStorage.getItem("discount")}%`:" "}</h5>
+        <h5>{localStorage.getItem("actualPrice") ? `Full Amount:${localStorage.getItem("actualPrice")}` : " "}</h5>
+        <h5>{localStorage.getItem("price") ? `Payment Amount:${localStorage.getItem("price")}` : " "}</h5>
+        <h5>{localStorage.getItem("lateFee") ? `Late Return Amount:${localStorage.getItem("lateFee")}` : " "}</h5>
+        <h5>{localStorage.getItem("discount") ? `You have a discount of:${localStorage.getItem("discount")}%` : " "}</h5>
         <h5>Make payment</h5>
         <div >
           <form onSubmit={this.handleSubmit}>
             <div className="membershipForm">
               <div className="row1">
 
-              <div>
-              
-              </div>
+                <div>
+
+                </div>
                 <div className="option">
                   <TextField
                     id="outlined-textarea"
@@ -166,19 +166,19 @@ class payments extends Component {
                   /> */}
                   <TextField
 
-          id="outlined-textarea"          select
-         label="Card Type"
-         onChange={this.changeCardType}
-         
-         variant="outlined"
-         fullWidth
-         >
-         {currencies.map((option) => (
-           <MenuItem key={option.value} value={option.value}>
-             {option.label}
-           </MenuItem>
-         ))}
-           </TextField>
+                    id="outlined-textarea" select
+                    label="Card Type"
+                    onChange={this.changeCardType}
+
+                    variant="outlined"
+                    fullWidth
+                  >
+                    {currencies.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
                 </div>
                 <div className="option">
                   <TextField
@@ -207,7 +207,7 @@ class payments extends Component {
             {/* <Link to="/memsuccess">
              <CustomButton type="submit">Start Memebership</CustomButton> 
              </Link> */}
-            <CustomButton type="submit">Start Memebership</CustomButton>
+            <CustomButton type="submit">Pay Now!</CustomButton>
           </form>
         </div>
       </div>

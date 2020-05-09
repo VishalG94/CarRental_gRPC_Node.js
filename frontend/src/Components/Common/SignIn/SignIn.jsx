@@ -47,8 +47,12 @@ class SignIn extends React.Component {
             this.props.history.push("/users/home");
           }
         } else {
+          console.log("Wrong Signon")
           window.alert("Incorrect Email or Password");
         }
+      }).catch((err) => {
+        console.log("Wrong Signon")
+        window.alert("Incorrect Email or Password");
       });
     // this.setState({ email: "", password: "" });
   };

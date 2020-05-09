@@ -63,7 +63,7 @@ class Usermanagement extends Component {
 
             <Card className="card">
 
-              <CardHeader style={{ width: '400px' }}><b>Loc Name: </b>{item['NAME']}</CardHeader>
+              <CardHeader style={{ width: '400px' }}><b>User Name: </b>{item['NAME']}</CardHeader>
               <div className="option" style={{ width: '400px' }}>
                 <img width="90px" height="90px" src={logo1} alt="Card  cap" />
                 <CardBody style={{ padding: '0', width: '150px' }}>

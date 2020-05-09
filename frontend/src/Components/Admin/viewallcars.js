@@ -35,18 +35,21 @@ class Viewallcars extends Component {
 
           item = obj.vehicles[index]
           console.log(item['CATEGORY'])
-          if (item['CATEGORY']['CATEGORY_NAME'] == "SUV") {
+          if (item['CATEGORY']['CATEGORY_NAME'] === "SUV") {
             logo = logo1;
           }
-          else if (item['CATEGORY']['CATEGORY_NAME'] == "Luxury") {
+          else if (item['CATEGORY']['CATEGORY_NAME'] === "Luxury") {
 
             logo = logo3;
           }
-          else if (item['CATEGORY']['CATEGORY_NAME'] == "Hatchback") {
+          else if (item['CATEGORY']['CATEGORY_NAME'] === "Hatchback") {
 
             logo = logo2;
           }
-          else if (item['CATEGORY']['CATEGORY_NAME'] == "Sedan") {
+          else if (item['CATEGORY']['CATEGORY_NAME'] === "Sedan") {
+            logo = logo4;
+          }
+          else {
             logo = logo4;
           }
           localStorage.setItem(item['REGISTRATION_TAG'], item['_id']);

@@ -52,8 +52,8 @@ class Viewindividuallocation extends Component {
       console.log(response);
 
       window.alert("Vehilce Removed From This Location ");
-      window.location.reload();
-
+      window.location.reload(false);
+      // window.location.href = "home";
 
     })
 
@@ -132,9 +132,9 @@ class Viewindividuallocation extends Component {
 
           <Card className="card">
 
-            <CardHeader style={{ width: '800px' }}><b>Loc Name: </b>{item['NAME']}</CardHeader>
+            <CardHeader style={{ width: '800px' }}><b>Location Name: </b>{item['NAME']}</CardHeader>
             <div className="option" style={{ width: '800px' }}>
-              <img width="100px" height="100px" src={logo} alt="Card  cap" />
+              <img width="130px" height="130px" src={logo} alt="Card  cap" />
               <CardBody style={{ padding: '0', width: '150px' }} className="option">
                 <div>
                   <CardTitle><b>State:</b> {item['ADDRESS'].STATE}</CardTitle>
@@ -148,8 +148,9 @@ class Viewindividuallocation extends Component {
 
                   <CardText><b>Vehicles Available Now:</b> {item['CURRENT_CAPACITY']}</CardText>
                   <CardText><b>Total Vehicle limit:</b> {item['VEHICLE_CAPACITY']}</CardText>
-                </div>
+                  <Button color="danger" onClick={this.deletelocationhandler} className="w-100">Delete</Button>
 
+                </div>
               </CardBody>
 
             </div>

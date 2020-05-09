@@ -113,6 +113,8 @@ class Vehiclepricemanagement extends Component {
             vehilceid: response.data._id,
             successMsg: "Successfully Added"
 
+          }, () => {
+            window.location.reload(false)
           })
 
 

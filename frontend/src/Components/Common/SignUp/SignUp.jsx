@@ -64,8 +64,11 @@ class SignUp extends Component {
         .post(`${Constants.BACKEND_SERVER.URL}/user`, userdetails)
         .then((response) => {
           console.log(response);
+          window.alert("SignUp successful! Please pay your membership price");
           this.props.history.push("membership");
-          //  window.alert("SignUp successful! Please Login");
+        }).catch((err) => {
+          window.alert("Invalid Details. Please Re-enter");
+
         });
 
       // this.setState({
@@ -89,7 +92,8 @@ class SignUp extends Component {
     return (
       <div className="signUp">
         <h1>New User?</h1>
-        <h2>Create an account with Email and Password</h2>
+        <h2>Create an account </h2>
+        <h5>   with Email and Password</h5>
         <Link to="/users/login" style={{ textDecoration: "none" }}>
           Have an account? SignIn!
         </Link>
