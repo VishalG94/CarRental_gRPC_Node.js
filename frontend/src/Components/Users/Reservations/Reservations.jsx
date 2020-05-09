@@ -148,6 +148,10 @@ class Reservations extends Component {
             <div>{this.state.vehicleDetails.MODEL}</div>
           </div>
           <div className="options">
+            <div> Vehicle Type : </div>
+            <div>{this.state.vehicleDetails.CATEGORY.CATEGORY_NAME}</div>
+          </div>
+          <div className="options">
             Location Name : {this.state.vehicleDetails.LOCATION.NAME}
           </div>
           <div className="options">

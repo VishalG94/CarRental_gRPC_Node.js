@@ -47,6 +47,7 @@ class BannerCard extends Component {
     console.log("Return car id" + this.props.VEHICLE._id + " res id " + this.props._id);
   };
   cancelHandler = () => {
+   
     let req = {
       STATUS: "CANCELLED",
       USER_COMMENTS: "",
