@@ -34,8 +34,8 @@ const membershipProto = grpc.loadPackageDefinition(
     protoLoader.loadSync('./protos/membership.proto', protoOptions)
 );
 
-let clientServer = 'http://3.86.217.122:50051'
-// let clientServer = 'localhost:50051'
+// let clientServer = 'http://3.86.217.122:50051'
+let clientServer = 'localhost:50051'
 
 client = new vehiclesProto.VehicleService(clientServer, grpc.credentials.createInsecure());
 addressClient = new addressProto.AddressService(clientServer, grpc.credentials.createInsecure());

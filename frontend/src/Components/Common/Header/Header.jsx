@@ -51,7 +51,7 @@ class Header extends Component {
           </Link>
 
           <div className="options">
-            <Link to="profile" className="option">
+            <Link to="profile" className="option" >
               {userName}
             </Link>
 

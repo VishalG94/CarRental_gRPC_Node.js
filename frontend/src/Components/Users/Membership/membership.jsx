@@ -9,6 +9,8 @@ import axios from "axios";
 import Constants from "../../../Utils/Constants";
 import { Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
+import MenuItem from '@material-ui/core/MenuItem';
+
 
 class membership extends Component {
   constructor(props) {
@@ -73,8 +75,13 @@ class membership extends Component {
       console.log(response.body);
       //  this.props.history.push("/users/memsuccess");
       //user membership update
+
+      let memObj={
+               MEMBERSHIP_START:new Date(),
+
+      }
       axios
-        .put(`${Constants.BACKEND_SERVER.URL}/userMembership`, obj)
+        .put(`${Constants.BACKEND_SERVER.URL}/userMembership`, memObj)
         .then((response) => {
           console.log(response.body);
           // this.props.history.push("/users/memsuccess");
@@ -113,15 +120,34 @@ class membership extends Component {
     this.setState({ expiryyear: e.target.value });
   };
   render() {
+    const currencies = [
+      {
+        value: 'Visa',
+        label: 'Visa',
+      },
+      {
+        value: 'MasterCard',
+        label: 'MasterCard',
+      },
+      {
+        value: 'AmEx',
+        label: 'AmEx',
+      },
+      
+    ];
     return (
       <div >
-        <h1>Start your memberhsip today!</h1>
+        <h1>Start your membership today!</h1>
+        <br/>
 
         <div >
           <form onSubmit={this.handleSubmit}>
             <div className="membershipForm">
               <div className="row1">
 
+              <div>
+              
+              </div>
                 <div className="option">
                   <TextField
                     id="outlined-textarea"
@@ -131,7 +157,7 @@ class membership extends Component {
                     variant="outlined"
                     onChange={this.changeCardNumber}
                     required
-                  // width="500px"
+                    fullWidth
                   />
                 </div>
                 <div className="option">
@@ -143,12 +169,13 @@ class membership extends Component {
                     variant="outlined"
                     onChange={this.changeName}
                     required
+                    fullWidth
                   />
                 </div>
               </div>
               <div className="row2">
                 <div className="option">
-                  <TextField
+                  {/* <TextField
                     id="outlined-textarea"
                     label="Card Type"
                     placeholder="Please enter here"
@@ -156,7 +183,22 @@ class membership extends Component {
                     variant="outlined"
                     onChange={this.changeCardType}
                     required
-                  />
+                  /> */}
+                  <TextField
+
+          id="outlined-textarea"          select
+         label="Card Type"
+         onChange={this.changeCardType}
+         
+         variant="outlined"
+         fullWidth
+         >
+         {currencies.map((option) => (
+           <MenuItem key={option.value} value={option.value}>
+             {option.label}
+           </MenuItem>
+         ))}
+           </TextField>
                 </div>
                 <div className="option">
                   <TextField

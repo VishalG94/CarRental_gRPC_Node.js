@@ -86,10 +86,14 @@ class Reservations extends Component {
     duration = Math.ceil(duration);
     console.log(duration);
     let price = duration * this.state.vehicleDetails.CATEGORY.HOURLY_FEE;
-    localStorage.setItem("price", price);
+    // localStorage.setItem("price", price);
     if (duration > 72) {
       window.alert("Duration cannot be more than 72 hours or 3 days");
-    } else {
+    }
+    else if (duration < 0) {
+      window.alert("Return Date cannot be before Booking date");
+    } 
+    else {
       let reqObj = {
         USER: localStorage.getItem("userId"),
         VEHICLE: this.state.vehicleDetails._id,

@@ -123,6 +123,34 @@ class Profile extends Component {
         }
       });
   };
+  handleTerminate = (e) => {
+    e.preventDefault();
+    const {
+      disabled,
+      editstate,
+      oldDetails,
+      ...userDetails
+    } = this.state;
+
+
+    const req = {
+      MEMBERSHIP_START: null,
+      ...userDetails,
+    };
+    console.log(req)
+    axios
+      .put(`${Constants.BACKEND_SERVER.URL}/user`, req)
+      .then((res) => {
+        console.log(res)
+        if (res.status === 200) {
+          window.alert("Membership Terminated Successfully");
+          window.location.reload(false);
+          localStorage.clear()
+          window.location.href = "/"; 
+
+        }
+      });
+  };
   render() {
     let addresschange
     if (this.state.oldDetails.ADDRESS) {
@@ -235,6 +263,11 @@ class Profile extends Component {
             <CustomButton type="submit" onClick={this.handleSave}>
               Save Changes
               {/* {this.state.editstate ? "Cancel Edit" : "Edit Details"}{" "} */}
+            </CustomButton>
+
+            
+            <CustomButton type="submit" onClick={this.handleTerminate}>
+Terminate Membership              
             </CustomButton>
           </div>
         </form>

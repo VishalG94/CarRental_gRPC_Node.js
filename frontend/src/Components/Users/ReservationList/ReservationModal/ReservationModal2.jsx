@@ -31,7 +31,7 @@ function ReservationModal(props) {
                 </p>
             </Modal.Body>
             <Modal.Footer>
-                <CustomButton onClick={props.onHide}>Confirm</CustomButton>
+                <CustomButton onClick={props.as}>Confirm</CustomButton>
             </Modal.Footer>
         </Modal>
     );

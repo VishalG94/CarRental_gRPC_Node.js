@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import "./BannerCard-styles.css";
+import { Redirect } from "react-router-dom";
+
 import imageURL from "../../../../Assets/Icons/Calendar.svg";
 import CustomButton from "../../../Common/CustomButton/CustomButton";
 import ReservationModal from "../ReservationModal/ReservationModal";
@@ -13,6 +15,7 @@ class BannerCard extends Component {
     timeLeft: 0,
     showModal1: false,
     showModal2: false,
+    redirect: false
   }
 
   componentWillMount() {
@@ -24,6 +27,7 @@ class BannerCard extends Component {
     this.setState({ timeLeft: timeLeft })
   }
   returnHandler = () => {
+    console.log("Return Handler Inside")
     let req = {
       STATUS: "COMPLETED",
       USER_COMMENTS: "",
@@ -31,12 +35,59 @@ class BannerCard extends Component {
       USER_ID: this.props.USER._id,
       _id: this.props._id,
     };
+
+    
+    let price=this.props.PRICE
+        let duration=this.props.RENTAL_DURATION
+    let currDate=new Date();
+    currDate=currDate.getTime();
+    let retTime=new Date(this.props.RETRUN_TIME)
+    retTime=retTime.getTime();
+    let retGap=((currDate-retTime)/ (1000 * 60 * 60))
+    retGap=Math.ceil(retGap)
+    let lateFee=0
+    if(retGap>1)
+    {
+      lateFee=retGap*(price/duration)
+      localStorage.setItem("lateFee",lateFee)
+    }
+
+
+
+        // console.log(this.props)
+        localStorage.setItem("duration",duration)
+        localStorage.setItem("actualPrice",price)
+        console.log("Price for this item is:"+ price)
+        console.log("Duration for this vehicle is"+ duration)
+        if (duration < 1) {
+          let Price=price/duration+lateFee;
+          localStorage.setItem("price",Price);
+        }
+        else if (duration > 1 &&duration < 5 ) {
+          let Price=price*0.8+lateFee;
+          localStorage.setItem("price",Price);
+          localStorage.setItem("discount","20");
+        }
+        else if (duration > 5 &&duration < 10 ) {
+          let Price=price*0.7+lateFee;
+          localStorage.setItem("price",Price);
+          localStorage.setItem("discount","30");
+          
+        }
+       
+        else {
+          let Price=price*0.6+lateFee;
+          localStorage.setItem("price",Price);
+          localStorage.setItem("discount","40");
+        }
     axios
       .put(`${Constants.BACKEND_SERVER.URL}/reservation`, req)
       .then((res) => {
+        
         console.log("Reservation Completed" + res);
         this.setState({ showModal2: false, showModal1: false })
         window.location.reload(false);
+        window.location.href = "payments";        
       })
       .catch((err) => {
         console.log("Reservation errored");
@@ -58,18 +109,29 @@ class BannerCard extends Component {
     axios
       .put(`${Constants.BACKEND_SERVER.URL}/reservation`, req)
       .then((res) => {
-        if (this.state.timeLeft < 1) {
-          localStorage.setItem("price");
-          this.props.history.push("/payments");
+        let price=this.props.PRICE
+        let duration=this.props.RENTAL_DURATION
+        console.log("Price for this item is:"+ price)
+        console.log("Duration for this vehicle is"+ duration)
+        if (this.state.timeLeft <= 1) {
+          let Price=price/duration;
+          localStorage.setItem("price",Price);
+          console.log("Less than 1 hr time ")
+          window.location.href = "payments"; 
         }
+        else{
         console.log("Reservation cancelled" + res);
         this.setState({ showModal2: false, showModal1: false })
+        console.log("More than 1 hr time ")
         window.location.reload(false);
+        window.location.href = "home"; 
+        }
+        
       })
       .catch((err) => {
         console.log("Reservation errored");
         this.setState({ showModal2: false, showModal1: false })
-        window.location.reload(false);
+        // window.location.reload(false);
       });
     console.log(this.state.timeLeft);
 
@@ -164,9 +226,10 @@ class BannerCard extends Component {
       display = <div>No Reservations to show</div>
     }
     return (
+     
       <div>
         {display}
-
+        
       </div>
     );
   }

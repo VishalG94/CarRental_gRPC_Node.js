@@ -1,5 +1,6 @@
 .membershipForm {
   display: flex;
+  margin-left: 25%;
   flex-direction: column;
   width: 50%;
   align-self: center;

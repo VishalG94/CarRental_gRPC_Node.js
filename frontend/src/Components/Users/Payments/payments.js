@@ -9,6 +9,7 @@ import axios from "axios";
 import Constants from "../../../Utils/Constants";
 import { Link } from "react-router-dom";
 import { Grid } from "@material-ui/core";
+import MenuItem from '@material-ui/core/MenuItem';
 
 class payments extends Component {
   constructor(props) {
@@ -97,21 +98,37 @@ class payments extends Component {
     this.setState({ expiryyear: e.target.value });
   };
   render() {
+    const currencies = [
+      {
+        value: 'Visa',
+        label: 'Visa',
+      },
+      {
+        value: 'MasterCard',
+        label: 'MasterCard',
+      },
+      {
+        value: 'AmEx',
+        label: 'AmEx',
+      },
+      
+    ];
     return (
       <div>
-        <h2>Payment Amount: {localStorage.getItem("price")}</h2>
-        <h1>Make payment</h1>
-
-        <div className="membershipForm">
+        <h5>{localStorage.getItem("actualPrice")?`Full Amount:${localStorage.getItem("actualPrice")}`:" "}</h5>
+        <h5>{localStorage.getItem("price")?`Payment Amount:${localStorage.getItem("price")}`:" "}</h5>
+        <h5>{localStorage.getItem("lateFee")?`Late Return Amount:${localStorage.getItem("lateFee")}`:" "}</h5>
+        <h5>{localStorage.getItem("discount")?`You have a discount of:${localStorage.getItem("discount")}%`:" "}</h5>
+        <h5>Make payment</h5>
+        <div >
           <form onSubmit={this.handleSubmit}>
-            <div className="input">
-              <Grid
-                container
-                direction="column"
-                justify="space-evenly"
-                alignItems="center"
-              >
-                <Grid item xs={12}>
+            <div className="membershipForm">
+              <div className="row1">
+
+              <div>
+              
+              </div>
+                <div className="option">
                   <TextField
                     id="outlined-textarea"
                     label="Card Number"
@@ -120,10 +137,10 @@ class payments extends Component {
                     variant="outlined"
                     onChange={this.changeCardNumber}
                     required
+                    fullWidth
                   />
-                </Grid>
-
-                <Grid item xs={12}>
+                </div>
+                <div className="option">
                   <TextField
                     id="outlined-textarea"
                     label="Name on Card"
@@ -132,10 +149,13 @@ class payments extends Component {
                     variant="outlined"
                     onChange={this.changeName}
                     required
+                    fullWidth
                   />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
+                </div>
+              </div>
+              <div className="row2">
+                <div className="option">
+                  {/* <TextField
                     id="outlined-textarea"
                     label="Card Type"
                     placeholder="Please enter here"
@@ -143,10 +163,24 @@ class payments extends Component {
                     variant="outlined"
                     onChange={this.changeCardType}
                     required
-                  />
-                </Grid>
+                  /> */}
+                  <TextField
 
-                <Grid item xs={12}>
+          id="outlined-textarea"          select
+         label="Card Type"
+         onChange={this.changeCardType}
+         
+         variant="outlined"
+         fullWidth
+         >
+         {currencies.map((option) => (
+           <MenuItem key={option.value} value={option.value}>
+             {option.label}
+           </MenuItem>
+         ))}
+           </TextField>
+                </div>
+                <div className="option">
                   <TextField
                     id="outlined-textarea"
                     label="Expiry Month"
@@ -156,8 +190,8 @@ class payments extends Component {
                     onChange={this.changeMonth}
                     required
                   />
-                </Grid>
-                <Grid item xs={12}>
+                </div>
+                <div className="option">
                   <TextField
                     id="outlined-textarea"
                     label="Expiry Year"
@@ -167,13 +201,13 @@ class payments extends Component {
                     onChange={this.changeyear}
                     required
                   />
-                </Grid>
-              </Grid>
+                </div>
+              </div>
             </div>
             {/* <Link to="/memsuccess">
              <CustomButton type="submit">Start Memebership</CustomButton> 
              </Link> */}
-            <CustomButton type="submit">Make Payment</CustomButton>
+            <CustomButton type="submit">Start Memebership</CustomButton>
           </form>
         </div>
       </div>
