@@ -67,6 +67,7 @@ class Viewindividuallocation extends Component {
 
       window.alert("Location Deleted")
       window.location.reload();
+      window.location.href = ("/admin/viewalllocations")
 
     })
 

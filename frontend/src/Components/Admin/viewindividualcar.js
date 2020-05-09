@@ -162,7 +162,6 @@ class Viewindividualcar extends Component {
               <CardText><b>Year: </b> {item['YEAR']}</CardText>
               <CardText><b>Condition: </b> {item['VEHICLE_CONDITION']}</CardText>
               <CardText><b>Mileage: </b> {item['MILEAGE']}</CardText>
-              <CardText><b>Assigned Location</b>{this.state.vehiclepresentlocationname} </CardText>
 
             </CardBody>
 
