@@ -35,12 +35,12 @@ class BannerCard extends Component {
       .put(`${Constants.BACKEND_SERVER.URL}/reservation`, req)
       .then((res) => {
         console.log("Reservation Completed" + res);
-        this.props.modalShowHandler(false);
+        this.setState({ showModal2: false, showModal1: false })
         window.location.reload(false);
       })
       .catch((err) => {
         console.log("Reservation errored");
-        this.props.modalShowHandler(false);
+        this.setState({ showModal2: false, showModal1: false })
         window.location.reload(false);
       });
 
@@ -62,12 +62,12 @@ class BannerCard extends Component {
           this.props.history.push("/payments");
         }
         console.log("Reservation cancelled" + res);
-        this.props.CancelmodalShowHandler(false);
+        this.setState({ showModal2: false, showModal1: false })
         window.location.reload(false);
       })
       .catch((err) => {
         console.log("Reservation errored");
-        this.props.CancelmodalShowHandler(false);
+        this.setState({ showModal2: false, showModal1: false })
         window.location.reload(false);
       });
     console.log(this.state.timeLeft);
@@ -158,6 +158,9 @@ class BannerCard extends Component {
           </div>
         </div>
       </div>
+    }
+    else if (display === null) {
+      display = <div>No Reservations to show</div>
     }
     return (
       <div>
