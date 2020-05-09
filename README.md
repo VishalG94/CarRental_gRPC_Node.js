@@ -24,6 +24,7 @@ Other system features such as billing, authentication, authorization and notific
 
 # Deliverables
 Task Sheet: https://docs.google.com/spreadsheets/d/1o0Utx2rpqNUzCiUaXEod9l5wu1-GfdncoL4Ryg2nUdY/edit#gid=0
+Github Dashboard: https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-spartans-family/projects/1
 
 # Contributors
 Dhanasree Are <br/>
