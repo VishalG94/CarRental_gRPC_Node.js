@@ -273,6 +273,7 @@ class Viewindividualcar extends Component {
       console.log(response)
 
       window.alert("Vehicle Deleted")
+      window.location.href = ("/admin/viewallcars")
 
     })
 
