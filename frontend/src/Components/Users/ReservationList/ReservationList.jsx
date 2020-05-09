@@ -11,7 +11,7 @@ import { Modal, Button } from "react-bootstrap";
 class ReservationList extends Component {
   state = {
     RESERVATIONS: [],
-
+    resString:"No Reservations"
   };
   componentWillMount() {
     axios
@@ -31,12 +31,14 @@ class ReservationList extends Component {
 
     return (
       <div className="ResList">
-        {this.state.RESERVATIONS.map((details) => (
+
+        {(this.state.RESERVATIONS.length>0)?this.state.RESERVATIONS.map((details) => (
           <BannerCard
             {...details}
 
-          />
-        ))}
+          />        )):
+          <h3>No Reservations</h3>
+}
       </div>
     );
   }
