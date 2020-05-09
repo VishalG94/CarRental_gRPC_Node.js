@@ -23,9 +23,9 @@ Other system features such as billing, authentication, authorization and notific
 -	The application is deployed to AWS in an auto scalable EC2 cluster with Load Balancer.
 
 # Deliverables
-Task Sheet: https://docs.google.com/spreadsheets/d/1o0Utx2rpqNUzCiUaXEod9l5wu1-GfdncoL4Ryg2nUdY/edit#gid=0
+Task Sheet xls: https://docs.google.com/spreadsheets/d/1o0Utx2rpqNUzCiUaXEod9l5wu1-GfdncoL4Ryg2nUdY/edit#gid=0
 Github Dashboard: https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-spartans-family/projects/1
-https://docs.google.com/document/d/1_sgRQ-jjhW6xlzeZk56BqyLJVNNkEpns9rO9DxSYqq8/edit
+Task Sheet: https://docs.google.com/document/d/1_sgRQ-jjhW6xlzeZk56BqyLJVNNkEpns9rO9DxSYqq8/edit
 
 # Contributors
 Dhanasree Are <br/>
