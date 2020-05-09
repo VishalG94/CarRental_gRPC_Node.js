@@ -35,6 +35,16 @@
   background-color: #fff;
   text-align: center;
 }
+input {
+  width: 250px;
+  margin-left: 10px;
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  background-color: #fff;
+  text-align: center;
+}
 .profile {
   width: 100%;
 }

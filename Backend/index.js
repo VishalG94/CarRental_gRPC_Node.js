@@ -41,7 +41,8 @@ app.set("port", SERVER_PORT);
 
 let server = app.listen(app.get("port"), function () {
     let port = server.address().port;
-    console.log('server started at port:', port)
+    console.log('server started at port:' + port)
+
 });
 
 module.exports = app;
