@@ -114,35 +114,38 @@ class membership extends Component {
   };
   render() {
     return (
-      <div>
+      <div >
         <h1>Start your memberhsip today!</h1>
 
-        <div>
+        <div >
           <form onSubmit={this.handleSubmit}>
             <div className="membershipForm">
-              <div className="option">
-                <TextField
-                  id="outlined-textarea"
-                  label="Card Number"
-                  placeholder="Please enter here"
-                  multiline
-                  variant="outlined"
-                  onChange={this.changeCardNumber}
-                  required
-                />
-                {/* </div>
-              <div className="option"> */}
-                <TextField
-                  id="outlined-textarea"
-                  label="Name on Card"
-                  placeholder="Please enter here"
-                  multiline
-                  variant="outlined"
-                  onChange={this.changeName}
-                  required
-                />
-              </div>
+              <div className="row1">
 
+                <div className="option">
+                  <TextField
+                    id="outlined-textarea"
+                    label="Card Number"
+                    placeholder="Please enter here"
+                    multiline
+                    variant="outlined"
+                    onChange={this.changeCardNumber}
+                    required
+                  // width="500px"
+                  />
+                </div>
+                <div className="option">
+                  <TextField
+                    id="outlined-textarea"
+                    label="Name on Card"
+                    placeholder="Please enter here"
+                    multiline
+                    variant="outlined"
+                    onChange={this.changeName}
+                    required
+                  />
+                </div>
+              </div>
               <div className="row2">
                 <div className="option">
                   <TextField

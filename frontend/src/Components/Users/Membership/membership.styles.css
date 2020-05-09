@@ -1,14 +1,25 @@
 .membershipForm {
   display: flex;
   flex-direction: column;
-  /* width: ; */
+  width: 50%;
+  align-self: center;
 }
 
 .membershipForm .option {
   padding: 10px;
   width: 100%;
   display: flex;
+  justify-content: stretch;
 }
+
 .row2 {
   display: flex;
 }
+.row1{
+  display: flex;
+  
+  justify-content: stretch;
+}
+/* .row1 .option{
+  justify-content: ;
+} */

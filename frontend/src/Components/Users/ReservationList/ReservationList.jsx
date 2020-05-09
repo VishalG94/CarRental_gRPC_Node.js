@@ -11,10 +11,7 @@ import { Modal, Button } from "react-bootstrap";
 class ReservationList extends Component {
   state = {
     RESERVATIONS: [],
-    modalShow: false,
-    setModalShow: false,
-    CancelmodalShow: false,
-    CancelsetModalShow: false,
+
   };
   componentWillMount() {
     axios
@@ -29,27 +26,15 @@ class ReservationList extends Component {
       });
   }
 
-  setModalShow = (e) => {
-    this.setState({ modalShow: e });
-  };
-  CancelsetModalShow = (e) => {
-    this.setState({ CancelmodalShow: e });
-  };
+
   render() {
-    let modalDetails = {
-      modalHeader: "Confirm Action",
-    };
-    //const [modalShow, setModalShow] = React.useState(false);
+
     return (
       <div className="ResList">
         {this.state.RESERVATIONS.map((details) => (
           <BannerCard
             {...details}
-            modalShow={this.state.modalShow}
-            modalShowHandler={this.setModalShow}
-            modalDetails={modalDetails}
-            CancelmodalShowHandler={this.CancelsetModalShow}
-            CancelmodalShow={this.state.CancelmodalShow}
+
           />
         ))}
       </div>

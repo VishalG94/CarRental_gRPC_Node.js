@@ -13,6 +13,7 @@ import membership from "./Components/Users/Membership/membership";
 import membershiphome from "./Components/Users/Membership/membershiphome";
 import membersuccess from "./Components/Users/Membership/memsuccess";
 import payments from "./Components/Users/Payments/payments";
+import AdminProfile from './Components/Admin/Profile/Profile'
 
 import AdminHomePage from "../src/Components/Admin/HomePage/HomePage";
 
@@ -70,10 +71,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Route path="/admin" component={Sidenavbar} />
 
         <div className="App">
           <Header {...this.props} onSignout={this.onSignout} />
+          <Route path="/admin" component={Sidenavbar} />
+
           <Switch>
             {/* <Route
           exact
@@ -144,7 +146,7 @@ class App extends Component {
             />
             <Route exact path="/users/home" component={UserHomePage} />{" "}
             <Route exact path="/users/signup" component={SignupPage} />{" "}
-            <Route path="/profile" component={Profile} />{" "}
+            <Route exact path="/users/profile" component={Profile} />{" "}
             <Route exact path="/users/reservations" component={Reservations} />{" "}
             <Route
               exact
@@ -167,6 +169,8 @@ class App extends Component {
             />{" "}
             <Route exact path="/users/vehicleList" component={AllVehicles} />{" "}
             <Route exact path="/admin/home" component={AdminHomePage} />{" "}
+            <Route exact path="/admin/profile" component={AdminProfile} />{" "}
+
             <Route
               exact
               path="/admin/vehiclecatalog"
@@ -178,7 +182,7 @@ class App extends Component {
               component={Membershipfee}
             />{" "}
           </Switch>{" "}
-          <Footer />
+          <Footer className="footerApp" />
         </div>
       </div>
     );

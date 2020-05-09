@@ -57,10 +57,9 @@ class Viewallcars extends Component {
             <a href={`/admin/viewallcars/view/${item['_id']}`} className="text-decoration-none text-dark">
 
               <Card className="card" style={{ width: '250px', height: '400px' }} >
-                <CardImg src={logo} alt="Card image cap" />
-                <CardHeader><b>RTag: </b>{item['REGISTRATION_TAG']}</CardHeader>
+                <img width='250px' height='166px' src={logo} alt="Card  cap" />
+                <CardTitle><b>RTag: </b>{item['REGISTRATION_TAG']}</CardTitle>
                 <CardBody>
-
                   <CardTitle><b>MAKE:</b> {item['MAKE']}</CardTitle>
                   <CardText><b>Model:</b> {item['MODEL']}</CardText>
                   <CardText><b>Category</b> {item['CATEGORY']['CATEGORY_NAME']}</CardText>
@@ -96,24 +95,21 @@ class Viewallcars extends Component {
   render() {
     return (
       <div>
-        <Button color="danger" href="/admin/viewallcars" className="w-100"> Get all Vehicles</Button>
-        <Button color="danger" href="/admin/viewalllocations" className="w-100"> Get all Locations</Button>
-
-        <div className="mainDiv">
-          <div className="navDiv">
-          </div>
-          <div style={{ marginTop: "1%" }}>
-            <div>
-              <div class="card-arrange">
-                <Col><br></br></Col>
-                <Container>
-                  {this.state.allProjCards}
-                </Container>
-              </div>
-            </div>
-          </div>
+        <div class="option" style={{ marginLeft: '30%' }}>
+          <Button color="danger" href="/admin/viewallcars" className="w-100"> Get all Vehicles</Button>
+          <Button color="danger" href="/admin/viewalllocations" className="w-100"> Get all Locations</Button>
         </div>
 
+        <div style={{ marginTop: "1%", marginLeft: '-10%' }}>
+          <div>
+            <div class="card-arrange">
+              <Container>
+                {this.state.allProjCards}
+              </Container>
+            </div>
+          </div>
+
+        </div>
       </div>
 
     );
