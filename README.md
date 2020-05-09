@@ -22,6 +22,9 @@ Other system features such as billing, authentication, authorization and notific
 -	APIs are built using NodeJs and gRPC.
 -	The application is deployed to AWS in an auto scalable EC2 cluster with Load Balancer.
 
+# Deliverables
+Task Sheet: https://docs.google.com/spreadsheets/d/1o0Utx2rpqNUzCiUaXEod9l5wu1-GfdncoL4Ryg2nUdY/edit#gid=0
+
 # Contributors
 Dhanasree Are <br/>
 Sri Hari Duvvuri <br/>
