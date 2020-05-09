@@ -36,7 +36,11 @@ class Header extends Component {
     const loggedIn = localStorage.getItem('loggedIn');
     let home;
     if (loggedIn) {
-      home = "home";
+      if (userType === "admin")
+        home = "/admin/home";
+      else
+        home = "/users/home";
+
     }
     else {
       home = '/';
