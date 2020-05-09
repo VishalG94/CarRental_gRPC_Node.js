@@ -57,7 +57,7 @@ class Reservations extends Component {
           // console.log(this.state.vehicleDetails.RESERVATIONS[reservation].PICKUP_TIME)
         }
         let loc
-        if (localStorage.getItem("locationId") == null) {
+        if (localStorage.getItem("locationId") === null) {
           loc = this.state.vehicleDetails.LOCATION._id
         }
         else {

@@ -1,6 +1,6 @@
 # sp20-cmpe-202-sec-03-team-project-spartans-family
 sp20-cmpe-202-sec-03-team-project-spartans-family created by GitHub Classroom
-# Rent-A-Ride
+# Spartan Cars
 A system that supports a small car rental service company.
 # Abstract
 The car rental company has a few hundred cars and has an advantage of providing rentals to people below 25 years of age with a valid driver’s license and an address.The main actors in the system are Admin and Users. <br/><br/>
