@@ -16,7 +16,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const { FRONTEND_URL, SERVER_PORT, RES_SUCCESS } = require("./constants/iconstants");
 const corsOptions = {
-    origin: FRONTEND_URL,
+    origin: "*",
     credentials: true,
     optionsSuccessStatus: RES_SUCCESS
 };
