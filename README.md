@@ -28,6 +28,12 @@ Github Dashboard: https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-proj
 
 Task Sheet: https://docs.google.com/document/d/1_sgRQ-jjhW6xlzeZk56BqyLJVNNkEpns9rO9DxSYqq8/edit
 
+## Architechture Diagram
+
+<img width="900" alt="Arch Diagram" src="https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-spartans-family/blob/master/Architechture.JPG">
+
+
+
 # Contributors
 Dhanasree Are <br/>
 Sri Hari Duvvuri <br/>
