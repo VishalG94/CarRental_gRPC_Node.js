@@ -29,8 +29,6 @@ Github Dashboard: https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-proj
 
 Demo Video: https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-spartans-family/blob/master/202DemoVid.avi
 
-Task Sheet: https://docs.google.com/document/d/1_sgRQ-jjhW6xlzeZk56BqyLJVNNkEpns9rO9DxSYqq8/edit
-
 Project Journal: https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-project-spartans-family/blob/master/ProjectJournal/README.md
 
 ## Architechture Diagram
