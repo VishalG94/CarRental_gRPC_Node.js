@@ -1,4 +1,4 @@
-**CMPE 202-PROJECT JOURNAL Sec-03**
+##**CMPE 202-PROJECT JOURNAL Sec-03**
 
 **Team members: Venkata Sai Sri Hari**
 
@@ -18,7 +18,7 @@
 
 
 
-# **Spartan Family Project Journal**
+# **Spartan Family Project Overall Contribution**
 
 **Weekly Development**
 
