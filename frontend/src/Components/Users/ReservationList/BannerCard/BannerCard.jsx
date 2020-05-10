@@ -11,6 +11,7 @@ import ReservationModal2 from "../ReservationModal/ReservationModal2";
 
 
 class BannerCard extends Component {
+
   state = {
     timeLeft: 0,
     showModal1: false,
@@ -19,6 +20,7 @@ class BannerCard extends Component {
   }
 
   componentWillMount() {
+
     let today = new Date();
     let timeLeft =
       (new Date(this.props.PICKUP_TIME).getTime() - today.getTime()) /
