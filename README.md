@@ -38,7 +38,8 @@ Project Journal: https://github.com/gopinathsjsu/sp20-cmpe-202-sec-03-team-proje
 
 
 # Contributors
+Vishal Gadapa <br/>
 Dhanasree Are <br/>
 Sri Hari Duvvuri <br/>
 Vamsi Krishna Chakravarthula <br/>
-Vishal Gadapa <br/>
+
