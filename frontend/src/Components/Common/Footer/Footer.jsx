@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "./Footer.styles.css";
+import React, { Component } from 'react';
+import './Footer.styles.css';
 class Footer extends Component {
   state = {};
   render() {
@@ -10,10 +10,10 @@ class Footer extends Component {
           <h3>Under Prof. Gopinath</h3>
         </div>
         <ul>
+          <li>Vishal</li>
           <li>Dhanashree</li>
           <li>Sri Hari</li>
           <li>Vamsi Krishna</li>
-          <li>Vishal</li>
         </ul>
         <p>Icons from Zipcar website</p>
       </div>
